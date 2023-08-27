@@ -81,3 +81,31 @@ console.log(typeof year);
 
 console.log(typeof null);
 */
+
+
+/**
+ * let const var
+ * let
+ *  변수의 값 변경 가능
+ */
+
+let age =30;
+age = 31;
+
+const birthYear = 4242;
+// birthYear = 2023;
+
+// 초기화 필요
+// const job;
+
+/**
+ * 현재는 var 사용 금지
+ */
+var job = 'programer';
+job = 'teacher';
+
+/**
+ * 선언없이도 변수를 실행할 수 있다
+ */
+lastName = "Im";
+console.log(lastName);
