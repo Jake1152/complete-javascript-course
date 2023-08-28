@@ -302,43 +302,80 @@ console.log(typeof null);
 // console.log(inputYear + 18); // 199118
 
 // #2
-const inputYear = '1991'
-console.log(Number(inputYear), inputYear); // 1991
-console.log(Number(inputYear) + 18); // 199118
+// const inputYear = '1991'
+// console.log(Number(inputYear), inputYear); // 1991
+// console.log(Number(inputYear) + 18); // 199118
 
-console.log(Number("jake")); // 199118
+// console.log(Number("jake")); // 199118
 
-console.log(typeof NaN); // 199118
+// console.log(typeof NaN); // 199118
 
-console.log(String(23), 23);
+// console.log(String(23), 23);
 
 
 // type conversion
 // type crrection
 // 숫자지면 타입강제 변환으로 문제 없이 된다.
 // 템플릿 리터럴도 동일
-console.log('I am ' + 23 + ' years old');
-console.log('23' + '10' + 3); // 23103
+// console.log('I am ' + 23 + ' years old');
+// console.log('23' + '10' + 3); // 23103
 /**
  * 왜 숫자가 되었는ㄷ가
  * 마이너스 연산자가 촉발함
  * +는 문자열에서 다르게 해석 될수 있는 듯
  * append으 느낌
  */
-console.log('23' - '10' - 3); // 10
-console.log('24' / '3');
+// console.log('23' - '10' - 3); // 10
+// console.log('24' / '3');
 
 
-let n = '1' + 1; // '11'
-n = n - 1; // 11 - 1
-console.log(n) // 10
+// let n = '1' + 1; // '11'
+// n = n - 1; // 11 - 1
+// console.log(n) // 10
 
-console.log(2+3+4+'5'); // "95"
+// console.log(2+3+4+'5'); // "95"
 /*
 2+3+4 = 9
 9 + '5' => '95'
 */
 
-console.log('10'-'4'-'3'-2+'5'); // "15"
-console.log('10'*'4'); // 40
+// console.log('10'-'4'-'3'-2+'5'); // "15"
+// console.log('10'*'4'); // 40
 
+
+
+/**
+ * Falsy, Thruthy
+ * # Falsy
+ * 처음에는 False가 아니지만 Boolean으로 변환되면서 false로 취급되는 것
+ * 5 falsy values: 0, '', undefined, null, NaN
+ */
+// 5 falsy values: 0, '', undefined, null, NaN
+console.log(Boolean(0));
+console.log(Boolean(undefined));
+console.log(Boolean('jake')); // true
+console.log(Boolean({}));
+console.log(Boolean('')); // false
+// console.log(Boolean(0));
+
+/**
+ * 자바스크립트에서 Boolean에 coercion하는 2가지 경우
+ * 1. 논리적 연산자를 사용할때
+ * 2. 논리적 켄텍스트에서 에를 들어 if else 문의 조건이 그렇듯
+ */
+// const money = 0; // falsy
+const money = 100; // truthy
+if (money) {
+    console.log("Do not spend it all ;");
+} else {
+    console.log("You should make money ;");
+}
+
+// let height;
+// let height = 123;
+let height = 0; // 0도 falsy라서 이 경우 휴먼에러
+if (height) {
+    console.log("!!! Height is defined;");
+} else {
+    console.log("Height is not defined;");
+}
