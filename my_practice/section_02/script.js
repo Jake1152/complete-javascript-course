@@ -216,11 +216,54 @@ console.log(typeof null);
 /**
  * average age 구하기
  */
-const now = 2042;
-const ageJake = now - 2002;
-const ageMarie = now - 2000;
+// const now = 2042;
+// const ageJake = now - 2002;
+// const ageMarie = now - 2000;
 
-const _averageAge = ageJake + ageMarie / 2 // wrong
-const averageAge = (ageJake + ageMarie) / 2 // right
-// console.log(`average age is ${(ageJake + ageMarie) / 2}`, _averageAge, averageAge)
-console.log(ageJake, ageMarie, _averageAge, averageAge)
+// const _averageAge = ageJake + ageMarie / 2 // wrong
+// const averageAge = (ageJake + ageMarie) / 2 // right
+// // console.log(`average age is ${(ageJake + ageMarie) / 2}`, _averageAge, averageAge)
+// console.log(ageJake, ageMarie, _averageAge, averageAge)
+
+/**
+ * 문자열 만들기
+ */
+// const firstName = 'Jake';
+// const job  = 'traveler'
+// const birthYear = 2000;
+// const year = 2037;
+
+// // "" '' 둘다 같은 문자열 생성
+// // 숫자 연산에 괄호 필요
+// const jake = "I'm " +  firstName + ', a ' + (year - birthYear) + 'years old ' + job + '!';
+
+// console.log(jake);
+
+
+/**
+ * Template literal을 써서 더욱 간단하게 표현 가능
+ */
+// const firstName = 'Jake';
+// const job  = 'traveler'
+// const birthYear = 2000;
+// const year = 2037;
+
+// // "" '' 둘다 같은 문자열 생성
+// // 숫자 연산에 괄호 필요
+// const jake = "I'm " +  firstName + ', a ' + (year - birthYear) + 'years old ' + job + '!';
+// console.log(jake);
+
+// const jakeNew = `I'm ${firstName}, a ${year - birthYear} years old ${job}!`;
+// console.log(jakeNew);
+
+// console.log(`Just ad regular string...`);
+// // ESXi
+// // Line string
+// console.log(`String with \n\
+// multiple \n\
+// lines\n\
+// `);
+
+// console.log(`String
+// multiple
+// lines`);
