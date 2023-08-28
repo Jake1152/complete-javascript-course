@@ -267,3 +267,30 @@ console.log(typeof null);
 // console.log(`String
 // multiple
 // lines`);
+
+const age = 15;
+const isOldEnough = age >= 18; // True
+
+/**
+ * 컨트롤 구조라고 부른다
+ */
+// if (age >= 18) {
+if (isOldEnough) {
+    console.log("Marie can start driving license");
+} else {
+    const yearsLeft = 18 - age;
+    console.log(`Marie can not start driving license TT
+    ${yearsLeft} years:)`);
+}
+
+/**
+ * 
+ */
+let century;
+const birthYear = 1980;
+if (birthYear <= 2000) {
+    century = 20;
+} else {
+    century = 21;
+}
+console.log(century)
