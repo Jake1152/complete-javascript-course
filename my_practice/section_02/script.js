@@ -89,10 +89,10 @@ console.log(typeof null);
  *  변수의 값 변경 가능
  */
 
-let age =30;
-age = 31;
+// let age =30;
+// age = 31;
 
-const birthYear = 4242;
+// const birthYear = 4242;
 // birthYear = 2023;
 
 // 초기화 필요
@@ -101,11 +101,85 @@ const birthYear = 4242;
 /**
  * 현재는 var 사용 금지
  */
-var job = 'programer';
-job = 'teacher';
+// var job = 'programer';
+// job = 'teacher';
 
 /**
  * 선언없이도 변수를 실행할 수 있다
  */
-lastName = "Im";
-console.log(lastName);
+// lastName = "Im";
+// console.log(lastName);
+
+
+/**
+ * 기본 연산자
+ * 연산자란 기본적으로 값을 변환하거나 
+ * 여러 값을 결합할 수 있게 해준다
+ * 여러 카테고리가 있다
+ *  수학 연산자, 비교 연산자, 논리 연산자, 할당 연산자
+ */
+
+/**
+ * version 00
+ * 연도가 바뀌면 동일한 값이었던 부분 다 바꾸어야해서 불편
+ */
+// const ageJake = 2042 - 1999;
+// const ageMarie = 2042 - 2023;
+// console.log(ageJake, ageMarie); // 43, 19
+
+/**
+ * version 01
+ * 연도를 변수로 뺴내기
+ */
+const currentYear = 2042
+const ageJake = currentYear - 1999;
+const ageMarie = currentYear - 2023;
+console.log(ageJake, ageMarie); // 43, 19
+
+console.log(ageJake * 2, ageMarie / 10, 2 ** 3); 
+
+// const firstName = "Jake";
+// const lastName = "Im";
+// console.log(firstName + lastName);
+
+
+/**
+ *  결합될 문자열 사이에 공백 추가
+ */
+
+const firstName = "Jake";
+const lastName = "Im";
+console.log(firstName + ' ' + lastName);
+
+
+/**
+ * 할당 연산자, 증감 연산자
+ * =
+ * 연산자 우선순위로 인하여 할당 연산자보다 + 연산자가 더 먼저  도앚ㄱ한다
+ */
+
+let x = 42 + 5; // 47
+console.log(x); // 47
+x += 10; // x = x + 10 // 57
+x += 4; // x + x + 4  // 61
+x++; // 62
+x--; //61
+console.log(x); // 61
+
+
+/**
+ * 비교연산자
+ * > < >= <=
+ */
+
+console.log(ageJake > ageMarie);
+console.log(ageJake >= 18);
+
+const isFullAge = ageMarie >= 10;
+console.log(currentYear - 1999 > currentYear - 2018);
+
+/**
+ * 
+ */
+
+
