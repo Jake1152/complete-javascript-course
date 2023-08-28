@@ -131,12 +131,12 @@ console.log(typeof null);
  * version 01
  * 연도를 변수로 뺴내기
  */
-const currentYear = 2042
-const ageJake = currentYear - 1999;
-const ageMarie = currentYear - 2023;
-console.log(ageJake, ageMarie); // 43, 19
+// const currentYear = 2042
+// const ageJake = currentYear - 1999;
+// const ageMarie = currentYear - 2023;
+// console.log(ageJake, ageMarie); // 43, 19
 
-console.log(ageJake * 2, ageMarie / 10, 2 ** 3); 
+// console.log(ageJake * 2, ageMarie / 10, 2 ** 3); 
 
 // const firstName = "Jake";
 // const lastName = "Im";
@@ -147,9 +147,9 @@ console.log(ageJake * 2, ageMarie / 10, 2 ** 3);
  *  결합될 문자열 사이에 공백 추가
  */
 
-const firstName = "Jake";
-const lastName = "Im";
-console.log(firstName + ' ' + lastName);
+// const firstName = "Jake";
+// const lastName = "Im";
+// console.log(firstName + ' ' + lastName);
 
 
 /**
@@ -158,13 +158,13 @@ console.log(firstName + ' ' + lastName);
  * 연산자 우선순위로 인하여 할당 연산자보다 + 연산자가 더 먼저  도앚ㄱ한다
  */
 
-let x = 42 + 5; // 47
-console.log(x); // 47
-x += 10; // x = x + 10 // 57
-x += 4; // x + x + 4  // 61
-x++; // 62
-x--; //61
-console.log(x); // 61
+// let x = 42 + 5; // 47
+// console.log(x); // 47
+// x += 10; // x = x + 10 // 57
+// x += 4; // x + x + 4  // 61
+// x++; // 62
+// x--; //61
+// console.log(x); // 61
 
 
 /**
@@ -172,14 +172,55 @@ console.log(x); // 61
  * > < >= <=
  */
 
-console.log(ageJake > ageMarie);
-console.log(ageJake >= 18);
+// console.log(ageJake > ageMarie);
+// console.log(ageJake >= 18);
 
-const isFullAge = ageMarie >= 10;
-console.log(currentYear - 1999 > currentYear - 2018);
+// const isFullAge = ageMarie >= 10;
+// console.log(currentYear - 1999 > currentYear - 2018);
 
 /**
- * 
+ * 연산자 우선순위
  */
+// const now = 2042;
+// const ageJake = now - 2002;
+// const ageMarie = now - 2000;
 
+// console.log(now - 2002 > now - 2000);
 
+/**
+ * 연산자마다 진행 방향이 다르다
+ * Left -> Right
+ * Right -> left
+ * 대체로는 Left-> Right가 많다
+ * 대부분 수학 연산자는 Left -> Right
+ */
+// 왼쪽에서 오른쪽으로 진행
+// console.log(25 - 10 - 5); // 10
+// 만약 오른쪽에서 왼쪽으로 진행하면 달라지게 됨
+
+/**
+ * 할당 연산자는 오른쪽에서 왼쪽으로 진행된다.
+ * x = y = 10
+ * 1. y = 10
+ * 2. x = 10
+ * 왼쪽에서 오른쪽 순서로 할당 되었다면 이러한 결과는 생기지 못하였을 것이다
+ * Left -> Right 였다면
+ * 1. x = y // undeifned
+ * 2. y = 10 // 10
+ * result => undefined 10
+ */
+// let x, y; // undefined
+// x = y = 25 - 10 -5; // x = y = 10
+// console.log(x, y); // 10 10
+
+/**
+ * average age 구하기
+ */
+const now = 2042;
+const ageJake = now - 2002;
+const ageMarie = now - 2000;
+
+const _averageAge = ageJake + ageMarie / 2 // wrong
+const averageAge = (ageJake + ageMarie) / 2 // right
+// console.log(`average age is ${(ageJake + ageMarie) / 2}`, _averageAge, averageAge)
+console.log(ageJake, ageMarie, _averageAge, averageAge)
