@@ -380,7 +380,10 @@ console.log(typeof null);
 
 // console.log(0 | undefined | '' | null | NaN);
 
-const age = 18;
+/**
+ * Equality Operator ==, ===
+ */
+// const age = 18;
 // Strict
 // if (age === 18.0) console.log('You just became an adult');
 
@@ -388,20 +391,53 @@ const age = 18;
 // if (age == '18') console.log('You just became an adult');
 
 
-const favorite = prompt("What's your favorite number?");
-console.log(favorite);
-console.log(typeof favorite);
+// const favorite = prompt("What's your favorite number?");
+// console.log(favorite);
+// console.log(typeof favorite);
 
-if (favorite == 23) { // '23' == 23
-    console.log("Cool! 23 is an amazing number!");
-}
+// if (favorite == 23) { // '23' == 23
+//     console.log("Cool! 23 is an amazing number!");
+// }
 
-if (favorite === 23) { // '23' !== 23
-    console.log("Cool! 23 is an amazing number!");
-} else if (favorite === 7) {
-    console.log("Cool! 7 is an amazing number!");
+// if (favorite === 23) { // '23' !== 23
+//     console.log("Cool! 23 is an amazing number!");
+// } else if (favorite === 7) {
+//     console.log("Cool! 7 is an amazing number!");
+// } else {
+//     console.log("Cool! Number is N.O.T 23 or 7!");
+// }
+
+// if (favorite !== 23) console.log("Why not 23?");
+
+/**
+ * Boolean Logic
+ * 세라는 운전면허가 있고 시력이 좋다
+ * 둘다 진실이거나 둘중 하나만 진실 혹은 둘다 거짓일 수 있따.
+ */
+
+const hasDriverLiscense = true;
+const hasGoodVision = true;
+
+// console.log(hasDriverLiscense && hasGoodVision);
+// console.log(hasDriverLiscense || hasGoodVision);
+// console.log(!hasDriverLiscense || hasGoodVision);
+// console.log(!hasDriverLiscense || !hasGoodVision);
+// console.log(hasDriverLiscense || !hasGoodVision);
+
+
+// const shouldDrive = hasDriverLiscense && hasGoodVision
+
+// if (shouldDrive && hasGoodVision) {
+//     console.log("Sarah is abel to drive!");
+// } else {
+//     console.log("Sarah else should drive!");
+// }    
+
+const isTired = true;
+console.log(hasDriverLiscense && hasGoodVision && isTired);
+
+if (hasDriverLiscense && hasGoodVision && !(isTired)) {
+    console.log("Sarah is abel to drive!");
 } else {
-    console.log("Cool! Number is N.O.T 23 or 7!");
-}
-
-if (favorite !== 23) console.log("Why not 23?");
+    console.log("Sarah else should drive!");
+}    
