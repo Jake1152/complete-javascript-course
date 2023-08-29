@@ -21,27 +21,64 @@
  * 코드 일부로 재활용 가능
  * 변수를 가지고 있느 ㅎ마수는 1줄 이상 있다
  */
-function logger() {
-    console.log("My name is Jake");
-}
+// function logger() {
+//     console.log("My name is Jake");
+// }
 /**
  * calling / running / invoking function
  */
-console.log(logger(), typeof logger());
-// logger();
-// logger();
+// console.log(logger(), typeof logger());
+// // logger();
+// // logger();
 
-function fruitProcessor(apples, oranges) {
-    // console.log(apples, oranges);
-    const juice = `Juice with ${apples} apples and ${oranges} organgs.`
-    return juice;
+// function fruitProcessor(apples, oranges) {
+//     // console.log(apples, oranges);
+//     const juice = `Juice with ${apples} apples and ${oranges} organgs.`
+//     return juice;
+// }
+
+// const appleJuice = fruitProcessor("5", "0");
+// console.log(appleJuice);
+// // console.log(fruitProcessor("5", "0"));
+
+// const appleOrangeJuice = fruitProcessor(2, 4);
+// console.log(appleOrangeJuice);
+// // 역시 함수
+// const num = Number('23');
+/**
+ * 함수 응용
+ */
+
+const ageOne = calcAge1(2000);
+// version 1
+function calcAge1(birthYear) {
+    const age = 2037 - birthYear;
+    return age;
 }
 
-const appleJuice = fruitProcessor("5", "0");
-console.log(appleJuice);
-// console.log(fruitProcessor("5", "0"));
+// function declaration
+function calcAge1(birthYear) {
+    return 2037 - birthYear;;
+}
 
-const appleOrangeJuice = fruitProcessor(2, 4);
-console.log(appleOrangeJuice);
-// 역시 함수
-const num = Number('23');
+
+const ageTwo = calcAge1(2004);
+console.log(ageOne, ageTwo)
+
+// function expression
+/**
+ * expression은 값을 생성한다.
+ * calcAge2은 그냥 값이다
+ * function은 타입이 아니지만 값이다.
+ * 중요한점!! 값은 변수에 저장할 수 있다.
+ * 함수 선언과 함수 식의 차이
+ * - 주된 차이
+ * !!코드가 정의 되기 전에  함수 선언을 호출할 수 있다는 것
+ * 호이스팅
+ */
+const calcAge2 = function(birthYear) {
+    return 2037 - birthYear;
+}
+const ageThree = calcAge2(2000);
+
+console.log(calcAge2, ageThree);
