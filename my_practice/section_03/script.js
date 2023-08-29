@@ -49,21 +49,21 @@
  * 함수 응용
  */
 
-const ageOne = calcAge1(2000);
-// version 1
-function calcAge1(birthYear) {
-    const age = 2037 - birthYear;
-    return age;
-}
+// const ageOne = calcAge1(2000);
+// // version 1
+// function calcAge1(birthYear) {
+//     const age = 2037 - birthYear;
+//     return age;
+// }
 
-// function declaration
-function calcAge1(birthYear) {
-    return 2037 - birthYear;;
-}
+// // function declaration
+// function calcAge1(birthYear) {
+//     return 2037 - birthYear;;
+// }
 
 
-const ageTwo = calcAge1(2004);
-console.log(ageOne, ageTwo)
+// const ageTwo = calcAge1(2004);
+// console.log(ageOne, ageTwo)
 
 // function expression
 /**
@@ -76,9 +76,38 @@ console.log(ageOne, ageTwo)
  * !!코드가 정의 되기 전에  함수 선언을 호출할 수 있다는 것
  * 호이스팅
  */
+// const calcAge2 = function(birthYear) {
+//     return 2037 - birthYear;
+// }
+// const ageThree = calcAge2(2000);
+
+// console.log(calcAge2, ageThree);
+
+
+/**
+ * Arrow function
+ */
+
+// function expression
 const calcAge2 = function(birthYear) {
     return 2037 - birthYear;
-}
-const ageThree = calcAge2(2000);
+} 
 
-console.log(calcAge2, ageThree);
+// Arrow function
+const calcAge3 = birthYear => 2037 - birthYear
+const age3 = calcAge3(1991);
+console.log(age3);
+
+/**
+ * 화살표 함수일때는 function 키워드를 쓰면 에러가 발생
+ * 정확히 어느 부분이 영향을 주는 것인지 확인 필요
+ */
+const yearUnitlRetirement = (birthYear, firstName) => {
+    const age = 2037 - birthYear;
+    const retirement = 65 - age;
+    // return retirement;
+    return `${firstName} retires in ${retirement} years`;
+}
+
+console.log(yearUnitlRetirement(1991, 'Jake'));
+console.log(yearUnitlRetirement(1978, 'BO'));
