@@ -89,25 +89,48 @@
  */
 
 // function expression
-const calcAge2 = function(birthYear) {
-    return 2037 - birthYear;
-} 
+// const calcAge2 = function(birthYear) {
+//     return 2037 - birthYear;
+// } 
 
 // Arrow function
-const calcAge3 = birthYear => 2037 - birthYear
-const age3 = calcAge3(1991);
-console.log(age3);
+// const calcAge3 = birthYear => 2037 - birthYear
+// const age3 = calcAge3(1991);
+// console.log(age3);
 
 /**
  * 화살표 함수일때는 function 키워드를 쓰면 에러가 발생
  * 정확히 어느 부분이 영향을 주는 것인지 확인 필요
  */
-const yearUnitlRetirement = (birthYear, firstName) => {
-    const age = 2037 - birthYear;
-    const retirement = 65 - age;
-    // return retirement;
-    return `${firstName} retires in ${retirement} years`;
+// const yearUnitlRetirement = (birthYear, firstName) => {
+//     const age = 2037 - birthYear;
+//     const retirement = 65 - age;
+//     // return retirement;
+//     return `${firstName} retires in ${retirement} years`;
+// }
+
+// console.log(yearUnitlRetirement(1991, 'Jake'));
+// console.log(yearUnitlRetirement(1978, 'BO'));
+
+
+/**
+ * Function calling other function
+ */
+
+/**
+ * 아래 과일 주스 예시에서 일련의 과정이 필요하다 
+ * 과일 구하고, 씻고, 자르고, 믹서기에 넣고, 다시 꺼내서 보관하고 등등
+ */
+
+function cutFruitePieces(fruit) {
+    return fruit * 4;
 }
 
-console.log(yearUnitlRetirement(1991, 'Jake'));
-console.log(yearUnitlRetirement(1978, 'BO'));
+function fruitProcessor(apples, oranges) {
+    const applePieces = cutFruitePieces(apples);
+    const orangePieces = cutFruitePieces(oranges);
+    const juice = `Juice with ${applePieces} apples and ${orangePieces} organgs.`
+    return juice;
+}
+
+console.log(fruitProcessor(2, 3));
