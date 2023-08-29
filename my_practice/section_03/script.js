@@ -6,11 +6,42 @@
  */
 'use strict';
 
-let hasDriversLicense = false;
-let passTest = true;
+// let hasDriversLicense = false;
+// let passTest = true;
 
-if (passTest) hasDriversLicense = true;
-if (hasDriversLicense) console.log('I can drive :)');
+// if (passTest) hasDriversLicense = true;
+// if (hasDriversLicense) console.log('I can drive :)');
 
 // const interface = "Audio";
-const private = 4242;
+// const private = 4242;
+
+/**
+ *  function 은 프로그래밍의 기본 요소
+ * 함수란 
+ * 코드 일부로 재활용 가능
+ * 변수를 가지고 있느 ㅎ마수는 1줄 이상 있다
+ */
+function logger() {
+    console.log("My name is Jake");
+}
+/**
+ * calling / running / invoking function
+ */
+console.log(logger(), typeof logger());
+// logger();
+// logger();
+
+function fruitProcessor(apples, oranges) {
+    // console.log(apples, oranges);
+    const juice = `Juice with ${apples} apples and ${oranges} organgs.`
+    return juice;
+}
+
+const appleJuice = fruitProcessor("5", "0");
+console.log(appleJuice);
+// console.log(fruitProcessor("5", "0"));
+
+const appleOrangeJuice = fruitProcessor(2, 4);
+console.log(appleOrangeJuice);
+// 역시 함수
+const num = Number('23');
