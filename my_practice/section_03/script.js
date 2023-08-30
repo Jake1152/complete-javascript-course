@@ -95,7 +95,7 @@
 
 // Arrow function
 // const calcAge3 = birthYear => 2037 - birthYear
-// const age3 = calcAge3(1991);
+// const age3 = calcAge3(2000);
 // console.log(age3);
 
 /**
@@ -109,7 +109,7 @@
 //     return `${firstName} retires in ${retirement} years`;
 // }
 
-// console.log(yearUnitlRetirement(1991, 'Jake'));
+// console.log(yearUnitlRetirement(2000, 'Jake'));
 // console.log(yearUnitlRetirement(1978, 'BO'));
 
 
@@ -148,7 +148,7 @@
 // console.log(typeof friends);
 
 
-// // const years = new Array(1991, 1984, 2002, 2023);
+// // const years = new Array(2000, 1984, 2002, 2023);
 
 // console.log(friends[0]);
 // console.log(friends[2]);
@@ -176,7 +176,7 @@
 
 // // friends = ['tomato']; // error
 
-// const jim = ['Jonas', 'Schmedtmann', 2037 - 1991, 'traveler', friends];
+// const jim = ['jim', 'Schmedtmann', 2037 - 2000, 'traveler', friends];
 // console.log(jim);
 
 // // Exercise
@@ -184,12 +184,12 @@
 //     return 2037 - birthYear;
 // }
 
-// const years = [1992, 1969, 2022, 2011, 2018];
+// const years = [2000, 1969, 2022, 2011, 2018];
 
 // calcAge(years);
 // console.log(calcAge(years)); // NaN
 
-// console.log(years + 10); //1992,1969,2022,2011,201810
+// console.log(years + 10); //2000,1969,2022,2011,201810
 // console.log(years - 10); // NaN
 
 
@@ -204,41 +204,105 @@
 /**
  * Basic Array Operations (Methods)
  */
-const friends = [ 'Michael', 'Steven', 'Peter' ];
+// const friends = [ 'Michael', 'Steven', 'Peter' ];
 
 /**
  * push는 메소드
  * 배열은 object이고 object는 method가 있을 수 있어서 그런 듯 싶다
  */
-const newLength = friends.push('Jake'); // push의 리턴 값은 push된 이후의 배열의 길이
-console.log(friends); // [ 'Michael', 'Steven', 'Peter', 'Jake' ]
-console.log(newLength); // 4
+// const newLength = friends.push('Jake'); // push의 리턴 값은 push된 이후의 배열의 길이
+// console.log(friends); // [ 'Michael', 'Steven', 'Peter', 'Jake' ]
+// console.log(newLength); // 4
 
-console.log(friends.unshift("John")); // unshift도 값이 배열에 추가된 이후에 배열의 길이를 return함
-console.log(friends);// [ 'John', 'Michael', 'Steven', 'Peter', 'Jake' ] 맨 앞에 값이 추가됨
+// console.log(friends.unshift("John")); // unshift도 값이 배열에 추가된 이후에 배열의 길이를 return함
+// console.log(friends);// [ 'John', 'Michael', 'Steven', 'Peter', 'Jake' ] 맨 앞에 값이 추가됨
 
-friends.pop(); // last
-const popped = friends.pop();
-console.log(popped); // Peter
-console.log(friends); // [ 'John', 'Michael', 'Steven' ]
+// friends.pop(); // last
+// const popped = friends.pop();
+// console.log(popped); // Peter
+// console.log(friends); // [ 'John', 'Michael', 'Steven' ]
 
-console.log(friends.shift()); // 맨 앞에 있던 값을 배열로부터 빼내며, 그값을 return 함
-console.log(friends); // [ 'Michael', 'Steven' ]
+// console.log(friends.shift()); // 맨 앞에 있던 값을 배열로부터 빼내며, 그값을 return 함
+// console.log(friends); // [ 'Michael', 'Steven' ]
 
-console.log(friends.indexOf('Steven')); // 1, 인덱스 반환
-console.log(friends.indexOf('Bob')); // -1, 없는 요소이면 -1 리턴
+// console.log(friends.indexOf('Steven')); // 1, 인덱스 반환
+// console.log(friends.indexOf('Bob')); // -1, 없는 요소이면 -1 리턴
 
-friends.push(23);
-console.log(friends.includes('Steven')); // true
-console.log(friends.includes('Bob')); // false
-console.log(friends.includes('23')); // false, 타입 강제를 하지 않는다.
-console.log(friends.includes(23)); // true
+// friends.push(23);
+// console.log(friends.includes('Steven')); // true
+// console.log(friends.includes('Bob')); // false
+// console.log(friends.includes('23')); // false, 타입 강제를 하지 않는다.
+// console.log(friends.includes(23)); // true
 
 /**
  * includes를 이용해서 만들수 있는 유용한 것
  * 특정 인자 값이 배열에 포함되는지를 기준으로 조건문으로 사용
  * includes를 반환값이 boolean이라 가능.
  */
-if (friends.includes('Steven')) {
-    console.log('You have a friend called Steven');
+// if (friends.includes('Steven')) {
+//     console.log('You have a friend called Steven');
+// }
+
+/**
+ * Object
+ * 배열을 데이터 구조로 사용했었음
+ * 
+ */
+
+/**
+ * 아래의 배열에서는 
+ * 각 요소들에게 이름을 줄 방법이 없다
+ */
+// review
+const jimArray = [
+    'Jim', // 이름
+    'sche', // 
+    2037 - 2000, // 나이
+    'traveler', // 직업
+    ["jame", "jane", "jim"] // 친구목록
+]
+
+/**
+ * 객체는 중괄호를 이용해서 정의한다.
+ * 5가지 속성으로 구성됨
+ */
+const jim = {
+    firstName: 'Jake',
+    lastName: 'Im',
+    age: 2037 - 2000,
+    job: "traveler",
+    friends: ["jim", "jake", "jason"],
 }
+
+console.log(jim);
+
+console.log(jim.lastName);
+console.log(jim[`lastName`]);
+
+const nameKey = 'Name';
+console.log(jim['first' + nameKey]);
+console.log(jim['last' + nameKey]);
+
+// console.log(jim.'last' + namekey); // error
+// 괄호 표기법을 써야한다
+
+// const interestedIn = prompt('What do you whant to know about that person? Choose between firstName, lastName, age, job and friends');
+// console.log(jim[interestedIn]); // undefiend 
+
+// if (jim[interestedIn]) {
+//     console.log(jim[interestedIn]); 
+// } else {
+//     console.log("Wrong request! Choose between firstName, lastName, age, job and friends");
+// }
+
+
+jim.location = "Korea";
+jim['slace'] = "jim";
+console.log(jim);
+
+/**
+ * 배열에 있는 첫번째 친구가 가장 친함
+ * 친구수를 알려면 여러가직 필요
+ */
+
+console.log(`${jim.firstName} has ${jim.friends.length}, and his bst firend is called ${jim.friends[0]}`);
