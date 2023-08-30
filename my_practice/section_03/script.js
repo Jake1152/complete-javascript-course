@@ -266,22 +266,22 @@ const jimArray = [
  * 객체는 중괄호를 이용해서 정의한다.
  * 5가지 속성으로 구성됨
  */
-const jim = {
-    firstName: 'Jake',
-    lastName: 'Im',
-    age: 2037 - 2000,
-    job: "traveler",
-    friends: ["jim", "jake", "jason"],
-}
+// const jim = {
+//     firstName: 'Jake',
+//     lastName: 'Im',
+//     age: 2037 - 2000,
+//     job: "traveler",
+//     friends: ["jim", "jake", "jason"],
+// }
 
-console.log(jim);
+// console.log(jim);
 
-console.log(jim.lastName);
-console.log(jim[`lastName`]);
+// console.log(jim.lastName);
+// console.log(jim[`lastName`]);
 
-const nameKey = 'Name';
-console.log(jim['first' + nameKey]);
-console.log(jim['last' + nameKey]);
+// const nameKey = 'Name';
+// console.log(jim['first' + nameKey]);
+// console.log(jim['last' + nameKey]);
 
 // console.log(jim.'last' + namekey); // error
 // 괄호 표기법을 써야한다
@@ -295,14 +295,66 @@ console.log(jim['last' + nameKey]);
 //     console.log("Wrong request! Choose between firstName, lastName, age, job and friends");
 // }
 
-
-jim.location = "Korea";
-jim['slace'] = "jim";
-console.log(jim);
+// jim.location = "Korea";
+// jim['slace'] = "jim";
+// console.log(jim);
 
 /**
  * 배열에 있는 첫번째 친구가 가장 친함
  * 친구수를 알려면 여러가직 필요
  */
 
-console.log(`${jim.firstName} has ${jim.friends.length}, and his bst firend is called ${jim.friends[0]}`);
+// console.log(`${jim.firstName} has ${jim.friends.length}, and his bst firend is called ${jim.friends[0]}`);
+
+/**
+ * Object method
+ */
+const jim = {
+    firstName: 'Jake',
+    lastName: 'Im',
+    birthYear: 2000,
+    job: "traveler",
+    friends: ["jim", "jake", "jason"],
+    hasDrriverLicense: false,
+
+    /**
+     * 객체의 속성으로 calcAge라는 함수가 들어감 할당 연산자가 아닌 ':'으로 표시
+     * @param {*} birthYear 
+     * @returns 
+     */
+    // calcAge: function(birthYear) {
+    //     return 2037 - birthYear;
+    // }
+
+    // 프로퍼티 사용
+    calcAge: function() {
+        // console.log(this);
+        // return 2037 - jim.birthYear; // 객체가 있는 변수이름을 써도 되지만 변수명을 바꿀 경우 트레킹이 안됨 
+        // return 2037 - this.birthYear;
+        this.age = 2037 - this.birthYear;
+        return this.age;
+    },
+
+    getSummary: function() {
+        return `${this.firstName} is ${this.age}-year old ${this.job}, and ${this.hasDrriverLicense ? "has a driver's license" :  "has not a driver's license"}`
+    }
+
+    // error, in object function must be representation as expression
+    // function calcAge(birthYear) {
+    //     return 2037 - birthYear;
+    // }
+};
+
+const calcAge = function(birthYear) {
+    return 2037 - birthYear;
+}
+
+// console.log(jim.calcAge(2000)); // 37
+// console.log(jim[`calcAge`](2000)); // 37
+console.log(jim.calcAge()); // 37
+console.log(jim.age); // age라는  멤버변수가 없었는데 생겼다. 트릭!
+console.log(jim.calcAge()); // 37
+
+
+console.log(jim.getSummary);
+console.log(jim.getSummary());
