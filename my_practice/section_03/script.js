@@ -122,15 +122,15 @@
  * 과일 구하고, 씻고, 자르고, 믹서기에 넣고, 다시 꺼내서 보관하고 등등
  */
 
-function cutFruitePieces(fruit) {
-    return fruit * 4;
-}
+// function cutFruitePieces(fruit) {
+//     return fruit * 4;
+// }
 
-function fruitProcessor(apples, oranges) {
-    const applePieces = cutFruitePieces(apples);
-    const orangePieces = cutFruitePieces(oranges);
-    const juice = `Juice with ${applePieces} apples and ${orangePieces} organgs.`
-    return juice;
-}
+// function fruitProcessor(apples, oranges) {
+//     const applePieces = cutFruitePieces(apples);
+//     const orangePieces = cutFruitePieces(oranges);
+//     const juice = `Juice with ${applePieces} apples and ${orangePieces} organgs.`
+//     return juice;
+// }
 
-console.log(fruitProcessor(2, 3));
+// console.log(fruitProcessor(2, 3));
