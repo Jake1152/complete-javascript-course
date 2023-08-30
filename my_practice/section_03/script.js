@@ -139,23 +139,23 @@
  * Array
  */
 
-const friend1 = "Michael";
-const friend2 = "Steven";
-const friend3 = "Peter";
+// const friend1 = "Michael";
+// const friend2 = "Steven";
+// const friend3 = "Peter";
 
-const friends = [ 'Michael', 'Steven', 'Peter' ]
-console.log(friends);
-console.log(typeof friends);
+// const friends = [ 'Michael', 'Steven', 'Peter' ]
+// console.log(friends);
+// console.log(typeof friends);
 
 
-// const years = new Array(1991, 1984, 2002, 2023);
+// // const years = new Array(1991, 1984, 2002, 2023);
 
-console.log(friends[0]);
-console.log(friends[2]);
+// console.log(friends[0]);
+// console.log(friends[2]);
 
-console.log(friends.length);
-console.log(friends[friends.length]); // undefined
-console.log(friends[friends.length - 1]); 
+// console.log(friends.length);
+// console.log(friends[friends.length]); // undefined
+// console.log(friends[friends.length - 1]); 
 /**
  * friends.length - 1 이 부분에서 JS는 문장이 아니라 식(expression)을 기대한다
  */
@@ -170,33 +170,75 @@ console.log(friends[friends.length - 1]);
  * 즉, 가리키고 있는 배열에서 각 요소가 가리키는 값은 바꿀 수 있어도 가리키던 배열은 못바꿈
  */
 
-friends[2] = 'Jay';
-console.log(friends); // 3번쨰 값이 바뀜
+// friends[2] = 'Jay';
+// console.log(friends); // 3번쨰 값이 바뀜
 
 
-// friends = ['tomato']; // error
+// // friends = ['tomato']; // error
 
-const jim = ['Jonas', 'Schmedtmann', 2037 - 1991, 'traveler', friends];
-console.log(jim);
+// const jim = ['Jonas', 'Schmedtmann', 2037 - 1991, 'traveler', friends];
+// console.log(jim);
 
-// Exercise
-const calcAge = function(birthYear) {
-    return 2037 - birthYear;
+// // Exercise
+// const calcAge = function(birthYear) {
+//     return 2037 - birthYear;
+// }
+
+// const years = [1992, 1969, 2022, 2011, 2018];
+
+// calcAge(years);
+// console.log(calcAge(years)); // NaN
+
+// console.log(years + 10); //1992,1969,2022,2011,201810
+// console.log(years - 10); // NaN
+
+
+// const age1 = calcAge(years[0]);
+// const age2 = calcAge(years[1]);
+// const age3 = calcAge(years[years.length - 1]);
+// console.log(age1, age2, age3);
+
+// const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length - 1])]; // [ 45, 68, 19 ]
+// console.log(ages); // [ 45, 68, 19 ]
+
+/**
+ * Basic Array Operations (Methods)
+ */
+const friends = [ 'Michael', 'Steven', 'Peter' ];
+
+/**
+ * push는 메소드
+ * 배열은 object이고 object는 method가 있을 수 있어서 그런 듯 싶다
+ */
+const newLength = friends.push('Jake'); // push의 리턴 값은 push된 이후의 배열의 길이
+console.log(friends); // [ 'Michael', 'Steven', 'Peter', 'Jake' ]
+console.log(newLength); // 4
+
+console.log(friends.unshift("John")); // unshift도 값이 배열에 추가된 이후에 배열의 길이를 return함
+console.log(friends);// [ 'John', 'Michael', 'Steven', 'Peter', 'Jake' ] 맨 앞에 값이 추가됨
+
+friends.pop(); // last
+const popped = friends.pop();
+console.log(popped); // Peter
+console.log(friends); // [ 'John', 'Michael', 'Steven' ]
+
+console.log(friends.shift()); // 맨 앞에 있던 값을 배열로부터 빼내며, 그값을 return 함
+console.log(friends); // [ 'Michael', 'Steven' ]
+
+console.log(friends.indexOf('Steven')); // 1, 인덱스 반환
+console.log(friends.indexOf('Bob')); // -1, 없는 요소이면 -1 리턴
+
+friends.push(23);
+console.log(friends.includes('Steven')); // true
+console.log(friends.includes('Bob')); // false
+console.log(friends.includes('23')); // false, 타입 강제를 하지 않는다.
+console.log(friends.includes(23)); // true
+
+/**
+ * includes를 이용해서 만들수 있는 유용한 것
+ * 특정 인자 값이 배열에 포함되는지를 기준으로 조건문으로 사용
+ * includes를 반환값이 boolean이라 가능.
+ */
+if (friends.includes('Steven')) {
+    console.log('You have a friend called Steven');
 }
-
-const years = [1992, 1969, 2022, 2011, 2018];
-
-calcAge(years);
-console.log(calcAge(years)); // NaN
-
-console.log(years + 10); //1992,1969,2022,2011,201810
-console.log(years - 10); // NaN
-
-
-const age1 = calcAge(years[0]);
-const age2 = calcAge(years[1]);
-const age3 = calcAge(years[years.length - 1]);
-console.log(age1, age2, age3);
-
-const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length - 1])]; // [ 45, 68, 19 ]
-console.log(ages); // [ 45, 68, 19 ]
