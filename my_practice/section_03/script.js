@@ -134,3 +134,69 @@
 // }
 
 // console.log(fruitProcessor(2, 3));
+
+/**
+ * Array
+ */
+
+const friend1 = "Michael";
+const friend2 = "Steven";
+const friend3 = "Peter";
+
+const friends = [ 'Michael', 'Steven', 'Peter' ]
+console.log(friends);
+console.log(typeof friends);
+
+
+// const years = new Array(1991, 1984, 2002, 2023);
+
+console.log(friends[0]);
+console.log(friends[2]);
+
+console.log(friends.length);
+console.log(friends[friends.length]); // undefined
+console.log(friends[friends.length - 1]); 
+/**
+ * friends.length - 1 이 부분에서 JS는 문장이 아니라 식(expression)을 기대한다
+ */
+
+
+/**
+ * friends를 const로 선언했지만 값이 바뀜
+ * 원시타입만 바뀌지 않음
+ * object는 참조하기 때문에 다름
+ * 메모리 저장 방식의 차이점 떄문에 const임에도 배열에서 가리키는 값을 바꿀 수 있음
+ * 하지만 변수가 가리키는 배열자체를 바꾸는 것은 불가
+ * 즉, 가리키고 있는 배열에서 각 요소가 가리키는 값은 바꿀 수 있어도 가리키던 배열은 못바꿈
+ */
+
+friends[2] = 'Jay';
+console.log(friends); // 3번쨰 값이 바뀜
+
+
+// friends = ['tomato']; // error
+
+const jim = ['Jonas', 'Schmedtmann', 2037 - 1991, 'traveler', friends];
+console.log(jim);
+
+// Exercise
+const calcAge = function(birthYear) {
+    return 2037 - birthYear;
+}
+
+const years = [1992, 1969, 2022, 2011, 2018];
+
+calcAge(years);
+console.log(calcAge(years)); // NaN
+
+console.log(years + 10); //1992,1969,2022,2011,201810
+console.log(years - 10); // NaN
+
+
+const age1 = calcAge(years[0]);
+const age2 = calcAge(years[1]);
+const age3 = calcAge(years[years.length - 1]);
+console.log(age1, age2, age3);
+
+const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length - 1])]; // [ 45, 68, 19 ]
+console.log(ages); // [ 45, 68, 19 ]
