@@ -254,13 +254,13 @@
  * 각 요소들에게 이름을 줄 방법이 없다
  */
 // review
-const jimArray = [
-    'Jim', // 이름
-    'sche', // 
-    2037 - 2000, // 나이
-    'traveler', // 직업
-    ["jame", "jane", "jim"] // 친구목록
-]
+// const jimArray = [
+//     'Jim', // 이름
+//     'sche', // 
+//     2037 - 2000, // 나이
+//     'traveler', // 직업
+//     ["jame", "jane", "jim"] // 친구목록
+// ]
 
 /**
  * 객체는 중괄호를 이용해서 정의한다.
@@ -309,52 +309,160 @@ const jimArray = [
 /**
  * Object method
  */
-const jim = {
-    firstName: 'Jake',
-    lastName: 'Im',
-    birthYear: 2000,
-    job: "traveler",
-    friends: ["jim", "jake", "jason"],
-    hasDrriverLicense: false,
+// const jim = {
+//     firstName: 'Jake',
+//     lastName: 'Im',
+//     birthYear: 2000,
+//     job: "traveler",
+//     friends: ["jim", "jake", "jason"],
+//     hasDrriverLicense: false,
 
-    /**
-     * 객체의 속성으로 calcAge라는 함수가 들어감 할당 연산자가 아닌 ':'으로 표시
-     * @param {*} birthYear 
-     * @returns 
-     */
-    // calcAge: function(birthYear) {
-    //     return 2037 - birthYear;
-    // }
+//     /**
+//      * 객체의 속성으로 calcAge라는 함수가 들어감 할당 연산자가 아닌 ':'으로 표시
+//      * @param {*} birthYear 
+//      * @returns 
+//      */
+//     // calcAge: function(birthYear) {
+//     //     return 2037 - birthYear;
+//     // }
 
-    // 프로퍼티 사용
-    calcAge: function() {
-        // console.log(this);
-        // return 2037 - jim.birthYear; // 객체가 있는 변수이름을 써도 되지만 변수명을 바꿀 경우 트레킹이 안됨 
-        // return 2037 - this.birthYear;
-        this.age = 2037 - this.birthYear;
-        return this.age;
-    },
+//     // 프로퍼티 사용
+//     calcAge: function() {
+//         console.log(this);
+//         // return 2037 - jim.birthYear; // 객체가 있는 변수이름을 써도 되지만 변수명을 바꿀 경우 트레킹이 안됨 
+//         // return 2037 - this.birthYear;
+//         this.age = 2037 - this.birthYear;
+//         return this.age;
+//     },
 
-    getSummary: function() {
-        return `${this.firstName} is ${this.age}-year old ${this.job}, and ${this.hasDrriverLicense ? "has a driver's license" :  "has not a driver's license"}`
-    }
+//     getSummary: function() {
+//         return `${this.firstName} is ${this.age}-year old ${this.job}, and ${this.hasDrriverLicense ? "has a driver's license" :  "has not a driver's license"}`
+//     }
 
-    // error, in object function must be representation as expression
-    // function calcAge(birthYear) {
-    //     return 2037 - birthYear;
-    // }
-};
+//     // error, in object function must be representation as expression
+//     // function calcAge(birthYear) {
+//     //     return 2037 - birthYear;
+//     // }
+// };
 
-const calcAge = function(birthYear) {
-    return 2037 - birthYear;
+// // const calcAge = function(birthYear) {
+// //     return 2037 - birthYear;
+// // }
+
+// // console.log(jim.calcAge(2000)); // 37
+// // console.log(jim[`calcAge`](2000)); // 37
+// console.log(jim.calcAge()); // 37
+// console.log(jim.age); // age라는  멤버변수가 없었는데 생겼다. 트릭!
+// console.log(jim.calcAge()); // 37
+
+
+// console.log(jim.getSummary);
+// console.log(jim.getSummary());
+
+
+
+/**
+ * Iteration: The for Loop
+ */
+
+// console.log('Lifting weights repetition 1 ');
+// console.log('Lifting weights repetition 2 ');
+// console.log('Lifting weights repetition 3 ');
+// console.log('Lifting weights repetition 4 ');
+// console.log('Lifting weights repetition 5 ');
+// console.log('Lifting weights repetition 6 ');
+// console.log('Lifting weights repetition 7 ');
+
+/**
+ * for loop keeps running while codition is TRUE
+ * for (let iter = ${}; rep <= 10; rep = rep + 1)
+ */
+// for (let rep = 1; rep <= 10; rep = rep + 1)
+// for (let rep = 1; rep <= 30; rep++)
+//     console.log(`Lifting weights repetition ${rep}`);
+
+
+
+/**
+ * 47. Looping Arrays, Breaking and Continuing
+ */
+// const jonasArray = [
+//     'jonas',
+//     'Schmedtmaan',
+//     2037-1991,
+//     'traveler',
+//     ["jim", "jake", "jason"],
+//     true,
+// ];
+
+// const types = [];
+
+// // console.log(jonas[0])
+// // console.log(jonas[1])
+// // ...
+// // console.log(jonas[4])
+// for (let iter = 0;  iter < jonasArray.length; iter++) {
+//     console.log(jonasArray[iter], typeof jonasArray[iter]);
+
+//     // types array 채우기
+//     // types[iter] = typeof jonasArray[iter];
+//     types.push(typeof jonasArray[iter]);
+// }
+
+// // types[0] = 'string';
+// console.log(types);
+
+// const years = [1990, 2008, 2023, 2049];
+// const ages = [];
+
+// for (let i = 0; i < years.length; i++) {
+//     ages.push(2037 - years[i]);
+// }
+// console.log(ages);
+
+// // continue and break
+// console.log("\n## Only Strings!!");
+// for (let i = 0; i < jonasArray.length; i++) {
+//     if (typeof jonasArray[i] !== 'string') continue ;
+
+//     console.log(jonasArray[i], typeof jonasArray[i]);
+// }
+
+// // break
+// console.log("\n## BREAK WITH NUMBER!!");
+// for (let i = 0; i < jonasArray.length; i++) {
+//     if (typeof jonasArray[i] === 'number') break;
+
+//     console.log(jonasArray[i], typeof jonasArray[i]);
+// }
+
+
+/**
+ * 48. Looping Backwards and Loops in Loops 
+ */
+const jonasArray = [
+    'jonas',
+    'Schmedtmaan',
+    2037-1991,
+    'traveler',
+    ["jim", "jake", "jason"],
+    true,
+];
+
+// 반복 시작과 과정
+// 0, 1, ..., 4
+// 4, 3, ... 0
+for (let i = jonasArray.length - 1; i >= 0; i--) {
+    console.log(i, jonasArray[i]);
 }
 
-// console.log(jim.calcAge(2000)); // 37
-// console.log(jim[`calcAge`](2000)); // 37
-console.log(jim.calcAge()); // 37
-console.log(jim.age); // age라는  멤버변수가 없었는데 생겼다. 트릭!
-console.log(jim.calcAge()); // 37
+/**
+ * loop in loop
+ */
+for (let exercise = 1; exercise < 4; exercise++) {
+    console.log(`---- String exersice ${exercise}`);
+    for (let rep = 1; rep < 6; rep++) {
+        console.log(`Lifting weight repetition ${rep}`);
 
-
-console.log(jim.getSummary);
-console.log(jim.getSummary());
+    }
+}
