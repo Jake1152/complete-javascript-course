@@ -44,6 +44,8 @@ console.log(secretNumber);
 document.querySelector('.check').addEventListener('click', function () {
     // console.log(document.querySelector('.guess').value);
 
+    document.querySelector('body').style.backgroundColor = '#60b347';
+    // document.querySelctor('number').style.
     const guess = Number(document.querySelector('.guess').value);
     console.log(typeof guess, guess);
 
