@@ -12,8 +12,43 @@ again버튼을 통해 리셋가능
 
 'use strict';
 
-console.log(document.querySelector('.message'));
-console.log(document.querySelector('.message').textContent);
+/**
+ * DOM
+ * querySelector
+ * get element value from html using DOM
+ * chnage element value from html using DOM
+ */
+// console.log(document.querySelector('.message').textContent);
+// document.querySelector('.message').textContent = 'Correct Number';
 
+// document.querySelector('.number').textContent = 13;
+// document.querySelector('.score').textContent = 20;
 
+// /**
+//  * input필터에서는 값을 얻기 위해 값 속성을 사용한다, 쓰기 위해 값 설정에도 사용 가능
+//  */
+
+// document.querySelector('.guess').value = 42;
+// console.log(document.querySelector('.guess').value);
+
+/**
+ * Event
+ * 
+ */
+
+const number = Math.trunc(Math.random() * 20 + 1);
+console.log(number);
+document.querySelector('.number').textContent = number;
+// 이벤트 헨들러, 인자를 넘김
+// document.querySelector('.check').addEventListener('click', () => console.log(document.querySelector('.guess').value));
+document.querySelector('.check').addEventListener('click', function () {
+    // console.log(document.querySelector('.guess').value);
+
+    const guess = Number(document.querySelector('.guess').value);
+    console.log(typeof guess, guess);
+
+    if (!guess) {
+        document.querySelector('.message').textContent = 'No Number!!';
+    }
+});
 
