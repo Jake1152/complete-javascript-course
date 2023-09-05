@@ -36,9 +36,9 @@ again버튼을 통해 리셋가능
  * 
  */
 
-const number = Math.trunc(Math.random() * 20 + 1);
-console.log(number);
-document.querySelector('.number').textContent = number;
+const secretNumber = Math.trunc(Math.random() * 20 + 1);
+console.log(secretNumber);
+// document.querySelector('.number').textContent = secretNumber;
 // 이벤트 헨들러, 인자를 넘김
 // document.querySelector('.check').addEventListener('click', () => console.log(document.querySelector('.guess').value));
 document.querySelector('.check').addEventListener('click', function () {
@@ -49,6 +49,14 @@ document.querySelector('.check').addEventListener('click', function () {
 
     if (!guess) {
         document.querySelector('.message').textContent = 'No Number!!';
+    } else if (guess === secretNumber) {
+        document.querySelector('.message').textContent = 'Correct Answer';
+    } else if (guess > secretNumber) {
+        document.querySelector('.message').textContent = 'Too high';
+        document.querySelector('.score').textContent -= 1
+    } else if (guess < secretNumber) {
+        document.querySelector('.message').textContent = 'Too low';
+        document.querySelector('.score').textContent -= 1
     }
 });
 
