@@ -22,7 +22,7 @@ again버튼을 통해 리셋가능
 // document.querySelector('.message').textContent = 'Correct Number';
 
 // document.querySelector('.number').textContent = 13;
-// document.querySelector('.score').textContent = 20;
+// setScore(20);
 
 // /**
 //  * input필터에서는 값을 얻기 위해 값 속성을 사용한다, 쓰기 위해 값 설정에도 사용 가능
@@ -35,25 +35,32 @@ again버튼을 통해 리셋가능
  * Event
  *
  */
+let secretNumber;
+let score;
+let highScore;
 
-let secretNumber = Math.trunc(Math.random() * 20 + 1);
-let score = 20;
-let highScore = 0;
-// document.querySelector('.highscore').textContent = highScore;
+const init_setting = function (scoreNaxValue) {
+  secretNumber = Math.trunc(Math.random() * scoreNaxValue + 1);
+  score = scoreNaxValue;
+  highScore = 0;
+};
+init_setting(20);
+
+const setScore = function (_number) {
+  document.querySelector('.score').textContent = _number;
+};
 
 const displayMessage = function (message) {
-  document.querySelctor('.message').textContent = message;
+  document.querySelector('.message').textContent = message;
 };
 
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
-  console.log("document.querySelector('.highscore').textContent");
-  console.log(document.querySelector('.highscore').textContent);
 
   if (!guess) {
-    document.querySelector('.message').textContent = 'No Number!!';
+    displayMessage('No Number!!');
   } else if (guess === secretNumber) {
-    document.querySelector('.message').textContent = 'Correct Answer';
+    displayMessage('Correct Answer');
     document.querySelector('.number').textContent = secretNumber;
 
     document.querySelector('body').style.backgroundColor = '#60b347';
@@ -62,23 +69,25 @@ document.querySelector('.check').addEventListener('click', function () {
       highScore = score;
       document.querySelector('.highscore').textContent = highScore;
     }
-  } else if (guess > secretNumber) {
-    document.querySelector('.message').textContent = 'Too high';
+  } else if (score < 1) {
+    displayMessage('You lost the game');
+    setScore(0);
+  } else if (guess !== secretNumber) {
+    if (guess < secretNumber) {
+      displayMessage('Too low');
+    } else {
+      displayMessage('Too high');
+    }
     score -= 1;
-    document.querySelector('.score').textContent = score;
-  } else if (guess < secretNumber) {
-    document.querySelector('.message').textContent = 'Too low';
-    score -= 1;
-    document.querySelector('.score').textContent = score;
+    setScore(score);
   }
 });
 
 document.querySelector('.again').addEventListener('click', function () {
-  score = 20;
-  secretNumber = Math.trunc(Math.random() * 20) + 1;
+  init_setting(20);
 
   document.querySelector('.message').textContent = 'Start guessing...';
-  document.querySelector('.score').textContent = score;
+  setScore(score);
   document.querySelector('.number').textContent = '?';
   document.querySelector('.guess').value = '';
 
