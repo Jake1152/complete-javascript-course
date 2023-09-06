@@ -10,15 +10,15 @@ const btnShowAllModal = document.querySelectorAll('.show-modal');
 // console.log(btnShowModal);
 // console.log(btnShowAllModal);
 
-const openModal = function (_modal) {
-  _modal.addEventListener('click', function () {
+const openModal = function (evenType, _modal) {
+  _modal.addEventListener(evenType, function () {
     modal.classList.remove('hidden');
     overlay.classList.remove('hidden');
   });
 };
 
 for (let idx = 0; idx < btnShowAllModal.length; idx++) {
-  openModal(btnShowAllModal[idx]);
+  openModal('click', btnShowAllModal[idx]);
   //   btnShowAllModal[idx].addEventListener('click', function () {
   //     console.log(idx);
   //     modal.classList.remove('hidden');
@@ -48,12 +48,23 @@ for (let idx = 0; idx < btnShowAllModal.length; idx++) {
 /**
  *함수로 분리버젼
  */
-const closeModal = function (_modal) {
-  _modal.addEventListener('click', function () {
-    modal.classList.add('hidden');
-    overlay.classList.add('hidden');
-  });
+const closeModal = function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
 };
 
-closeModal(btnCloseModal);
-closeModal(overlay);
+btnCloseModal.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
+
+/**
+ * keyborad를 눌러서 처리
+ */
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    console.log('Esc was pressed');
+    closeModal();
+  }
+});
+
+// document.addEventListener('keydown', closeModal);
