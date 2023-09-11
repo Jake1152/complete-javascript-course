@@ -41,19 +41,78 @@ const restaurant = {
       `Order received ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your delicuous pasta with ${ing1} ${ing2} ${ing3}`);
+  },
 };
 
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Via del sole, 21',
-  mainIndex: 2,
-  starterIndex: 2,
-});
+const arr = [7, 8, 9];
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArr);
 
-restaurant.orderDelivery({
-  address: 'Via del sole, 21',
-  starterIndex: 1,
-});
+// spread 연산자
+const newArr = [1, 2, ...arr];
+console.log(newArr);
+
+// 쉼표로 다수 연산자 분리가능
+// 함수에 인수를 넘길때
+console.log(...newArr);
+console.log(1, 2, 7, 8, 9);
+
+// spread를 이용하여 새로운 배열 생성
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+console.log(newMenu);
+
+// Copy array
+const mainMenuCopy = [...restaurant.mainMenu];
+
+// Join 2 arrays
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
+
+// iterable: arrays, strings, maps, sets, NOT objects
+const str = 'Jonas';
+const letters = [...str, ' ', 's.'];
+console.log(letters);
+console.log(...str);
+
+// const ingredeients = [
+//   [prompt("Let's make pasta Ingredient 1?")],
+//   [prompt('Ingredient 2?')],
+//   [prompt('Ingredient 3?')],
+// ];
+
+// console.log(ingredeients);
+
+// restaurant.orderPasta(ingredeients[0], ingredeients[1], ingredeients[2]);
+// restaurant.orderPasta(...ingredeients);
+
+// Objects
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guisepo' };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Ristorant Roma';
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
+
+// console.log(`${...str)}`); // 쉼표하나로 다수의 값이 분리하는 것을 기대하는 건 아니라고 함
+/*
+쉼표로 분리된 다수의 값은 보통 함수에 인자를 넘기거나 새 벼열을 만들때만 기대된다
+*/
+
+// restaurant.orderDelivery({
+//   time: '22:30',
+//   address: 'Via del sole, 21',
+//   mainIndex: 2,
+//   starterIndex: 2,
+// });
+
+// restaurant.orderDelivery({
+//   address: 'Via del sole, 21',
+//   starterIndex: 1,
+// });
 
 // 격리된 상태에서 하는 것이 좋다
 // 인터페이스 만들어서 진행
@@ -128,48 +187,48 @@ restaurant.orderDelivery({
 // const [p = 1, q = 1, r = 1] = [8, 9];
 // console.log(p, q, r); // 8 9 undeifned
 
-const { name, openingHours, categories } = restaurant;
-// console.log(name, openingHours, categories);
+// const { name, openingHours, categories } = restaurant;
+// // console.log(name, openingHours, categories);
 
-/**
- * Destructing with naming
- */
-const {
-  name: restaurantName,
-  openingHours: hours,
-  categories: tags,
-} = restaurant;
-// console.log(restaurantName, hours, tags);
+// /**
+//  * Destructing with naming
+//  */
+// const {
+//   name: restaurantName,
+//   openingHours: hours,
+//   categories: tags,
+// } = restaurant;
+// // console.log(restaurantName, hours, tags);
 
-// 아직 없는 속성에 대한 Destructuring
-// restaurant.menu
-const { menu = [], starterMenu: startes = [] } = restaurant;
-console.log(menu, startes);
+// // 아직 없는 속성에 대한 Destructuring
+// // restaurant.menu
+// const { menu = [], starterMenu: startes = [] } = restaurant;
+// console.log(menu, startes);
 
-// Mutating variables
-let a = 111;
-let b = 999;
-const obj = { a: 23, b: 7, c: 14 };
-console.log(obj);
+// // Mutating variables
+// let a = 111;
+// let b = 999;
+// const obj = { a: 23, b: 7, c: 14 };
+// console.log(obj);
 
-/*
-중괄호로 시작하면 자바스크립트는 코드블록을 기대한다.
-코드블럭에 아무것도 할당할 수 없으므로 여기 등호 한것과 같이 "예상치 못한 토큰" 오류가 생긴다
-이 문제를 해결하기 위해 전체를 괄호로 감싸야한다
-*/
-[({ a, b } = obj)];
-console.log(a, b);
+// /*
+// 중괄호로 시작하면 자바스크립트는 코드블록을 기대한다.
+// 코드블럭에 아무것도 할당할 수 없으므로 여기 등호 한것과 같이 "예상치 못한 토큰" 오류가 생긴다
+// 이 문제를 해결하기 위해 전체를 괄호로 감싸야한다
+// */
+// [({ a, b } = obj)];
+// console.log(a, b);
 
-const { fri } = openingHours;
-console.log(fri);
-// 추가로 분해 가능
-const {
-  fri: { open, close },
-} = openingHours;
-console.log(open, close);
+// const { fri } = openingHours;
+// console.log(fri);
+// // 추가로 분해 가능
+// const {
+//   fri: { open, close },
+// } = openingHours;
+// console.log(open, close);
 
-// 추가 분해 및 네이밍 추가
-const {
-  fri: { open: o, close: c },
-} = openingHours;
-console.log(o, c);
+// // 추가 분해 및 네이밍 추가
+// const {
+//   fri: { open: o, close: c },
+// } = openingHours;
+// console.log(o, c);
