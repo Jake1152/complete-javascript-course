@@ -53,24 +53,54 @@ const restaurant = {
 };
 
 /**
+ * Logical assignment operator
+ */
+
+const rest1 = {
+  name: 'Capri',
+  numGuests: 42,
+};
+
+const rest2 = {
+  name: 'La Pizza',
+  owner: 'Giovanni Rossi',
+};
+
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+// rest1.owner = rest1.owner && '<ANONYMOUS>';
+// rest2.owner = rest2.owner && '<ANONYMOUS>';
+rest1.owner &&= '<ANONYMOUS>';
+rest2.owner &&= '<ANONYMOUS>';
+
+console.log(rest1); // { name: 'Capri', numGuests: 42 }
+console.log(rest2); // { name: 'La Pizza', owner: '<ANONYMOUS>', numGuests: 10 }
+
+/**
  * ?? operator
  * nullish인 경우 ?? 뒤에 있는 값이 할당
  * falsy이기만 한 것은 포함되지 않음
  * Nullish: null and undefined (Not 0, '', NaN)
  */
-restaurant.numGuestes = document.all;
-if (restaurant.numGuestes) {
-  // ${restaurant.numGuestes}  ${} 안에 값이 falsy이면 변수명 그대로 출력됨
-  // restaurant.numGuestes is falsy
-  console.log(`${restaurant.numGuestes} is truthy`);
-} else {
-  console.log('restaurant.numGuestes is falsy');
-}
-const guests = restaurant.numGuests ? restaurant.numGuestes : 10;
-console.log(guests); // restaurant.numGuestes이 존재하므로 restaurant.numGuestes가 할당
+// restaurant.numGuestes = document.all;
+// if (restaurant.numGuestes) {
+//   // ${restaurant.numGuestes}  ${} 안에 값이 falsy이면 변수명 그대로 출력됨
+//   // restaurant.numGuestes is falsy
+//   console.log(`${restaurant.numGuestes} is truthy`);
+// } else {
+//   console.log('restaurant.numGuestes is falsy');
+// }
+// const guests = restaurant.numGuests ? restaurant.numGuestes : 10;
+// console.log(guests); // restaurant.numGuestes이 존재하므로 restaurant.numGuestes가 할당
 
-const guestCorrect = restaurant.numGuestes ?? 10;
-console.log(guestCorrect); //false
+// const guestCorrect = restaurant.numGuestes ?? 10;
+// console.log(guestCorrect); //false
 /**
  * Logical operator
  * OR
