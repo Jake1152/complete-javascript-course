@@ -6,7 +6,7 @@ const flights =
 
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-const hours = {
+const openingHours = {
   [weekdays[3]]: {
     open: 12,
     close: 22,
@@ -15,7 +15,7 @@ const hours = {
     open: 11,
     close: 23,
   },
-  [`day-${2 + 4}`]: {
+  [weekdays[5]]: {
     open: 0, // Open 24 hours
     close: 24,
   },
@@ -34,7 +34,7 @@ const restaurant = {
   // 변수이름으로 속성 이름 생성
   // openingHours,
 
-  hours,
+  openingHours,
 
   // order: function (starterIndex, mainIndex) {
   //   return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
@@ -59,6 +59,50 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+
+/**
+ * optional chaning (?.)
+ */
+
+// console.log(restaurant.openingHours.mon.open); // error
+// restaurant.openingHours 부터 undefiend
+
+//
+/**
+ * restaurant.openingHours.mon 가 있는지 없는지 확인한 뒤에 실행
+ * 하지만 단지 1개일 뿐
+ * 객체 내부로 깊게 들어간다면 매 순간마다 if문을 써서 존재하는지 아닌지 null체크를 해야할 수 있다
+ * 이에 대해 ES6에서 좋은 방법이 있다
+ * 옵셔널 체이닝 '?.' operator
+ * 속성이 정의 되어 있지않으면 undefined가 되돌아온다
+ */
+if (restaurant.openingHours && restaurant.openingHours.mon)
+  console.log(restaurant.openingHours.mon.open); // error
+
+// WITH optional chaining
+console.log(restaurant.openingHours.mom?.open); // undefined
+console.log(restaurant?.openingHours?.mon);
+console.log(restaurant?.openingHours);
+
+// Example
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  // console.log(day);
+  // const open = restaurant.openingHours[day]?.open;
+  // const open = restaurant.openingHours[day]?.open || 'closed';
+  const open = restaurant.openingHours[day]?.open ?? 'closed'; // ??은 nullish만 취급 0은 falsy
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+// Methods
+console.log(restaurant.order?.(0, 1) ?? `Method does not exist`);
+console.log(restaurant.orderRisoto?.(0, 1) ?? `Method does not exist`);
+
+// Arrays
+const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
+// const users = [];
+console.log(users[0]?.name ?? 'User array empty');
 
 /**
  * for of loop
