@@ -53,51 +53,70 @@ const restaurant = {
 };
 
 /**
- * Logical operand
+ * ?? operator
+ * nullish인 경우 ?? 뒤에 있는 값이 할당
+ * falsy이기만 한 것은 포함되지 않음
+ * Nullish: null and undefined (Not 0, '', NaN)
+ */
+restaurant.numGuestes = document.all;
+if (restaurant.numGuestes) {
+  // ${restaurant.numGuestes}  ${} 안에 값이 falsy이면 변수명 그대로 출력됨
+  // restaurant.numGuestes is falsy
+  console.log(`${restaurant.numGuestes} is truthy`);
+} else {
+  console.log('restaurant.numGuestes is falsy');
+}
+const guests = restaurant.numGuests ? restaurant.numGuestes : 10;
+console.log(guests); // restaurant.numGuestes이 존재하므로 restaurant.numGuestes가 할당
+
+const guestCorrect = restaurant.numGuestes ?? 10;
+console.log(guestCorrect); //false
+/**
+ * Logical operator
  * OR
  * AND
  */
 // Use ANY data type, return ANY data type/
-console.log('--------- OR ---------');
-console.log(3 || 'Jonas'); // 3
-console.log('' || 'Jonas'); // Jonas
-console.log(true || 0); // true
-// console.log() 안에 값으로 null 이랑 undefined 둘만 or로 묶인 경우 뒤에 있는 것이 출력되는 상황
-console.log(null || undefined); // undefined
-console.log(undefined || null); // null
-if (undefined || null) {
-  console.log('null in IF statement');
-  console.log(null);
-}
-// console.log() 입력으로 OR 연산자로 묶인 경우 적어도 하나의 피연산자가 true라면 출력됨 (falsy로만 구성된 경우는 예외적으로 마지막 것이 출력)
-console.log('' || 0 || undefined || '' || `` || -0); // -9
-console.log('' || 0 || undefined || '' || ``); // ``
-console.log('' || 0 || undefined || '' || `` || -0 || null || 42); // 42
+// console.log('--------- OR ---------');
+// console.log(3 || 'Jonas'); // 3
+// console.log('' || 'Jonas'); // Jonas
+// console.log(true || 0); // true
+// // console.log() 안에 값으로 null 이랑 undefined 둘만 or로 묶인 경우 뒤에 있는 것이 출력되는 상황
+// console.log(null || undefined); // undefined
+// console.log(undefined || null); // null
+// if (undefined || null) {
+//   console.log('null in IF statement');
+//   console.log(null);
+// }
+// // console.log() 입력으로 OR 연산자로 묶인 경우 적어도 하나의 피연산자가 true라면 출력됨 (falsy로만 구성된 경우는 예외적으로 마지막 것이 출력)
+// console.log('' || 0 || undefined || '' || `` || -0); // -9
+// console.log('' || 0 || undefined || '' || ``); // ``
+// console.log('' || 0 || undefined || '' || `` || -0 || null || 42); // 42
 
-restaurant.numGuestes = 23;
-const guests1 = restaurant.numGuests ? restaurant.numGuestes : 10;
-console.log(guests1); // restaurant.numGuestes이 존재하므로 restaurant.numGuestes가 할당
+// restaurant.numGuestes = 23;
+// const guests1 = restaurant.numGuests ? restaurant.numGuestes : 10;
+// console.log(guests1); // restaurant.numGuestes이 존재하므로 restaurant.numGuestes가 할당
 
-const guests2 = restaurant.numGuestes || 10;
-console.log(guests2); // restaurant.numGuestes이 존재하므로 restaurant.numGuestes가 할당
+// const guests2 = restaurant.numGuestes || 10;
+// console.log(guests2); // restaurant.numGuestes이 존재하므로 restaurant.numGuestes가 할당
 
-/**
- * console.log();
- * 전부 true이면 미자믹것이 출력
- * 하나라도 false이면 false인것이 출력
- */
-console.log('--------- AND ---------');
-console.log(0 && 'Jonas'); // 0
-console.log(7 && 'Jonas'); // Jonas
-console.log(4 && null && 'Jonas'); // null
+// /**
+//  * console.log();
+//  * 전부 true이면 미자믹것이 출력
+//  * 하나라도 false이면 false인것이 출력
+//  */
+// console.log('--------- AND ---------');
+// console.log(0 && 'Jonas'); // 0
+// console.log(7 && 'Jonas'); // Jonas
+// console.log(4 && null && 'Jonas'); // null
 
-console.log(restaurant.orderPizza); // [Function: orderPizza]
-console.log(restaurant.orderTomato); // undefined
-if (restaurant.orderPizza) {
-  restaurant.orderPizza('mushroom', 'spinach');
-}
-// object가 있으면 실행
-restaurant.orderPizza && restaurant.orderPizza('mushroom', 'spinach');
+// console.log(restaurant.orderPizza); // [Function: orderPizza]
+// console.log(restaurant.orderTomato); // undefined
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushroom', 'spinach');
+// }
+// // object가 있으면 실행
+// restaurant.orderPizza && restaurant.orderPizza('mushroom', 'spinach');
 
 /**
  * REST 패턴
