@@ -53,45 +53,92 @@ const restaurant = {
 };
 
 /**
+ * Logical operand
+ * OR
+ * AND
+ */
+// Use ANY data type, return ANY data type/
+console.log('--------- OR ---------');
+console.log(3 || 'Jonas'); // 3
+console.log('' || 'Jonas'); // Jonas
+console.log(true || 0); // true
+// console.log() 안에 값으로 null 이랑 undefined 둘만 or로 묶인 경우 뒤에 있는 것이 출력되는 상황
+console.log(null || undefined); // undefined
+console.log(undefined || null); // null
+if (undefined || null) {
+  console.log('null in IF statement');
+  console.log(null);
+}
+// console.log() 입력으로 OR 연산자로 묶인 경우 적어도 하나의 피연산자가 true라면 출력됨 (falsy로만 구성된 경우는 예외적으로 마지막 것이 출력)
+console.log('' || 0 || undefined || '' || `` || -0); // -9
+console.log('' || 0 || undefined || '' || ``); // ``
+console.log('' || 0 || undefined || '' || `` || -0 || null || 42); // 42
+
+restaurant.numGuestes = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuestes : 10;
+console.log(guests1); // restaurant.numGuestes이 존재하므로 restaurant.numGuestes가 할당
+
+const guests2 = restaurant.numGuestes || 10;
+console.log(guests2); // restaurant.numGuestes이 존재하므로 restaurant.numGuestes가 할당
+
+/**
+ * console.log();
+ * 전부 true이면 미자믹것이 출력
+ * 하나라도 false이면 false인것이 출력
+ */
+console.log('--------- AND ---------');
+console.log(0 && 'Jonas'); // 0
+console.log(7 && 'Jonas'); // Jonas
+console.log(4 && null && 'Jonas'); // null
+
+console.log(restaurant.orderPizza); // [Function: orderPizza]
+console.log(restaurant.orderTomato); // undefined
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushroom', 'spinach');
+}
+// object가 있으면 실행
+restaurant.orderPizza && restaurant.orderPizza('mushroom', 'spinach');
+
+/**
  * REST 패턴
  * spread의 반대 연산
  */
 // SPREAD, because on RIGHT side of =
-const arr = [1, 2, ...[3, 4]];
+// const arr = [1, 2, ...[3, 4]];
 
-const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others); // 1 2 [ 3, 4, 5 ]
+// const [a, b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b, others); // 1 2 [ 3, 4, 5 ]
 
-const [pizza, , risotto, ...othrefood] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
-console.log(pizza, risotto, othrefood);
+// const [pizza, , risotto, ...othrefood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(pizza, risotto, othrefood);
 
-// 1) Objects
-const { sat, ...weekdyas } = restaurant.openingHours;
-console.log(sat);
-console.log(weekdyas);
+// // 1) Objects
+// const { sat, ...weekdyas } = restaurant.openingHours;
+// console.log(sat);
+// console.log(weekdyas);
 
-// 2) fucntions
-const add = function (...numbers) {
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    sum += numbers[i];
-  }
-  console.log(sum);
-};
-add(2, 3);
-add(25, 6, 8, 2);
-add(6, 3, 2, 23, 45, 266, 44);
+// // 2) fucntions
+// const add = function (...numbers) {
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) {
+//     sum += numbers[i];
+//   }
+//   console.log(sum);
+// };
+// add(2, 3);
+// add(25, 6, 8, 2);
+// add(6, 3, 2, 23, 45, 266, 44);
 
-const x = [23, 5, 6];
-add(...x);
+// const x = [23, 5, 6];
+// add(...x);
 
-restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
-// mushrooms
-// [ 'onion', 'olives', 'spinach' ]
-restaurant.orderPizza('mushrooms');
+// restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+// // mushrooms
+// // [ 'onion', 'olives', 'spinach' ]
+// restaurant.orderPizza('mushrooms');
 // mushrooms
 // []
 
