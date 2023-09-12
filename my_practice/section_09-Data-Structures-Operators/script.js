@@ -45,37 +45,89 @@ const restaurant = {
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here is your delicuous pasta with ${ing1} ${ing2} ${ing3}`);
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
-const arr = [7, 8, 9];
-const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-console.log(badNewArr);
+/**
+ * REST 패턴
+ * spread의 반대 연산
+ */
+// SPREAD, because on RIGHT side of =
+const arr = [1, 2, ...[3, 4]];
 
-// spread 연산자
-const newArr = [1, 2, ...arr];
-console.log(newArr);
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others); // 1 2 [ 3, 4, 5 ]
 
-// 쉼표로 다수 연산자 분리가능
-// 함수에 인수를 넘길때
-console.log(...newArr);
-console.log(1, 2, 7, 8, 9);
+const [pizza, , risotto, ...othrefood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, othrefood);
 
-// spread를 이용하여 새로운 배열 생성
-const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-console.log(newMenu);
+// 1) Objects
+const { sat, ...weekdyas } = restaurant.openingHours;
+console.log(sat);
+console.log(weekdyas);
 
-// Copy array
-const mainMenuCopy = [...restaurant.mainMenu];
+// 2) fucntions
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(sum);
+};
+add(2, 3);
+add(25, 6, 8, 2);
+add(6, 3, 2, 23, 45, 266, 44);
 
-// Join 2 arrays
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-console.log(menu);
+const x = [23, 5, 6];
+add(...x);
 
-// iterable: arrays, strings, maps, sets, NOT objects
-const str = 'Jonas';
-const letters = [...str, ' ', 's.'];
-console.log(letters);
-console.log(...str);
+restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+// mushrooms
+// [ 'onion', 'olives', 'spinach' ]
+restaurant.orderPizza('mushrooms');
+// mushrooms
+// []
+
+/**
+ * SPread
+ */
+
+// const arr = [7, 8, 9];
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArr);
+
+// // spread 연산자
+// const newArr = [1, 2, ...arr];
+// console.log(newArr);
+
+// // 쉼표로 다수 연산자 분리가능
+// // 함수에 인수를 넘길때
+// console.log(...newArr);
+// console.log(1, 2, 7, 8, 9);
+
+// // spread를 이용하여 새로운 배열 생성
+// const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+// console.log(newMenu);
+
+// // Copy array
+// const mainMenuCopy = [...restaurant.mainMenu];
+
+// // Join 2 arrays
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
+
+// // iterable: arrays, strings, maps, sets, NOT objects
+// const str = 'Jonas';
+// const letters = [...str, ' ', 's.'];
+// console.log(letters);
+// console.log(...str);
 
 // const ingredeients = [
 //   [prompt("Let's make pasta Ingredient 1?")],
@@ -89,13 +141,13 @@ console.log(...str);
 // restaurant.orderPasta(...ingredeients);
 
 // Objects
-const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guisepo' };
-console.log(newRestaurant);
+// const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guisepo' };
+// console.log(newRestaurant);
 
-const restaurantCopy = { ...restaurant };
-restaurantCopy.name = 'Ristorant Roma';
-console.log(restaurantCopy.name);
-console.log(restaurant.name);
+// const restaurantCopy = { ...restaurant };
+// restaurantCopy.name = 'Ristorant Roma';
+// console.log(restaurantCopy.name);
+// console.log(restaurant.name);
 
 // console.log(`${...str)}`); // 쉼표하나로 다수의 값이 분리하는 것을 기대하는 건 아니라고 함
 /*
