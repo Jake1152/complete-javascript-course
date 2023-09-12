@@ -4,6 +4,21 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+const openingHours = {
+  thu: {
+    open: 12,
+    close: 22,
+  },
+  fri: {
+    open: 11,
+    close: 23,
+  },
+  sat: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 // Data needed for first part of the section
 const restaurant = {
   name: 'Classico Italiano',
@@ -11,21 +26,7 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  openingHours: openingHours,
 
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
@@ -53,34 +54,64 @@ const restaurant = {
 };
 
 /**
+ * for of loop
+ */
+
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// const menu = [...restaurant.starterMenu];
+// const menu = [...restaurant.mainMenu];
+
+// for (let i = 0; i < menu.length; i++) {
+//   console.log(menu[i]);
+// }
+
+/**
+ * const가 가능한 이유는 for of 결과가 매번 새롭기 때문.
+ * 키워드를 계속하거나 중단 시킬 수 있음
+ */
+for (const item of menu) {
+  console.log(item);
+}
+console.log();
+
+for (const item of menu.entries()) {
+  console.log(`${item[0] + 1}: ${item[1]}`);
+}
+console.log();
+
+for (const [index, element] of menu.entries()) {
+  console.log(`${index + 1}: ${element}`);
+}
+
+/**
  * Logical assignment operator
  */
 
-const rest1 = {
-  name: 'Capri',
-  numGuests: 42,
-};
+// const rest1 = {
+//   name: 'Capri',
+//   numGuests: 42,
+// };
 
-const rest2 = {
-  name: 'La Pizza',
-  owner: 'Giovanni Rossi',
-};
+// const rest2 = {
+//   name: 'La Pizza',
+//   owner: 'Giovanni Rossi',
+// };
 
-// rest1.numGuests = rest1.numGuests || 10;
-// rest2.numGuests = rest2.numGuests || 10;
-// rest1.numGuests ||= 10;
-// rest2.numGuests ||= 10;
+// // rest1.numGuests = rest1.numGuests || 10;
+// // rest2.numGuests = rest2.numGuests || 10;
+// // rest1.numGuests ||= 10;
+// // rest2.numGuests ||= 10;
 
-rest1.numGuests ??= 10;
-rest2.numGuests ??= 10;
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
 
-// rest1.owner = rest1.owner && '<ANONYMOUS>';
-// rest2.owner = rest2.owner && '<ANONYMOUS>';
-rest1.owner &&= '<ANONYMOUS>';
-rest2.owner &&= '<ANONYMOUS>';
+// // rest1.owner = rest1.owner && '<ANONYMOUS>';
+// // rest2.owner = rest2.owner && '<ANONYMOUS>';
+// rest1.owner &&= '<ANONYMOUS>';
+// rest2.owner &&= '<ANONYMOUS>';
 
-console.log(rest1); // { name: 'Capri', numGuests: 42 }
-console.log(rest2); // { name: 'La Pizza', owner: '<ANONYMOUS>', numGuests: 10 }
+// console.log(rest1); // { name: 'Capri', numGuests: 42 }
+// console.log(rest2); // { name: 'La Pizza', owner: '<ANONYMOUS>', numGuests: 10 }
 
 /**
  * ?? operator
