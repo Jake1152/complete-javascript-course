@@ -4,16 +4,18 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-const openingHours = {
-  thu: {
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+const hours = {
+  [weekdays[3]]: {
     open: 12,
     close: 22,
   },
-  fri: {
+  [weekdays[4]]: {
     open: 11,
     close: 23,
   },
-  sat: {
+  [`day-${2 + 4}`]: {
     open: 0, // Open 24 hours
     close: 24,
   },
@@ -26,28 +28,33 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  openingHours: openingHours,
+  // openingHours: openingHours,
 
-  order: function (starterIndex, mainIndex) {
+  // ES6 enhanced object literals
+  // 변수이름으로 속성 이름 생성
+  // openingHours,
+
+  hours,
+
+  // order: function (starterIndex, mainIndex) {
+  //   return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  // },
+
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  orderDelivery: function ({
-    starterIndex = 1,
-    mainIndex = 0,
-    time = '20:00',
-    address,
-  }) {
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
     console.log(
       `Order received ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
 
-  orderPasta: function (ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(`Here is your delicuous pasta with ${ing1} ${ing2} ${ing3}`);
   },
 
-  orderPizza: function (mainIngredient, ...otherIngredients) {
+  orderPizza(mainIngredient, ...otherIngredients) {
     console.log(mainIngredient);
     console.log(otherIngredients);
   },
@@ -57,31 +64,31 @@ const restaurant = {
  * for of loop
  */
 
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-// const menu = [...restaurant.starterMenu];
-// const menu = [...restaurant.mainMenu];
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// // const menu = [...restaurant.starterMenu];
+// // const menu = [...restaurant.mainMenu];
 
-// for (let i = 0; i < menu.length; i++) {
-//   console.log(menu[i]);
+// // for (let i = 0; i < menu.length; i++) {
+// //   console.log(menu[i]);
+// // }
+
+// /**
+//  * const가 가능한 이유는 for of 결과가 매번 새롭기 때문.
+//  * 키워드를 계속하거나 중단 시킬 수 있음
+//  */
+// for (const item of menu) {
+//   console.log(item);
 // }
+// console.log();
 
-/**
- * const가 가능한 이유는 for of 결과가 매번 새롭기 때문.
- * 키워드를 계속하거나 중단 시킬 수 있음
- */
-for (const item of menu) {
-  console.log(item);
-}
-console.log();
+// for (const item of menu.entries()) {
+//   console.log(`${item[0] + 1}: ${item[1]}`);
+// }
+// console.log();
 
-for (const item of menu.entries()) {
-  console.log(`${item[0] + 1}: ${item[1]}`);
-}
-console.log();
-
-for (const [index, element] of menu.entries()) {
-  console.log(`${index + 1}: ${element}`);
-}
+// for (const [index, element] of menu.entries()) {
+//   console.log(`${index + 1}: ${element}`);
+// }
 
 /**
  * Logical assignment operator
