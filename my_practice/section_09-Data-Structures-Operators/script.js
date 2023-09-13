@@ -61,37 +61,76 @@ const restaurant = {
 };
 
 /**
+ * Set
+ */
+
+const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+
+console.log(ordersSet);
+
+console.log(new Set('Jonas')); // Set(5) { 'J', 'o', 'n', 'a', 's' }
+
+console.log(ordersSet.size); // 3
+console.log(ordersSet.has('Pizza')); // 3
+console.log(ordersSet.has('Bread')); // 3
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+ordersSet.delete('Risotto');
+console.log(ordersSet);
+// console.log(ordersSet(2)); // no index, make error
+// ordersSet.clear();
+// console.log(ordersSet);
+
+// 순서 상관 없음
+for (const order of ordersSet) console.log(order);
+
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// 각각의 element들이 array에 들어가게됨
+const staffUnique = [...new Set(staff)];
+// const staffUnique = new Set(staff);
+console.log(staffUnique);
+
+console.log(new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']));
+
+/**
  *  Looping Objects: Object Keys, Values, and Entries
  * 속성이름 반복
  */
 
 // Prooertiy NAME
-const properties = Object.keys(openingHours);
-console.log(properties);
-for (const day of Object.keys(openingHours)) {
-  console.log(day);
-}
+// const properties = Object.keys(openingHours);
+// console.log(properties);
+// for (const day of Object.keys(openingHours)) {
+//   console.log(day);
+// }
 
-console.log(`We are open on ${properties.length} days: `);
-let openStr = `We are open on ${properties.length} days: `;
-for (const day of properties) {
-  openStr += `${day}, `;
-}
-console.log(openStr);
+// console.log(`We are open on ${properties.length} days: `);
+// let openStr = `We are open on ${properties.length} days: `;
+// for (const day of properties) {
+//   openStr += `${day}, `;
+// }
+// console.log(openStr);
 
-// Propertiy VALUES
-const values = Object.values(openingHours);
-console.log(values);
+// // Propertiy VALUES
+// const values = Object.values(openingHours);
+// console.log(values);
 
-// Propertiy ENTRIES
-// key,value
-const entries = Object.entries(openingHours);
-console.log(entries);
+// // Propertiy ENTRIES
+// // key,value
+// const entries = Object.entries(openingHours);
+// console.log(entries);
 
-// [key, value] desturing
-for (const [key, { open, close }] of entries) {
-  console.log(`On ${key} we open at ${open} and close at ${close}`);
-}
+// // [key, value] desturing
+// for (const [key, { open, close }] of entries) {
+//   console.log(`On ${key} we open at ${open} and close at ${close}`);
+// }
 
 /**
  * optional chaning (?.)
