@@ -61,6 +61,39 @@ const restaurant = {
 };
 
 /**
+ *  Looping Objects: Object Keys, Values, and Entries
+ * 속성이름 반복
+ */
+
+// Prooertiy NAME
+const properties = Object.keys(openingHours);
+console.log(properties);
+for (const day of Object.keys(openingHours)) {
+  console.log(day);
+}
+
+console.log(`We are open on ${properties.length} days: `);
+let openStr = `We are open on ${properties.length} days: `;
+for (const day of properties) {
+  openStr += `${day}, `;
+}
+console.log(openStr);
+
+// Propertiy VALUES
+const values = Object.values(openingHours);
+console.log(values);
+
+// Propertiy ENTRIES
+// key,value
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+// [key, value] desturing
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
+}
+
+/**
  * optional chaning (?.)
  */
 
@@ -76,33 +109,33 @@ const restaurant = {
  * 옵셔널 체이닝 '?.' operator
  * 속성이 정의 되어 있지않으면 undefined가 되돌아온다
  */
-if (restaurant.openingHours && restaurant.openingHours.mon)
-  console.log(restaurant.openingHours.mon.open); // error
+// if (restaurant.openingHours && restaurant.openingHours.mon)
+//   console.log(restaurant.openingHours.mon.open); // error
 
-// WITH optional chaining
-console.log(restaurant.openingHours.mom?.open); // undefined
-console.log(restaurant?.openingHours?.mon);
-console.log(restaurant?.openingHours);
+// // WITH optional chaining
+// console.log(restaurant.openingHours.mom?.open); // undefined
+// console.log(restaurant?.openingHours?.mon);
+// console.log(restaurant?.openingHours);
 
-// Example
-const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// // Example
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-for (const day of days) {
-  // console.log(day);
-  // const open = restaurant.openingHours[day]?.open;
-  // const open = restaurant.openingHours[day]?.open || 'closed';
-  const open = restaurant.openingHours[day]?.open ?? 'closed'; // ??은 nullish만 취급 0은 falsy
-  console.log(`On ${day}, we open at ${open}`);
-}
+// for (const day of days) {
+//   // console.log(day);
+//   // const open = restaurant.openingHours[day]?.open;
+//   // const open = restaurant.openingHours[day]?.open || 'closed';
+//   const open = restaurant.openingHours[day]?.open ?? 'closed'; // ??은 nullish만 취급 0은 falsy
+//   console.log(`On ${day}, we open at ${open}`);
+// }
 
-// Methods
-console.log(restaurant.order?.(0, 1) ?? `Method does not exist`);
-console.log(restaurant.orderRisoto?.(0, 1) ?? `Method does not exist`);
+// // Methods
+// console.log(restaurant.order?.(0, 1) ?? `Method does not exist`);
+// console.log(restaurant.orderRisoto?.(0, 1) ?? `Method does not exist`);
 
-// Arrays
-const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
-// const users = [];
-console.log(users[0]?.name ?? 'User array empty');
+// // Arrays
+// const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
+// // const users = [];
+// console.log(users[0]?.name ?? 'User array empty');
 
 /**
  * for of loop
