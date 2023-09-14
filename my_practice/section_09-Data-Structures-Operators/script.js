@@ -22,66 +22,128 @@ const openingHours = {
 };
 
 /**
- * Working With Strings - Part 1
+ * Working With Strings - Part 2
  */
 const airline = 'TAP Air Portugal';
-const plane = 'A320';
 
-console.log(plane[0]);
-console.log(plane[1]);
-console.log(plane[2]);
-console.log('B737'[0]);
+console.log(airline.toLowerCase()); // tap air portugal
+console.log(airline.toUpperCase()); //TAP AIR PORTUGAL
 
-console.log(airline.length);
-console.log('B737'.length);
+const passenger = 'jOnAS'; // Jonas
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect); // Jonas
 
-console.log(airline.indexOf('r')); // 앞에서부터 찾기, 찾은 index, 없으면 -1 return
-console.log(airline.lastIndexOf(' ')); // 뒤에서부터 찾기, 찾은 index, 없으면 -1 return
-console.log(airline.indexOf('portugal')); // -1
-console.log(airline.indexOf('Portugal')); // 8 단어 시작위치 return
+const email = 'hello@jonas.io';
+const loginEmail = '  Hello@Jonas.Io \n';
 
-console.log(airline.slice(4)); // 인자에 넣은 숫자가 0~n까지 잘라서 버릴 숫자
-console.log(airline.slice(6, 10)); // (startIndex, endIndex)
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim();
+console.log(trimmedEmail); // hello@jonas.io
 
-console.log(airline.slice(0, airline.indexOf(' '))); // TAP
-console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // Portugal
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail); //hello@jonas.io
+console.log(email === normalizedEmail); //true
 
-console.log(airline.slice(airline.slice(-2))); // TAP Air Portugal
-console.log(airline.slice(airline.slice(1, -1))); // TAP Air Portugal
+// replacing
+const priceGB = '288,97E';
+const priceUS = priceGB.replace('E', '$');
+console.log(priceUS);
 
-const checkMiddleSeat = function (seat) {
-  // B and E are middle seats
-  // Case 1.
-  if (
-    seat.lastIndexOf('B') !== -1 ||
-    seat.lastIndexOf('C') !== -1 ||
-    seat.lastIndexOf('D') !== -1 ||
-    seat.lastIndexOf('E') !== -1
-  ) {
-    console.log('middle seat!');
+const annoucement = 'All passenger come to boarding door 23, Boarding door 23!';
+
+console.log(annoucement.replace('door', 'gate')); // All passenger come to boarding gate 23, Boarding door 23!
+console.log(annoucement.replaceAll('door', 'gate')); // All passenger come to boarding gate 23, Boarding gate 23!
+
+// regex
+// //g -> global
+console.log(annoucement.replace(/door/g, 'gate')); // All passenger come to boarding gate 23, Boarding door 23!
+
+// Booleans
+const plane = 'A320neo';
+console.log(plane.includes('A320')); // true
+console.log(plane.includes('Boeing')); // false
+console.log(plane.includes('Air')); // false
+
+// Praictie exercise
+const checkBaggage = function (item) {
+  const itemTrimmed = item.toLowerCase().trim();
+
+  if (itemTrimmed.includes('knife') || itemTrimmed.includes('gun')) {
+    console.log('You are NOT allowed on board');
   } else {
-    console.log('not a middle seat!');
+    console.log('Welcome aboard!');
   }
-  // Case 2.
-  const seatAlpha = seat.slice(-1);
-  if (
-    seatAlpha === 'B' ||
-    seatAlpha === 'C' ||
-    seatAlpha === 'D' ||
-    seatAlpha === 'E'
-  ) {
-    console.log('middle seat!');
-  } else {
-    console.log('not a middle seat!');
-  }
+  //
 };
 
-checkMiddleSeat('11B');
-checkMiddleSeat('11C');
-checkMiddleSeat('11D');
+checkBaggage('I have a laptop, some Food and a pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
+// checkBaggage('I');
 
-console.log(new String('jonas'));
-console.log(typeof new String('jonas'));
+/**
+ * Working With Strings - Part 1
+ */
+// const airline = 'TAP Air Portugal';
+// const plane = 'A320';
+
+// console.log(plane[0]);
+// console.log(plane[1]);
+// console.log(plane[2]);
+// console.log('B737'[0]);
+
+// console.log(airline.length);
+// console.log('B737'.length);
+
+// console.log(airline.indexOf('r')); // 앞에서부터 찾기, 찾은 index, 없으면 -1 return
+// console.log(airline.lastIndexOf(' ')); // 뒤에서부터 찾기, 찾은 index, 없으면 -1 return
+// console.log(airline.indexOf('portugal')); // -1
+// console.log(airline.indexOf('Portugal')); // 8 단어 시작위치 return
+
+// console.log(airline.slice(4)); // 인자에 넣은 숫자가 0~n까지 잘라서 버릴 숫자
+// console.log(airline.slice(6, 10)); // (startIndex, endIndex)
+
+// console.log(airline.slice(0, airline.indexOf(' '))); // TAP
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // Portugal
+
+// console.log(airline.slice(airline.slice(-2))); // TAP Air Portugal
+// console.log(airline.slice(airline.slice(1, -1))); // TAP Air Portugal
+
+// const checkMiddleSeat = function (seat) {
+//   // B and E are middle seats
+//   // Case 1.
+//   if (
+//     seat.lastIndexOf('B') !== -1 ||
+//     seat.lastIndexOf('C') !== -1 ||
+//     seat.lastIndexOf('D') !== -1 ||
+//     seat.lastIndexOf('E') !== -1
+//   ) {
+//     console.log('middle seat!');
+//   } else {
+//     console.log('not a middle seat!');
+//   }
+//   // Case 2.
+//   const seatAlpha = seat.slice(-1);
+//   if (
+//     seatAlpha === 'B' ||
+//     seatAlpha === 'C' ||
+//     seatAlpha === 'D' ||
+//     seatAlpha === 'E'
+//   ) {
+//     console.log('middle seat!');
+//   } else {
+//     console.log('not a middle seat!');
+//   }
+// };
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('11C');
+// checkMiddleSeat('11D');
+
+// console.log(new String('jonas'));
+// console.log(typeof new String('jonas'));
 // const checkMiddleSeat = function (seat) {};
 
 // Data needed for first part of the section
