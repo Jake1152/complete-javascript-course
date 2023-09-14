@@ -21,83 +21,146 @@ const openingHours = {
   },
 };
 
-// Data needed for first part of the section
-const restaurant = {
-  name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  // openingHours: openingHours,
+/**
+ * Working With Strings - Part 1
+ */
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
 
-  // ES6 enhanced object literals
-  // 변수이름으로 속성 이름 생성
-  // openingHours,
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[0]);
 
-  openingHours,
+console.log(airline.length);
+console.log('B737'.length);
 
-  // order: function (starterIndex, mainIndex) {
-  //   return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  // },
+console.log(airline.indexOf('r')); // 앞에서부터 찾기, 찾은 index, 없으면 -1 return
+console.log(airline.lastIndexOf(' ')); // 뒤에서부터 찾기, 찾은 index, 없으면 -1 return
+console.log(airline.indexOf('portugal')); // -1
+console.log(airline.indexOf('Portugal')); // 8 단어 시작위치 return
 
-  order(starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
+console.log(airline.slice(4)); // 인자에 넣은 숫자가 0~n까지 잘라서 버릴 숫자
+console.log(airline.slice(6, 10)); // (startIndex, endIndex)
 
-  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
-    console.log(
-      `Order received ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-    );
-  },
+console.log(airline.slice(0, airline.indexOf(' '))); // TAP
+console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // Portugal
 
-  orderPasta(ing1, ing2, ing3) {
-    console.log(`Here is your delicuous pasta with ${ing1} ${ing2} ${ing3}`);
-  },
+console.log(airline.slice(airline.slice(-2))); // TAP Air Portugal
+console.log(airline.slice(airline.slice(1, -1))); // TAP Air Portugal
 
-  orderPizza(mainIngredient, ...otherIngredients) {
-    console.log(mainIngredient);
-    console.log(otherIngredients);
-  },
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  // Case 1.
+  if (
+    seat.lastIndexOf('B') !== -1 ||
+    seat.lastIndexOf('C') !== -1 ||
+    seat.lastIndexOf('D') !== -1 ||
+    seat.lastIndexOf('E') !== -1
+  ) {
+    console.log('middle seat!');
+  } else {
+    console.log('not a middle seat!');
+  }
+  // Case 2.
+  const seatAlpha = seat.slice(-1);
+  if (
+    seatAlpha === 'B' ||
+    seatAlpha === 'C' ||
+    seatAlpha === 'D' ||
+    seatAlpha === 'E'
+  ) {
+    console.log('middle seat!');
+  } else {
+    console.log('not a middle seat!');
+  }
 };
 
-/**
- * Map
- * iteration
- */
-const question = new Map([
-  ['question', 'What is the best programming language in the world?'],
-  [1, 'C'],
-  [2, 'Java'],
-  [3, 'JavaScript'],
-  ['correct', 3],
-  [true, 'Correct'],
-  [false, 'Try again!'],
-]);
+checkMiddleSeat('11B');
+checkMiddleSeat('11C');
+checkMiddleSeat('11D');
 
-console.log(question);
+console.log(new String('jonas'));
+console.log(typeof new String('jonas'));
+// const checkMiddleSeat = function (seat) {};
 
-// Convert object to map
-console.log(Object.entries(openingHours));
-const hoursMap = new Map(Object.entries(openingHours));
-console.log(hoursMap);
+// Data needed for first part of the section
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+//   // openingHours: openingHours,
 
-//Quiz app
-console.log(question.get('question'));
-for (const [key, value] of question) {
-  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
-}
+//   // ES6 enhanced object literals
+//   // 변수이름으로 속성 이름 생성
+//   // openingHours,
 
-// const answer = Number(prompt('Your answer'));
-const answer = 3;
-console.log(answer);
+//   openingHours,
 
-console.log(question.get(question.get('correct') === answer));
+//   // order: function (starterIndex, mainIndex) {
+//   //   return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   // },
 
-// Convery map to array
-console.log([...question]);
-console.log([question.entries()]);
-console.log([question.keys()]);
-console.log([question.values()]);
+//   order(starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+
+//   orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+//     console.log(
+//       `Order received ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+//     );
+//   },
+
+//   orderPasta(ing1, ing2, ing3) {
+//     console.log(`Here is your delicuous pasta with ${ing1} ${ing2} ${ing3}`);
+//   },
+
+//   orderPizza(mainIngredient, ...otherIngredients) {
+//     console.log(mainIngredient);
+//     console.log(otherIngredients);
+//   },
+// };
+
+// /**
+//  * Map
+//  * iteration
+//  */
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct'],
+//   [false, 'Try again!'],
+// ]);
+
+// console.log(question);
+
+// // Convert object to map
+// console.log(Object.entries(openingHours));
+// const hoursMap = new Map(Object.entries(openingHours));
+// console.log(hoursMap);
+
+// //Quiz app
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+// }
+
+// // const answer = Number(prompt('Your answer'));
+// const answer = 3;
+// console.log(answer);
+
+// console.log(question.get(question.get('correct') === answer));
+
+// // Convery map to array
+// console.log([...question]);
+// console.log([question.entries()]);
+// console.log([question.keys()]);
+// console.log([question.values()]);
 /**
  * Map
  * key, value
