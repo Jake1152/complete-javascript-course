@@ -120,23 +120,87 @@
  * Functions Returning Functions
  * 새 함수를 리턴하는 함수를 생성
  */
-const greet = function (greeting) {
-  return function (name) {
-    console.log(`${greeting} ${name}`);
-  };
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+// const greeterHey = greet('Hey');
+// greeterHey('Jake');
+// greeterHey('Jason');
+
+// // 되기는 하지만 불편해보인다고 한다
+// greet('Hello')('jim');
+
+// // arrow function version
+// const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+
+// const greeterHey22 = greetArr('Hey');
+// greetArr('Hey')('Jonas');
+// greeterHey22('Jake');
+// greeterHey22('Jason');
+
+/**
+ * The call and apply Method
+ */
+const luthhamsa = {
+  arilne: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  // book: function() {}
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
 };
 
-const greeterHey = greet('Hey');
-greeterHey('Jake');
-greeterHey('Jason');
+// luthhamsa.book(744, 'jason');
+// luthhamsa.book(884, 'jonas');
+// console.log(luthhamsa);
 
-// 되기는 하지만 불편해보인다고 한다
-greet('Hello')('jim');
+// 루프한자 자회사인 eurowings도 동일한 기능을 쓰고 싶다
+// 코드중복이 해내는 방법!
+// 메서드를 가져다가 외부 함수에 저장
+// 이 기능을 모든 항공사에 재사용할 수 있다
+/**
+ * 그것을 할 수 있는 함수가 call, apply, bind가 있다
+ */
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
 
-// arrow function version
-const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+const book = luthhamsa.book;
 
-const greeterHey22 = greetArr('Hey');
-greetArr('Hey')('Jonas');
-greeterHey22('Jake');
-greeterHey22('Jason');
+// book(23, 'sara');
+// Call method
+book.call(eurowings, 23, 'Sarah');
+console.log(eurowings);
+
+book.call(luthhamsa, 42, 'jason');
+console.log(luthhamsa);
+
+const swiss = {
+  airline: 'Swiss Air lines',
+  iataCode: 'LX',
+  bookings: [],
+};
+
+book.call(swiss, 583, 'mary cooper');
+console.log(swiss);
+
+// Apply method
+/**
+ * call method와 비슷하지만 차이점으로는 인수목록을 받지 않는다
+ * modern JS에서는 더이상 쓰이지 않는다
+ * 더 나은 대안이 있다
+ */
+const flightData = [583, 'George'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+book.call(swiss, ...flightData);
