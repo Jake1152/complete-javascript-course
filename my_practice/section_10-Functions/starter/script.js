@@ -74,41 +74,69 @@
  * 다른 함수를 입려그올 받아들이는 함수를 생성
  */
 // 간단한 문자열 반환하는 함수
-const oneWord = function (str) {
-  return str.replace(/ /g, '').toLowerCase();
-};
+// const oneWord = function (str) {
+//   return str.replace(/ /g, '').toLowerCase();
+// };
 
-const upperFirstWord = function (str) {
-  const [first, ...othres] = str.split(' ');
-  return [first.toUpperCase(), ...othres.join(' ')];
-};
+// const upperFirstWord = function (str) {
+//   const [first, ...othres] = str.split(' ');
+//   return [first.toUpperCase(), ...othres.join(' ')];
+// };
 
-// Higher-order function
-// console.log(oneWord('Test 55'));
-const transformer = function (str, fn) {
-  console.log(`Original string: ${str}`);
-  console.log(`Transformed string: ${fn(str)}`);
+// // Higher-order function
+// // console.log(oneWord('Test 55'));
+// const transformer = function (str, fn) {
+//   console.log(`Original string: ${str}`);
+//   console.log(`Transformed string: ${fn(str)}`);
 
-  console.log(`Transformed by: ${fn.name}`);
-};
+//   console.log(`Transformed by: ${fn.name}`);
+// };
 
-// 두번쨰 인자로 전달한 함수를 호출한다, 콜백으로 사용
-/**
- * 콜백 함수는 fn이라고 불리운다
- */
-transformer('JavaScript is the best!', upperFirstWord);
-transformer('JavaScript is the best!', oneWord);
+// // 두번쨰 인자로 전달한 함수를 호출한다, 콜백으로 사용
+// /**
+//  * 콜백 함수는 fn이라고 불리운다
+//  */
+// transformer('JavaScript is the best!', upperFirstWord);
+// transformer('JavaScript is the best!', oneWord);
 
-// JS uses callback all the time
-const high5 = function () {
-  console.log('hi');
-};
-document.body.addEventListener('click', high5);
+// // JS uses callback all the time
+// const high5 = function () {
+//   console.log('hi');
+// };
+// document.body.addEventListener('click', high5);
 
-// forEach에도 콜백함수 사용가능
-['Jonas', 'Matias', 'Adam'].forEach(high5);
+// // forEach에도 콜백함수 사용가능
+// ['Jonas', 'Matias', 'Adam'].forEach(high5);
 
 /**
  * 위에 transform함수를 씀으로써 추상화를 이뤄낸다
  * 추상화를 함으로써 세부사항들은 숨길 수 있다
+ * 추상적인 차원에서 생각할 수 있게 한다
+ * 디테일은 신경쓰지 않는다
+ *
  */
+
+/**
+ * Functions Returning Functions
+ * 새 함수를 리턴하는 함수를 생성
+ */
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+const greeterHey = greet('Hey');
+greeterHey('Jake');
+greeterHey('Jason');
+
+// 되기는 하지만 불편해보인다고 한다
+greet('Hello')('jim');
+
+// arrow function version
+const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+
+const greeterHey22 = greetArr('Hey');
+greetArr('Hey')('Jonas');
+greeterHey22('Jake');
+greeterHey22('Jason');
