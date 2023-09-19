@@ -272,15 +272,20 @@ for (const flight of flights.split('+')) {
 //  * Map
 //  * iteration
 //  */
-// const question = new Map([
-//   ['question', 'What is the best programming language in the world?'],
-//   [1, 'C'],
-//   [2, 'Java'],
-//   [3, 'JavaScript'],
-//   ['correct', 3],
-//   [true, 'Correct'],
-//   [false, 'Try again!'],
-// ]);
+const testFn = function () {
+  console.log('sdf');
+};
+
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct'],
+  [false, 'Try again!'],
+  [funct, testFn],
+]);
 
 // console.log(question);
 

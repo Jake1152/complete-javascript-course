@@ -144,7 +144,75 @@
 /**
  * The call and apply Method
  */
-const luthhamsa = {
+// const lufthansa = {
+//   arilne: 'Lufthansa',
+//   iataCode: 'LH',
+//   bookings: [],
+//   // book: function() {}
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
+
+// lufthansa.book(744, 'jason');
+// lufthansa.book(884, 'jonas');
+// console.log(lufthansa);
+
+// 루프한자 자회사인 eurowings도 동일한 기능을 쓰고 싶다
+// 코드중복이 해내는 방법!
+// 메서드를 가져다가 외부 함수에 저장
+// 이 기능을 모든 항공사에 재사용할 수 있다
+/**
+ * 그것을 할 수 있는 함수가 call, apply, bind가 있다
+ */
+// const eurowings = {
+//   airline: 'Eurowings',
+//   iataCode: 'EW',
+//   bookings: [],
+// };
+
+// const book = lufthansa.book;
+
+// book(23, 'sara');
+// Call method
+// book.call(eurowings, 23, 'Sarah');
+// console.log(eurowings);
+
+// book.call(lufthansa, 42, 'jason');
+// console.log(lufthansa);
+
+// const swiss = {
+//   airline: 'Swiss Air lines',
+//   iataCode: 'LX',
+//   bookings: [],
+// };
+
+// book.call(swiss, 583, 'mary cooper');
+// console.log(swiss);
+
+// Apply method
+/**
+ * call method와 비슷하지만 차이점으로는 인수목록을 받지 않는다
+ * modern JS에서는 더이상 쓰이지 않는다
+ * 더 나은 대안이 있다
+ */
+// const flightData = [583, 'George'];
+// book.apply(swiss, flightData);
+// console.log(swiss);
+
+// book.call(swiss, ...flightData);
+
+/**
+ * bind
+ * 모든 함수 호출에 대해 수동으로 키워드를 설정하게 해준다
+ * 차이점은 bind가 바로 함수를 호출하지 않는다는 것이다.
+ * 이 키워드가 바인된 새 항수를 반환한다.
+ * 바인드에 넘기는 값이 무엇이지 거기에 맞추어져 있다.
+ */
+const lufthansa = {
   arilne: 'Lufthansa',
   iataCode: 'LH',
   bookings: [],
@@ -157,32 +225,11 @@ const luthhamsa = {
   },
 };
 
-// luthhamsa.book(744, 'jason');
-// luthhamsa.book(884, 'jonas');
-// console.log(luthhamsa);
-
-// 루프한자 자회사인 eurowings도 동일한 기능을 쓰고 싶다
-// 코드중복이 해내는 방법!
-// 메서드를 가져다가 외부 함수에 저장
-// 이 기능을 모든 항공사에 재사용할 수 있다
-/**
- * 그것을 할 수 있는 함수가 call, apply, bind가 있다
- */
 const eurowings = {
   airline: 'Eurowings',
   iataCode: 'EW',
   bookings: [],
 };
-
-const book = luthhamsa.book;
-
-// book(23, 'sara');
-// Call method
-book.call(eurowings, 23, 'Sarah');
-console.log(eurowings);
-
-book.call(luthhamsa, 42, 'jason');
-console.log(luthhamsa);
 
 const swiss = {
   airline: 'Swiss Air lines',
@@ -190,17 +237,42 @@ const swiss = {
   bookings: [],
 };
 
-book.call(swiss, 583, 'mary cooper');
-console.log(swiss);
+// bind Method
 
-// Apply method
-/**
- * call method와 비슷하지만 차이점으로는 인수목록을 받지 않는다
- * modern JS에서는 더이상 쓰이지 않는다
- * 더 나은 대안이 있다
- */
-const flightData = [583, 'George'];
-book.apply(swiss, flightData);
-console.log(swiss);
+const book = lufthansa.book;
+// 새 함수를 반환해준다.
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
 
-book.call(swiss, ...flightData);
+bookEW(23, 'Steven Williams');
+bookLH(23, 'Steven Williams');
+bookLX(23, 'Steven Williams');
+
+// 23이 이미 세팅되게 됨. 이제 이름만 넣는 것으로 호출 가능
+const bookE23 = book.bind(eurowings, 23);
+bookE23('jake');
+bookE23(24, 'Cooper'); // bind로 이미 묶은 인자 부분에 값을 넣으면 bind로 묶은 값을 덮어씀
+
+// With Event Listener
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+
+  this.planes++;
+  console.log(this.planes);
+};
+
+lufthansa.buyPlane();
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+const addTax = (rate, value) => value + value * rate;
+
+console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23);
+console.log(addVAT(100));
+console.log(addVAT(23));

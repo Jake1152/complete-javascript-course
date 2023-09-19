@@ -87,6 +87,7 @@ for (const [index, scorer] of game.scored.entries()) {
 }
 
 // 2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+console.log('# 2');
 let sum = 0;
 for (const odd of Object.values(game.odds)) sum += odd;
 console.log(sum / Object.keys(game.odds).length);
@@ -98,6 +99,7 @@ console.log(sum / Object.keys(game.odds).length);
       Odd of victory Borrussia Dortmund: 6.5
 Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉
  */
+console.log('# 3');
 for (const [key, value] of Object.entries(game.odds)) {
   console.log(
     `Odd of ${game[key] ? 'victory' : 'draw'}${
@@ -116,6 +118,7 @@ BONUS: Create an object called 'scorers' which contains the names of the players
         Lewandowski: 2
       }
  */
+console.log('# 4');
 const scorers = {};
 
 for (const element of game.scored) {
@@ -125,6 +128,10 @@ for (const element of game.scored) {
 }
 
 for (const [index, value] of Object.entries(scorers)) {
+  console.log(index, value);
+}
+
+for (const [index, value] of Array.prototype.entries(scorers)) {
   console.log(index, value);
 }
 
@@ -139,33 +146,32 @@ for (const [index, value] of Object.entries(scorers)) {
 // for (const day of Object.keys(openingHours)) {
 //   console.log(day);
 // }
-
 /*
-  // 1.
-  for (const [i, player] of game.scored.entries())
-    console.log(`Goal ${i + 1}: ${player}`);
-  
-  // 2.
-  const odds = Object.values(game.odds);
-  let average = 0;
-  for (const odd of odds) average += odd;
-  average /= odds.length;
-  console.log(average);
-  
-  // 3.
-  for (const [team, odd] of Object.entries(game.odds)) {
-    const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
-    console.log(`Odd of ${teamStr} ${odd}`);
-  }
-  
-  // Odd of victory Bayern Munich: 1.33
-  // Odd of draw: 3.25
-  // Odd of victory Borrussia Dortmund: 6.5
-  
-  // BONUS
-  // So the solution is to loop over the array, and add the array elements as object properties, and then increase the count as we encounter a new occurence of a certain element
-  const scorers = {};
-  for (const player of game.scored) {
-    scorers[player] ? scorers[player]++ : (scorers[player] = 1);
-  }
-  */
+// 1.
+for (const [i, player] of game.scored.entries())
+  console.log(`Goal ${i + 1}: ${player}`);
+
+// 2.
+const odds = Object.values(game.odds);
+let average = 0;
+for (const odd of odds) average += odd;
+average /= odds.length;
+console.log(average);
+
+// 3.
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+  console.log(`Odd of ${teamStr} ${odd}`);
+}
+
+// Odd of victory Bayern Munich: 1.33
+// Odd of draw: 3.25
+// Odd of victory Borrussia Dortmund: 6.5
+
+// BONUS
+// So the solution is to loop over the array, and add the array elements as object properties, and then increase the count as we encounter a new occurence of a certain element
+const scorers = {};
+for (const player of game.scored) {
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+}
+*/
