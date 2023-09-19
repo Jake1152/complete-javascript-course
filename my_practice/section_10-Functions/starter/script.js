@@ -316,24 +316,76 @@
 /**
  * Closures
  */
-const secureBooking = function () {
-  let passengerCount = 0;
+// const secureBooking = function () {
+//   let passengerCount = 0;
 
-  return function () {
-    passengerCount++;
-    console.log(`${passengerCount} passengers`);
-  };
-};
+//   return function () {
+//     passengerCount++;
+//     console.log(`${passengerCount} passengers`);
+//   };
+// };
 
-const booker = secureBooking();
+// const booker = secureBooking();
 
-booker();
-booker();
-booker(); // 3 passenger
+// booker();
+// booker();
+// booker(); // 3 passenger
 /**
  * closure 기능 때문에 밖에서 접근 가능
  * 스코프 체인 만으로는 설명 힘듦
  * 실제로 어떻게 동작한느가?
  */
 
-console.dir(booker);
+// console.dir(booker);
+
+/**
+ * More Closure Examples
+ */
+
+// Example1
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f(); // 46
+console.dir(f);
+// f()함수가 클로저에 의해 호출이 된다
+// a 변수는 f함수의 배낭 안에 있다
+
+// RE-assigning f function
+h();
+f(); // 1554
+
+console.dir(f);
+
+// Example 2
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each will ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} searching`);
+};
+
+setTimeout(function () {
+  console.log('TIMER');
+}, 1000);
+
+const perGroup = 1000;
+boardPassengers(180, 3);
