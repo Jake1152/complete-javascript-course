@@ -212,67 +212,103 @@
  * 이 키워드가 바인된 새 항수를 반환한다.
  * 바인드에 넘기는 값이 무엇이지 거기에 맞추어져 있다.
  */
-const lufthansa = {
-  arilne: 'Lufthansa',
-  iataCode: 'LH',
-  bookings: [],
-  // book: function() {}
-  book(flightNum, name) {
-    console.log(
-      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
-    );
-    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
-  },
-};
+// const lufthansa = {
+//   arilne: 'Lufthansa',
+//   iataCode: 'LH',
+//   bookings: [],
+//   // book: function() {}
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
 
-const eurowings = {
-  airline: 'Eurowings',
-  iataCode: 'EW',
-  bookings: [],
-};
+// const eurowings = {
+//   airline: 'Eurowings',
+//   iataCode: 'EW',
+//   bookings: [],
+// };
 
-const swiss = {
-  airline: 'Swiss Air lines',
-  iataCode: 'LX',
-  bookings: [],
-};
+// const swiss = {
+//   airline: 'Swiss Air lines',
+//   iataCode: 'LX',
+//   bookings: [],
+// };
 
-// bind Method
+// // bind Method
 
-const book = lufthansa.book;
-// 새 함수를 반환해준다.
-const bookEW = book.bind(eurowings);
-const bookLH = book.bind(lufthansa);
-const bookLX = book.bind(swiss);
+// const book = lufthansa.book;
+// // 새 함수를 반환해준다.
+// const bookEW = book.bind(eurowings);
+// const bookLH = book.bind(lufthansa);
+// const bookLX = book.bind(swiss);
 
-bookEW(23, 'Steven Williams');
-bookLH(23, 'Steven Williams');
-bookLX(23, 'Steven Williams');
+// bookEW(23, 'Steven Williams');
+// bookLH(23, 'Steven Williams');
+// bookLX(23, 'Steven Williams');
 
-// 23이 이미 세팅되게 됨. 이제 이름만 넣는 것으로 호출 가능
-const bookE23 = book.bind(eurowings, 23);
-bookE23('jake');
-bookE23(24, 'Cooper'); // bind로 이미 묶은 인자 부분에 값을 넣으면 bind로 묶은 값을 덮어씀
+// // 23이 이미 세팅되게 됨. 이제 이름만 넣는 것으로 호출 가능
+// const bookE23 = book.bind(eurowings, 23);
+// bookE23('jake');
+// bookE23(24, 'Cooper'); // bind로 이미 묶은 인자 부분에 값을 넣으면 bind로 묶은 값을 덮어씀
 
-// With Event Listener
-lufthansa.planes = 300;
-lufthansa.buyPlane = function () {
-  console.log(this);
+// // With Event Listener
+// lufthansa.planes = 300;
+// lufthansa.buyPlane = function () {
+//   console.log(this);
 
-  this.planes++;
-  console.log(this.planes);
-};
+//   this.planes++;
+//   console.log(this.planes);
+// };
 
-lufthansa.buyPlane();
+// lufthansa.buyPlane();
 
-document
-  .querySelector('.buy')
-  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+// document
+//   .querySelector('.buy')
+//   .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
 
-const addTax = (rate, value) => value + value * rate;
+// const addTax = (rate, value) => value + value * rate;
 
-console.log(addTax(0.1, 200));
+// console.log(addTax(0.1, 200));
 
-const addVAT = addTax.bind(null, 0.23);
-console.log(addVAT(100));
-console.log(addVAT(23));
+// const addVAT = addTax.bind(null, 0.23);
+// console.log(addVAT(100));
+// console.log(addVAT(23));
+
+/**
+ * Immediately Invoked Function Expressions (IIFE)
+ * 한번만 실행되고 사라지는 함수
+ * async/await에서 사용됨
+ */
+
+// const runOnce = function () {
+//   console.log('This will never run again');
+// };
+
+// runOnce();
+
+// IIFE Immediately Invoked Function Expression
+(function () {
+  console.log('This will never run again');
+  const isPrivate = 23;
+})();
+
+// console.log(isPrivate);
+
+(() => console.log('This will never run again'))();
+/**
+ * 함수가 범위를 생성함
+ * 왜 이런 패턴이 나왔는가?
+ * 예를 들면 전역범위에서 이 함수 범위에서 정의된 어떤 변수에도 접근할 수 없다
+ * 즉시 실행된 함수식은 더 이상 사용되지 않는다
+ */
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+
+console.log(isPrivate); // error
+console.log(notPrivate); // work, var라서 가능
