@@ -290,25 +290,50 @@
 // runOnce();
 
 // IIFE Immediately Invoked Function Expression
-(function () {
-  console.log('This will never run again');
-  const isPrivate = 23;
-})();
+// (function () {
+//   console.log('This will never run again');
+//   const isPrivate = 23;
+// })();
 
-// console.log(isPrivate);
+// // console.log(isPrivate);
 
-(() => console.log('This will never run again'))();
+// (() => console.log('This will never run again'))();
+// /**
+//  * 함수가 범위를 생성함
+//  * 왜 이런 패턴이 나왔는가?
+//  * 예를 들면 전역범위에서 이 함수 범위에서 정의된 어떤 변수에도 접근할 수 없다
+//  * 즉시 실행된 함수식은 더 이상 사용되지 않는다
+//  */
+
+// {
+//   const isPrivate = 23;
+//   var notPrivate = 46;
+// }
+
+// console.log(isPrivate); // error
+// console.log(notPrivate); // work, var라서 가능
+
 /**
- * 함수가 범위를 생성함
- * 왜 이런 패턴이 나왔는가?
- * 예를 들면 전역범위에서 이 함수 범위에서 정의된 어떤 변수에도 접근할 수 없다
- * 즉시 실행된 함수식은 더 이상 사용되지 않는다
+ * Closures
+ */
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker(); // 3 passenger
+/**
+ * closure 기능 때문에 밖에서 접근 가능
+ * 스코프 체인 만으로는 설명 힘듦
+ * 실제로 어떻게 동작한느가?
  */
 
-{
-  const isPrivate = 23;
-  var notPrivate = 46;
-}
-
-console.log(isPrivate); // error
-console.log(notPrivate); // work, var라서 가능
+console.dir(booker);
