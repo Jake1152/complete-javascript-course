@@ -35,47 +35,94 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
-// Elements
-// const labelWelcome = document.querySelector('.welcome');
-// const labelDate = document.querySelector('.date');
-// const labelBalance = document.querySelector('.balance__value');
-// const labelSumIn = document.querySelector('.summary__value--in');
-// const labelSumOut = document.querySelector('.summary__value--out');
-// const labelSumInterest = document.querySelector('.summary__value--interest');
-// const labelTimer = document.querySelector('.timer');
+// Elements;
+const labelWelcome = document.querySelector('.welcome');
+const labelDate = document.querySelector('.date');
+const labelBalance = document.querySelector('.balance__value');
+const labelSumIn = document.querySelector('.summary__value--in');
+const labelSumOut = document.querySelector('.summary__value--out');
+const labelSumInterest = document.querySelector('.summary__value--interest');
+const labelTimer = document.querySelector('.timer');
 
-// const containerApp = document.querySelector('.app');
-// const containerMovements = document.querySelector('.movements');
+const containerApp = document.querySelector('.app');
+const containerMovements = document.querySelector('.movements');
 
-// const btnLogin = document.querySelector('.login__btn');
-// const btnTransfer = document.querySelector('.form__btn--transfer');
-// const btnLoan = document.querySelector('.form__btn--loan');
-// const btnClose = document.querySelector('.form__btn--close');
-// const btnSort = document.querySelector('.btn--sort');
+const btnLogin = document.querySelector('.login__btn');
+const btnTransfer = document.querySelector('.form__btn--transfer');
+const btnLoan = document.querySelector('.form__btn--loan');
+const btnClose = document.querySelector('.form__btn--close');
+const btnSort = document.querySelector('.btn--sort');
 
-// const inputLoginUsername = document.querySelector('.login__input--user');
-// const inputLoginPin = document.querySelector('.login__input--pin');
-// const inputTransferTo = document.querySelector('.form__input--to');
-// const inputTransferAmount = document.querySelector('.form__input--amount');
-// const inputLoanAmount = document.querySelector('.form__input--loan-amount');
-// const inputCloseUsername = document.querySelector('.form__input--user');
-// const inputClosePin = document.querySelector('.form__input--pin');
+const inputLoginUsername = document.querySelector('.login__input--user');
+const inputLoginPin = document.querySelector('.login__input--pin');
+const inputTransferTo = document.querySelector('.form__input--to');
+const inputTransferAmount = document.querySelector('.form__input--amount');
+const inputLoanAmount = document.querySelector('.form__input--loan-amount');
+const inputCloseUsername = document.querySelector('.form__input--user');
+const inputClosePin = document.querySelector('.form__input--pin');
+
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    // 템플릿 문자열에 붙여넣기
+    const html = `
+        <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+          <div class="movements__value">${mov}</div>
+        </div>
+      `;
+
+    // 첫번째 인자는 HTML에 붙이이려는 위치
+    /**
+     * beforebegin
+     * afterbegin
+     * beforeend
+     * afterend
+     */
+    // 두번째 인자 삽입하고자 하는 HTML을 포함하는 문자열.
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(account1.movements);
+
+/**
+ * side effect만들기
+ *  원본을 변형시킴
+ * return값이 없다
+ */
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+createUsernames(accounts);
+console.log(accounts);
+
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// LECTURES;
+
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
 
-// const currencies = new Map([
-//   ['USD', 'United States dollar'],
-//   ['EUR', 'Euro'],
-//   ['GBP', 'Pound sterling'],
-// ]);
-
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-/////////////////////////////////////////////////
-
-let arr = ['a', 'b', 'c', 'd', 'e'];
+// let arr = ['a', 'b', 'c', 'd', 'e'];
 
 // // slice method
 // console.log(arr.slice(2)); //["c", "d", "e"]
@@ -194,59 +241,59 @@ EUR: EUR
  * The map Method
  */
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-// 달러로 환전
+// // 달러로 환전
 
-const eurToUsd = 1.1;
+// const eurToUsd = 1.1;
 
-// normal fucnction version
-// const movementsUSD = movements.map(function (mov) {
-//   // return 23;
-//   return mov * eurToUsd;
-// });
+// // normal fucnction version
+// // const movementsUSD = movements.map(function (mov) {
+// //   // return 23;
+// //   return mov * eurToUsd;
+// // });
 
-// arrow function version
-const movementsUSD = movements.map(mov => mov * eurToUsd);
-// const movementsUSD = movements.map(mov => {
-//   return mov * eurToUsd;
-// });
+// // arrow function version
+// const movementsUSD = movements.map(mov => mov * eurToUsd);
+// // const movementsUSD = movements.map(mov => {
+// //   return mov * eurToUsd;
+// // });
 
-console.log(movements);
-console.log(movementsUSD);
+// console.log(movements);
+// console.log(movementsUSD);
 
-const movementUSDfor = [];
-for (const mov of movements) movementUSDfor.push(mov * eurToUsd);
-console.log(movementUSDfor);
-/**
-[
-  220.00000000000003,
-  495.00000000000006,
-  -440.00000000000006,
-  3300.0000000000005,
-  -715.0000000000001,
-  -143,
-  77,
-  1430.0000000000002
-]
- */
+// const movementUSDfor = [];
+// for (const mov of movements) movementUSDfor.push(mov * eurToUsd);
+// console.log(movementUSDfor);
+// /**
+// [
+//   220.00000000000003,
+//   495.00000000000006,
+//   -440.00000000000006,
+//   3300.0000000000005,
+//   -715.0000000000001,
+//   -143,
+//   77,
+//   1430.0000000000002
+// ]
+//  */
 
-/**
- * 아래 콜백함수를 맵 매서드에 전달한다
- */
-const movementsDescriptions = movements.map(
-  (mov, i, arr) =>
-    // `Movement ${i + 1}: You deposited ${mov}`;
-    `Movement ${i + 1}: You ${mov > 0 ? 'deposited ' : 'withdrew'} ${Math.abs(
-      mov
-    )}`
-  // if (mov > 0) {
-  //   return `Movement ${i + 1}: You deposited ${mov}`;
-  // } else {
-  //   return `Movement ${i + 1}: You dithdrew ${Math.abs(mov)}`;
-  // }
-);
-console.log(movementsDescriptions);
+// /**
+//  * 아래 콜백함수를 맵 매서드에 전달한다
+//  */
+// const movementsDescriptions = movements.map(
+//   (mov, i, arr) =>
+//     // `Movement ${i + 1}: You deposited ${mov}`;
+//     `Movement ${i + 1}: You ${mov > 0 ? 'deposited ' : 'withdrew'} ${Math.abs(
+//       mov
+//     )}`
+//   // if (mov > 0) {
+//   //   return `Movement ${i + 1}: You deposited ${mov}`;
+//   // } else {
+//   //   return `Movement ${i + 1}: You dithdrew ${Math.abs(mov)}`;
+//   // }
+// );
+// console.log(movementsDescriptions);
 /**
 [
   'Movement 1: You deposited 200',
@@ -258,4 +305,8 @@ console.log(movementsDescriptions);
   'Movement 7: You deposited 70',
   'Movement 8: You deposited 1300'
 ]
+ */
+
+/**
+ * Computing Usernames
  */
