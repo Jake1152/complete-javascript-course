@@ -65,17 +65,17 @@ const accounts = [account1, account2, account3, account4];
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
-// let arr = ['a', 'b', 'c', 'd', 'e'];
+let arr = ['a', 'b', 'c', 'd', 'e'];
 
 // // slice method
 // console.log(arr.slice(2)); //["c", "d", "e"]
@@ -90,25 +90,31 @@ const currencies = new Map([
 // /*
 // 원래 배열을 바꿈
 // */
-// // console.log(arr.splice(2)); // ['c', 'd', 'e'] => ['a', 'b']
+// console.log(arr.splice(2)); // ['c', 'd', 'e'] => ['a', 'b']
 // arr.splice(-1); //
 // console.log(arr); //['a', 'b', 'c', 'd']
 // arr.splice(1, 2); //
 // console.log(arr); //['a', 'd']
 
-// // REVERSE
+// // // REVERSE
 // arr = ['a', 'b', 'c', 'd', 'e'];
 // const arr2 = ['j', 'i', 'h', 'g', 'f'];
 // console.log(arr2.reverse);
 // console.log(arr2);
 
-// // CONCAT
+// // // CONCAT
 // const letters = arr.concat(arr2);
+// console.log('arr.concat(arr2)');
 // console.log(letters);
 // console.log([...arr, ...arr2]);
 
-// // JOIN
+// // // JOIN
 // console.log(letters.join(' - ')); // a - b - c - d - e - j - i - h - g - f
+/**
+ * toSpliceed() 원본은 바꾸지않고 return
+ * toReversed()
+ * toSorted()
+ */
 
 /**
  * The new at Method
@@ -128,29 +134,128 @@ const currencies = new Map([
 /**
  * Looping Arrays: forEach
  */
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-// for (const movement of movements) {
-for (const [i, movement] of movements.entries()) {
-  if (movement > 0) {
-    console.log(`Movement ${i + 1} : You deposited ${movement}`);
-  } else {
-    console.log(`Movement ${i + 1} : You withdrew ${Math.abs(movement)}`);
-  }
-}
+// // for (const movement of movements) {
+// for (const [i, movement] of movements.entries()) {
+//   if (movement > 0) {
+//     console.log(`Movement ${i + 1} : You deposited ${movement}`);
+//   } else {
+//     console.log(`Movement ${i + 1} : You withdrew ${Math.abs(movement)}`);
+//   }
+// }
 
-console.log('\n---- FOREACH ----');
+// console.log('\n---- FOREACH ----');
 // movements.forEach(function (movement) {
 // for of와 매개변수 순서가 다름에 주의해야한다
 // forEach항상 전체 배열에 걸려 반복한다.
 // for of는 break로 중간에 나올 수 있다.
-movements.forEach(function (movement, index, array) {
-  if (movement > 0) {
-    console.log(`Movement ${index + 1} : You deposited ${movement}`);
-  } else {
-    console.log(`Movement ${index + 1} : You withdrew ${Math.abs(movement)}`);
-  }
-});
-// 0: function(200)
-// 0: function(450)
-// 0: function(400)
+// movements.forEach(function (movement, index, array) {
+//   if (movement > 0) {
+//     console.log(`Movement ${index + 1} : You deposited ${movement}`);
+//   } else {
+//     console.log(`Movement ${index + 1} : You withdrew ${Math.abs(movement)}`);
+//   }
+// });
+
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
+
+/**
+USD: United States dollar
+EUR: Euro
+GBP: Pound sterling
+ */
+// currencies.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
+// });
+
+// // Set
+// const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+// console.log(currenciesUnique); // Set(3) { 'USD', 'GBP', 'EUR' }
+/*
+USD: USD
+GBP: GBP
+EUR: EUR
+*/
+// currenciesUnique.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
+// });
+
+// // 특정 인자를 안쓰고 싶을때 _로 표현 Throwaway
+// currenciesUnique.forEach(function (value, _, map) {
+//   console.log(`${_}: ${value}`);
+// });
+
+/**
+ * The map Method
+ */
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// 달러로 환전
+
+const eurToUsd = 1.1;
+
+// normal fucnction version
+// const movementsUSD = movements.map(function (mov) {
+//   // return 23;
+//   return mov * eurToUsd;
+// });
+
+// arrow function version
+const movementsUSD = movements.map(mov => mov * eurToUsd);
+// const movementsUSD = movements.map(mov => {
+//   return mov * eurToUsd;
+// });
+
+console.log(movements);
+console.log(movementsUSD);
+
+const movementUSDfor = [];
+for (const mov of movements) movementUSDfor.push(mov * eurToUsd);
+console.log(movementUSDfor);
+/**
+[
+  220.00000000000003,
+  495.00000000000006,
+  -440.00000000000006,
+  3300.0000000000005,
+  -715.0000000000001,
+  -143,
+  77,
+  1430.0000000000002
+]
+ */
+
+/**
+ * 아래 콜백함수를 맵 매서드에 전달한다
+ */
+const movementsDescriptions = movements.map(
+  (mov, i, arr) =>
+    // `Movement ${i + 1}: You deposited ${mov}`;
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposited ' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+  // if (mov > 0) {
+  //   return `Movement ${i + 1}: You deposited ${mov}`;
+  // } else {
+  //   return `Movement ${i + 1}: You dithdrew ${Math.abs(mov)}`;
+  // }
+);
+console.log(movementsDescriptions);
+/**
+[
+  'Movement 1: You deposited 200',
+  'Movement 2: You deposited 450',
+  'Movement 3: You dithdrew 400',
+  'Movement 4: You deposited 3000',
+  'Movement 5: You dithdrew 650',
+  'Movement 6: You dithdrew 130',
+  'Movement 7: You deposited 70',
+  'Movement 8: You deposited 1300'
+]
+ */
