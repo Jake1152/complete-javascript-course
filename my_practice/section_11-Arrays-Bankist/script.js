@@ -36,77 +36,77 @@ const account4 = {
 const accounts = [account1, account2, account3, account4];
 
 // Elements;
-const labelWelcome = document.querySelector('.welcome');
-const labelDate = document.querySelector('.date');
-const labelBalance = document.querySelector('.balance__value');
-const labelSumIn = document.querySelector('.summary__value--in');
-const labelSumOut = document.querySelector('.summary__value--out');
-const labelSumInterest = document.querySelector('.summary__value--interest');
-const labelTimer = document.querySelector('.timer');
+// const labelWelcome = document.querySelector('.welcome');
+// const labelDate = document.querySelector('.date');
+// const labelBalance = document.querySelector('.balance__value');
+// const labelSumIn = document.querySelector('.summary__value--in');
+// const labelSumOut = document.querySelector('.summary__value--out');
+// const labelSumInterest = document.querySelector('.summary__value--interest');
+// const labelTimer = document.querySelector('.timer');
 
-const containerApp = document.querySelector('.app');
-const containerMovements = document.querySelector('.movements');
+// const containerApp = document.querySelector('.app');
+// const containerMovements = document.querySelector('.movements');
 
-const btnLogin = document.querySelector('.login__btn');
-const btnTransfer = document.querySelector('.form__btn--transfer');
-const btnLoan = document.querySelector('.form__btn--loan');
-const btnClose = document.querySelector('.form__btn--close');
-const btnSort = document.querySelector('.btn--sort');
+// const btnLogin = document.querySelector('.login__btn');
+// const btnTransfer = document.querySelector('.form__btn--transfer');
+// const btnLoan = document.querySelector('.form__btn--loan');
+// const btnClose = document.querySelector('.form__btn--close');
+// const btnSort = document.querySelector('.btn--sort');
 
-const inputLoginUsername = document.querySelector('.login__input--user');
-const inputLoginPin = document.querySelector('.login__input--pin');
-const inputTransferTo = document.querySelector('.form__input--to');
-const inputTransferAmount = document.querySelector('.form__input--amount');
-const inputLoanAmount = document.querySelector('.form__input--loan-amount');
-const inputCloseUsername = document.querySelector('.form__input--user');
-const inputClosePin = document.querySelector('.form__input--pin');
+// const inputLoginUsername = document.querySelector('.login__input--user');
+// const inputLoginPin = document.querySelector('.login__input--pin');
+// const inputTransferTo = document.querySelector('.form__input--to');
+// const inputTransferAmount = document.querySelector('.form__input--amount');
+// const inputLoanAmount = document.querySelector('.form__input--loan-amount');
+// const inputCloseUsername = document.querySelector('.form__input--user');
+// const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
-  containerMovements.innerHTML = '';
+// const displayMovements = function (movements) {
+//   containerMovements.innerHTML = '';
 
-  movements.forEach(function (mov, i) {
-    const type = mov > 0 ? 'deposit' : 'withdrawal';
+//   movements.forEach(function (mov, i) {
+//     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
-    // 템플릿 문자열에 붙여넣기
-    const html = `
-        <div class="movements__row">
-          <div class="movements__type movements__type--${type}">${
-      i + 1
-    } ${type}</div>
-          <div class="movements__value">${mov}</div>
-        </div>
-      `;
+//     // 템플릿 문자열에 붙여넣기
+//     const html = `
+//         <div class="movements__row">
+//           <div class="movements__type movements__type--${type}">${
+//       i + 1
+//     } ${type}</div>
+//           <div class="movements__value">${mov}</div>
+//         </div>
+//       `;
 
-    // 첫번째 인자는 HTML에 붙이이려는 위치
-    /**
-     * beforebegin
-     * afterbegin
-     * beforeend
-     * afterend
-     */
-    // 두번째 인자 삽입하고자 하는 HTML을 포함하는 문자열.
-    containerMovements.insertAdjacentHTML('afterbegin', html);
-  });
-};
-displayMovements(account1.movements);
+//     // 첫번째 인자는 HTML에 붙이이려는 위치
+//     /**
+//      * beforebegin
+//      * afterbegin
+//      * beforeend
+//      * afterend
+//      */
+//     // 두번째 인자 삽입하고자 하는 HTML을 포함하는 문자열.
+//     containerMovements.insertAdjacentHTML('afterbegin', html);
+//   });
+// };
+// displayMovements(account1.movements);
 
 /**
  * side effect만들기
  *  원본을 변형시킴
  * return값이 없다
  */
-const createUsernames = function (accs) {
-  accs.forEach(function (acc) {
-    acc.username = acc.owner
-      .toLowerCase()
-      .split(' ')
-      .map(name => name[0])
-      .join('');
-  });
-};
+// const createUsernames = function (accs) {
+//   accs.forEach(function (acc) {
+//     acc.username = acc.owner
+//       .toLowerCase()
+//       .split(' ')
+//       .map(name => name[0])
+//       .join('');
+//   });
+// };
 
-createUsernames(accounts);
-console.log(accounts);
+// createUsernames(accounts);
+// console.log(accounts);
 
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
@@ -308,5 +308,14 @@ EUR: EUR
  */
 
 /**
- * Computing Usernames
+ * The filter Method
  */
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+
+// const deposits = [];
+for (const mov of movements) if (mov > 0) deposits.push(mov);
+
+console.log(movements);
+console.log(deposits);
