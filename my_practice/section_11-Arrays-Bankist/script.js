@@ -36,82 +36,180 @@ const account4 = {
 const accounts = [account1, account2, account3, account4];
 
 // Elements;
-// const labelWelcome = document.querySelector('.welcome');
-// const labelDate = document.querySelector('.date');
-// const labelBalance = document.querySelector('.balance__value');
-// const labelSumIn = document.querySelector('.summary__value--in');
-// const labelSumOut = document.querySelector('.summary__value--out');
-// const labelSumInterest = document.querySelector('.summary__value--interest');
-// const labelTimer = document.querySelector('.timer');
+const labelWelcome = document.querySelector('.welcome');
+const labelDate = document.querySelector('.date');
+const labelBalance = document.querySelector('.balance__value');
+const labelSumIn = document.querySelector('.summary__value--in');
+const labelSumOut = document.querySelector('.summary__value--out');
+const labelSumInterest = document.querySelector('.summary__value--interest');
+const labelTimer = document.querySelector('.timer');
 
-// const containerApp = document.querySelector('.app');
-// const containerMovements = document.querySelector('.movements');
+const containerApp = document.querySelector('.app');
+const containerMovements = document.querySelector('.movements');
 
-// const btnLogin = document.querySelector('.login__btn');
-// const btnTransfer = document.querySelector('.form__btn--transfer');
-// const btnLoan = document.querySelector('.form__btn--loan');
-// const btnClose = document.querySelector('.form__btn--close');
-// const btnSort = document.querySelector('.btn--sort');
+const btnLogin = document.querySelector('.login__btn');
+const btnTransfer = document.querySelector('.form__btn--transfer');
+const btnLoan = document.querySelector('.form__btn--loan');
+const btnClose = document.querySelector('.form__btn--close');
+const btnSort = document.querySelector('.btn--sort');
 
-// const inputLoginUsername = document.querySelector('.login__input--user');
-// const inputLoginPin = document.querySelector('.login__input--pin');
-// const inputTransferTo = document.querySelector('.form__input--to');
-// const inputTransferAmount = document.querySelector('.form__input--amount');
-// const inputLoanAmount = document.querySelector('.form__input--loan-amount');
-// const inputCloseUsername = document.querySelector('.form__input--user');
-// const inputClosePin = document.querySelector('.form__input--pin');
+const inputLoginUsername = document.querySelector('.login__input--user');
+const inputLoginPin = document.querySelector('.login__input--pin');
+const inputTransferTo = document.querySelector('.form__input--to');
+const inputTransferAmount = document.querySelector('.form__input--amount');
+const inputLoanAmount = document.querySelector('.form__input--loan-amount');
+const inputCloseUsername = document.querySelector('.form__input--user');
+const inputClosePin = document.querySelector('.form__input--pin');
 
-// const displayMovements = function (movements) {
-//   containerMovements.innerHTML = '';
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
 
-//   movements.forEach(function (mov, i) {
-//     const type = mov > 0 ? 'deposit' : 'withdrawal';
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
 
-//     // 템플릿 문자열에 붙여넣기
-//     const html = `
-//         <div class="movements__row">
-//           <div class="movements__type movements__type--${type}">${
-//       i + 1
-//     } ${type}</div>
-//           <div class="movements__value">${mov}</div>
-//         </div>
-//       `;
+    // 템플릿 문자열에 붙여넣기
+    const html = `
+        <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+          <div class="movements__value">${mov}</div>
+        </div>
+      `;
 
-//     // 첫번째 인자는 HTML에 붙이이려는 위치
-//     /**
-//      * beforebegin
-//      * afterbegin
-//      * beforeend
-//      * afterend
-//      */
-//     // 두번째 인자 삽입하고자 하는 HTML을 포함하는 문자열.
-//     containerMovements.insertAdjacentHTML('afterbegin', html);
-//   });
-// };
-// displayMovements(account1.movements);
+    // 첫번째 인자는 HTML에 붙이이려는 위치
+    /**
+     * beforebegin
+     * afterbegin
+     * beforeend
+     * afterend
+     */
+    // 두번째 인자 삽입하고자 하는 HTML을 포함하는 문자열.
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(account1.movements);
+
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc?.movements?.reduce((acc, mov) => acc + mov, 0);
+  // const balance = acc?.movements?.reduce((acc, mov) => acc + mov, 0);
+  // acc.balance = balance;
+  labelBalance.textContent = `${balance}€`;
+};
+
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = acc.movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = acc.movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * acc.interestRate) / 100)
+    .filter((int, i, arr) => {
+      // console.log(arr);
+      return int >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
 
 /**
  * side effect만들기
  *  원본을 변형시킴
  * return값이 없다
  */
-// const createUsernames = function (accs) {
-//   accs.forEach(function (acc) {
-//     acc.username = acc.owner
-//       .toLowerCase()
-//       .split(' ')
-//       .map(name => name[0])
-//       .join('');
-//   });
-// };
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
 
-// createUsernames(accounts);
+createUsernames(accounts);
+console.log(createUsernames(accounts));
+
+const updateUI = function (acc) {
+  // Does not work, what happend?
+  // Display movements
+  displayMovements(acc.movements);
+
+  // Display balance
+  calcDisplayBalance(acc.movements);
+
+  // Display balance
+  calcDisplaySummary(acc.movements);
+};
+
 // console.log(accounts);
+
+let currentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+  // Prevent form from submitting
+  e.preventDefault();
+
+  // currentAccount = accounts.find(acc => acc.owner === inputLoginUsername.value);
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+
+  // if (currentAccount.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === Number(inputLoginPin?.value)) {
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    containerApp.style.opacity = 100;
+
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+
+    inputLoginPin.blur();
+
+    updateUI(currentAccount);
+  }
+});
+
+/**
+ * 159 Implementing Transfer
+ *
+ * Event 인터페이스의 preventDefault() 메서드는 어떤 이벤트를 명시적으로 처리하지 않은 경우,
+ * 해당 이벤트에 대한 사용자 에이전트의 기본 동작을 실행하지 않도록 지정합니다.
+ */
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  console.log(amount, receiverAcc);
+
+  // 데이터 전송 가능
+  if (
+    amount > 0 &&
+    currentAccount.balance >= amount &&
+    receiverAcc.username !== currentAccount.username
+  ) {
+    console.log('Transfer valid');
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+  } else {
+    console.log('Transfer non-valid');
+  }
+});
 
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
 // LECTURES;
-
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
@@ -310,12 +408,41 @@ EUR: EUR
 /**
  * The filter Method
  */
-const deposits = movements.filter(function (mov) {
-  return mov > 0;
-});
+// const deposits = movements.filter(function (mov) {
+//   return mov > 0;
+// });
 
-// const deposits = [];
-for (const mov of movements) if (mov > 0) deposits.push(mov);
+// // const deposits = [];
+// for (const mov of movements) if (mov > 0) deposits.push(mov);
 
-console.log(movements);
-console.log(deposits);
+// console.log(movements);
+// console.log(deposits);
+
+/**
+ * reduce method
+ * movements의 모든 숫자를 더해본다
+ * 계좌의 글로벌 잔액이 나온다
+ */
+// console.log(movements);
+
+// accumulator => SNOWBALL
+// callback function은 배열상 반복에서 호출된다.
+/**
+ * accumulator는 현재 값을 추가한다.
+ * 반복할 때마다 accumulator를 계속 추가하고
+ * return으로 반환해야한다.
+ * 그럼으로써 다음 반복에서 사용할 수 있다.
+ * 즉, 반복문마다 업데이트된 accumulator를 반환한다.
+ * 콜백함수의 첫번쨰 인자는 prev value,  두번째 인자는 current value,
+ * 세번째 인자는 index, 네번째 인자는 reduce를 통해 반복되고 있는 array
+ */
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// });
+
+// console.log(`balance : ${balance}`);
+
+/**
+ * 158. Implementing Login
+ */
