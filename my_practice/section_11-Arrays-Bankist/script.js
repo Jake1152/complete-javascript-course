@@ -91,10 +91,10 @@ const displayMovements = function (movements) {
 displayMovements(account1.movements);
 
 const calcDisplayBalance = function (acc) {
-  acc.balance = acc?.movements?.reduce((acc, mov) => acc + mov, 0);
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
   // const balance = acc?.movements?.reduce((acc, mov) => acc + mov, 0);
   // acc.balance = balance;
-  labelBalance.textContent = `${balance}€`;
+  labelBalance.textContent = `${acc?.balance}€`;
 };
 
 const calcDisplaySummary = function (acc) {
@@ -143,10 +143,10 @@ const updateUI = function (acc) {
   displayMovements(acc.movements);
 
   // Display balance
-  calcDisplayBalance(acc.movements);
+  calcDisplayBalance(acc);
 
   // Display balance
-  calcDisplaySummary(acc.movements);
+  calcDisplaySummary(acc);
 };
 
 // console.log(accounts);
@@ -191,19 +191,53 @@ btnTransfer.addEventListener('click', function (e) {
   const receiverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
-  console.log(amount, receiverAcc);
+  // console.log(amount, receiverAcc);
+  inputTransferAmount.value = inputTransferTo.value = '';
 
   // 데이터 전송 가능
   if (
     amount > 0 &&
     currentAccount.balance >= amount &&
-    receiverAcc.username !== currentAccount.username
+    receiverAcc?.username !== currentAccount.username
   ) {
     console.log('Transfer valid');
+    // Doing the transfer
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
   } else {
     console.log('Transfer non-valid');
+  }
+});
+
+/**
+ * opacity 변경으로 안보이게하고
+ *
+ */
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+  console.log('Delete');
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    // accounts.splice(index, 1);
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    console.log(index);
+    if (index !== -1) {
+      console.log(index);
+      //
+      containerApp.style.opacity = 0;
+      // login ID
+      accounts.splice(index, 1);
+      // accounts.splice(index)
+      // accounts = accounts[:index] + accounts[index + 1:]
+    }
+    console.log(`accounts : ${accounts}`);
   }
 });
 
