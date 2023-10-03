@@ -161,7 +161,7 @@ btnLogin.addEventListener('click', function (e) {
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
-  console.log(currentAccount);
+  // console.log(currentAccount);
 
   // if (currentAccount.pin === Number(inputLoginPin.value)) {
   if (currentAccount?.pin === Number(inputLoginPin?.value)) {
@@ -212,6 +212,20 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
+});
+
 /**
  * opacity 변경으로 안보이게하고
  *
@@ -227,9 +241,9 @@ btnClose.addEventListener('click', function (e) {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
     );
-    console.log(index);
+    // console.log(index);
     if (index !== -1) {
-      console.log(index);
+      // console.log(index);
       //
       containerApp.style.opacity = 0;
       // login ID
@@ -237,7 +251,7 @@ btnClose.addEventListener('click', function (e) {
       // accounts.splice(index)
       // accounts = accounts[:index] + accounts[index + 1:]
     }
-    console.log(`accounts : ${accounts}`);
+    // console.log(`accounts : ${accounts}`);
   }
 });
 
@@ -478,5 +492,19 @@ EUR: EUR
 // console.log(`balance : ${balance}`);
 
 /**
- * 158. Implementing Login
+ * 161 some and money
+ * 조건 지정 가능
  */
+console.log(movements);
+
+// Eqaulity
+console.log(movements.includes(-130));
+
+// condition
+console.log(movements.some(mov => mov === -130));
+
+const anyDeposits = movements.some(mov => mov > 0);
+console.log(anyDeposits);
+
+// Every
+console.log(movements.every(mov => mov > 0));
