@@ -562,66 +562,66 @@ EUR: EUR
  * 163 sorting arrays
  */
 // strings
-const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
-console.log(owners.sort()); // [ 'Adam', 'Jonas', 'Martha', 'Zach' ]
-console.log(owners); // [ 'Adam', 'Jonas', 'Martha', 'Zach' ]
+// const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+// console.log(owners.sort()); // [ 'Adam', 'Jonas', 'Martha', 'Zach' ]
+// console.log(owners); // [ 'Adam', 'Jonas', 'Martha', 'Zach' ]
 
-// numbers
-console.log(movements);
-/**
-[
-   200,  450, -400,
-  3000, -650, -130,
-    70, 1300
-]
- */
-console.log(movements.sort()); // 문자열이 아님에도 아래와 같은 결과가 발생
-/**
-[
-  -130, -400, -650,
-  1300,  200, 3000,
-   450,   70
-]
- */
+// // numbers
+// console.log(movements);
+// /**
+// [
+//    200,  450, -400,
+//   3000, -650, -130,
+//     70, 1300
+// ]
+//  */
+// console.log(movements.sort()); // 문자열이 아님에도 아래와 같은 결과가 발생
+// /**
+// [
+//   -130, -400, -650,
+//   1300,  200, 3000,
+//    450,   70
+// ]
+//  */
 
-movements.sort((a, b) => {
-  console.log(a, b);
-});
-/**
- * -400 -130
--650 -400
-1300 -650
-200 1300
-3000 200
-450 3000
-70 450
- */
+// movements.sort((a, b) => {
+//   console.log(a, b);
+// });
+// /**
+//  * -400 -130
+// -650 -400
+// 1300 -650
+// 200 1300
+// 3000 200
+// 450 3000
+// 70 450
+//  */
 
-// returne < 0 , A, B (keep order)
-// returne > 0 , B, A (switch order)
+// // returne < 0 , A, B (keep order)
+// // returne > 0 , B, A (switch order)
 
-// Assending
-movements.sort((a, b) => {
-  if (b > a) return -1;
-  if (a > b) return 1;
-});
-// movements.sort((a, b) => a - b); // a > b 가 크다를 의미
-console.log(movements);
-/**
- [
-  -650, -400, -130,
-    70,  200,  450,
-  1300, 3000
-]
- */
+// // Assending
+// movements.sort((a, b) => {
+//   if (b > a) return -1;
+//   if (a > b) return 1;
+// });
+// // movements.sort((a, b) => a - b); // a > b 가 크다를 의미
+// console.log(movements);
+// /**
+//  [
+//   -650, -400, -130,
+//     70,  200,  450,
+//   1300, 3000
+// ]
+//  */
 
-// Desending
-movements.sort((a, b) => {
-  if (b > a) return 1;
-  if (a > b) return -1;
-});
-// movements.sort((a, b) => b - a); // a < b 가 크다를 의미
-console.log(movements);
+// // Desending
+// movements.sort((a, b) => {
+//   if (b > a) return 1;
+//   if (a > b) return -1;
+// });
+// // movements.sort((a, b) => b - a); // a < b 가 크다를 의미
+// console.log(movements);
 /**
 [
   3000, 1300,  450,
@@ -629,3 +629,60 @@ console.log(movements);
   -400, -650
 ]
  */
+
+/**
+ * 164 More Ways of Creating and Filling Arrays
+ */
+
+const arr = [1, 2, 3, 4, 5, 6, 7];
+console.log(arr); // [Array(7)], [1, 2, 3, 4, 5, 6, 7]
+console.log(new Array([1, 2, 3, 4, 5, 6, 7])); // [Array(7)], [1, 2, 3, 4, 5, 6, 7]
+
+// array coinstrcutor
+// Empty arrats + fill method
+const x = new Array(7);
+console.log(x); // [empty × 7]
+console.log(arr.map(() => 5)); // [empty × 7]
+
+x.fill(1);
+console.log(x); // (7) [1, 1, 1, 1, 1, 1, 1]
+
+x.fill(42, 3); // [3]인 부분부터 값을 채워넣는다
+console.log(x); // (7) [1, 1, 1, 42, 42, 42, 42]
+
+arr.fill(1152, 2, 5); // [2]인 부분부터 [5]이전까지 값을 채워넣는다
+console.log(arr); // (7) [1, 1, 1152, 1152, 1152, 42, 42]
+// 폐구간으로 시작해서 개구간으로 끝나느 조건은 동일하다.
+
+// Array.from
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (cur, i) => i + 1);
+// const z = Array.from({ length: 7 }, (_, i) => i + 1); // _ => throw way variable
+console.log(z);
+
+// const zz = Array.from({ length: 7 }, (cur, i) => cur + 1);
+// console.log(zz);
+
+// Iterable
+// Query Sellector All
+// 노드 목록을 배열로 변환 해야한다 ??
+// 동작이나 응용 프로그램이 배열에 저장되어 있지 않다고 가정한다.
+
+const movementsUI = Array.from(document.querySelectorAll('.movements__value'));
+console.log(movementsUI);
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', ''))
+  );
+  // console.log(movementsUI.map(el => Number(el.textContent.replace('€', ''))));
+  console.log(movementsUI);
+
+  // 다른 방법으로 배열로 변환
+  // movementsUI2 를 누르면 결과를 새 배열로 배포할 수 있다
+  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+  console.log(movementsUI2);
+});
