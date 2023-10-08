@@ -634,55 +634,185 @@ EUR: EUR
  * 164 More Ways of Creating and Filling Arrays
  */
 
-const arr = [1, 2, 3, 4, 5, 6, 7];
-console.log(arr); // [Array(7)], [1, 2, 3, 4, 5, 6, 7]
-console.log(new Array([1, 2, 3, 4, 5, 6, 7])); // [Array(7)], [1, 2, 3, 4, 5, 6, 7]
+// const arr = [1, 2, 3, 4, 5, 6, 7];
+// console.log(arr); // [Array(7)], [1, 2, 3, 4, 5, 6, 7]
+// console.log(new Array([1, 2, 3, 4, 5, 6, 7])); // [Array(7)], [1, 2, 3, 4, 5, 6, 7]
 
-// array coinstrcutor
-// Empty arrats + fill method
-const x = new Array(7);
-console.log(x); // [empty × 7]
-console.log(arr.map(() => 5)); // [empty × 7]
+// // array coinstrcutor
+// // Empty arrats + fill method
+// const x = new Array(7);
+// console.log(x); // [empty × 7]
+// console.log(arr.map(() => 5)); // [empty × 7]
 
-x.fill(1);
-console.log(x); // (7) [1, 1, 1, 1, 1, 1, 1]
+// x.fill(1);
+// console.log(x); // (7) [1, 1, 1, 1, 1, 1, 1]
 
-x.fill(42, 3); // [3]인 부분부터 값을 채워넣는다
-console.log(x); // (7) [1, 1, 1, 42, 42, 42, 42]
+// x.fill(42, 3); // [3]인 부분부터 값을 채워넣는다
+// console.log(x); // (7) [1, 1, 1, 42, 42, 42, 42]
 
-arr.fill(1152, 2, 5); // [2]인 부분부터 [5]이전까지 값을 채워넣는다
-console.log(arr); // (7) [1, 1, 1152, 1152, 1152, 42, 42]
-// 폐구간으로 시작해서 개구간으로 끝나느 조건은 동일하다.
+// arr.fill(1152, 2, 5); // [2]인 부분부터 [5]이전까지 값을 채워넣는다
+// console.log(arr); // (7) [1, 1, 1152, 1152, 1152, 42, 42]
+// // 폐구간으로 시작해서 개구간으로 끝나느 조건은 동일하다.
 
-// Array.from
-const y = Array.from({ length: 7 }, () => 1);
-console.log(y);
+// // Array.from
+// const y = Array.from({ length: 7 }, () => 1);
+// console.log(y);
 
-const z = Array.from({ length: 7 }, (cur, i) => i + 1);
-// const z = Array.from({ length: 7 }, (_, i) => i + 1); // _ => throw way variable
-console.log(z);
+// const z = Array.from({ length: 7 }, (cur, i) => i + 1);
+// // const z = Array.from({ length: 7 }, (_, i) => i + 1); // _ => throw way variable
+// console.log(z);
 
-// const zz = Array.from({ length: 7 }, (cur, i) => cur + 1);
-// console.log(zz);
+// // const zz = Array.from({ length: 7 }, (cur, i) => cur + 1);
+// // console.log(zz);
 
-// Iterable
-// Query Sellector All
-// 노드 목록을 배열로 변환 해야한다 ??
-// 동작이나 응용 프로그램이 배열에 저장되어 있지 않다고 가정한다.
+// // Iterable
+// // Query Sellector All
+// // 노드 목록을 배열로 변환 해야한다 ??
+// // 동작이나 응용 프로그램이 배열에 저장되어 있지 않다고 가정한다.
 
-const movementsUI = Array.from(document.querySelectorAll('.movements__value'));
-console.log(movementsUI);
+// const movementsUI = Array.from(document.querySelectorAll('.movements__value'));
+// console.log(movementsUI);
 
-labelBalance.addEventListener('click', function () {
-  const movementsUI = Array.from(
-    document.querySelectorAll('.movements__value'),
-    el => Number(el.textContent.replace('€', ''))
+// labelBalance.addEventListener('click', function () {
+//   const movementsUI = Array.from(
+//     document.querySelectorAll('.movements__value'),
+//     el => Number(el.textContent.replace('€', ''))
+//   );
+//   // console.log(movementsUI.map(el => Number(el.textContent.replace('€', ''))));
+//   console.log(movementsUI);
+
+//   // 다른 방법으로 배열로 변환
+//   // movementsUI2 를 누르면 결과를 새 배열로 배포할 수 있다
+//   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+//   console.log(movementsUI2);
+// });
+
+/**
+ * 166. array practice
+ */
+// map()
+const bankDepositSumMap = accounts.map(acc => acc.movements);
+console.log(bankDepositSumMap); // (4) [Array(8), Array(8), Array(8), Array(5)]
+/**
+ * 0
+(8) [200, 450, -400, 3000, -650, -130, 70, 1300]
+(8) [5000, 3400, -150, -790, -3210, -1000, 8500, -30]
+(8) [200, -200, 340, -300, -20, 50, 400, -460]
+(5) [430, 1000, 700, 50, 90]
+ */
+// map().flat()
+const bankDepositSumFlat = accounts.map(acc => acc.movements).flat();
+console.log(bankDepositSumFlat); // (29) [200, 450, -400, 3000, -650, -130, 70, 1300, 5000, 3400, -150, -790, -3210, -1000, 8500, -30, 200, -200, 340, -300, -20, 50, 400, -460, 430, 1000, 700, 50, 90]
+
+// flatMap()
+const bankDepositSumFlatMap = accounts.flatMap(acc => acc.movements);
+console.log(bankDepositSumFlatMap); // (29) [200, 450, -400, 3000, -650, -130, 70, 1300, 5000, 3400, -150, -790, -3210, -1000, 8500, -30, 200, -200, 340, -300, -20, 50, 400, -460, 430, 1000, 700, 50, 90]
+
+// flat, filter, reduce
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((sum, cur) => sum + cur, 0); // , initial value
+// array1.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
+console.log(bankDepositSum); // 25180
+
+//2. 은행에 얼마나 많은 돈이 입금되었는지 계산한다.
+// const numDepositions1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov > 1000).length;
+
+// const numDepositions1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+
+// recude with ++ operator
+// const numDepositions1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((count, cur) => (cur >= 1000 ? count++ : count), 0);
+// numDepositions1000에  0이 남는다.
+// 이유는 후위 연산자에서 값을 증가는 시키지만 값을 증가시키기 이전 값을 return한다.
+
+const numDepositions1000 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
+// numDepositions1000에  6이 남는다.
+console.log(accounts.flatMap(acc => acc.movements).filter(mov => mov >= 1000)); // (6) [3000, 1300, 5000, 3400, 8500, 1000]
+console.log(numDepositions1000); // 6
+// console.log(numDepositions1000); // 5
+
+let a = 10;
+console.log(a++);
+console.log(a);
+
+// 숫자나 문자열 대신 새 개체 만들기
+// 3.예금과 인출의 총합이 담긴 obejct 생성
+// 기본적으로 2개의 합을 구한다 reduce를 사용해서!!!
+
+// const sums = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce(
+//     (sums, cur) => {
+//       cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+//       return sums;
+//     },
+//     { deposits: 0, withdrawals: 0 } // 초기값으로 object를 넘기는 모습
+//   );
+// console.log(sums); // {deposits: 25180, withdrawals: -7340}
+
+// using decomposition
+// const { deposits, withdrawals } = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce(
+//     (sums, cur) => {
+//       cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+//       return sums;
+//     },
+//     { deposits: 0, withdrawals: 0 } // 초기값으로 object를 넘기는 모습
+//   );
+
+const { deposits, withdrawals } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+      sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 } // 초기값으로 object를 넘기는 모습
   );
-  // console.log(movementsUI.map(el => Number(el.textContent.replace('€', ''))));
-  console.log(movementsUI);
 
-  // 다른 방법으로 배열로 변환
-  // movementsUI2 를 누르면 결과를 새 배열로 배포할 수 있다
-  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
-  console.log(movementsUI2);
-});
+console.log(deposits, withdrawals); // 25180 -7340
+
+// 4.
+// this is a nice title -> This Is a Nice Title
+const convertTitleCase = function (title) {
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+  const expectations = [
+    'a',
+    'an',
+    'the',
+    'but',
+    'and',
+    'or',
+    'no',
+    'in',
+    'with',
+  ];
+
+  // const titleCase = title.toLowerCase().split(' ');
+  // const titleCase = title
+  //   .toLowerCase()
+  //   .split(' ')
+  //   .map(word => word.at(0).toUpperCase() + word.slice(1))
+  //   .join(' ');
+
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word => (expectations.includes(word) ? word : capitalize(word)))
+    .join(' ');
+  return capitalize(titleCase);
+};
+console.log(convertTitleCase('This is a nice title'));
+console.log(convertTitleCase('This is a LONG title but not too long'));
+console.log(convertTitleCase('and here is another titile with an EXAMPLE'));
