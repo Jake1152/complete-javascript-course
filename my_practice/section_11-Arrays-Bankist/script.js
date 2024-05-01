@@ -139,7 +139,7 @@ const createUsernames = function (accs) {
 };
 
 createUsernames(accounts);
-console.log(createUsernames(accounts));
+// console.log(createUsernames(accounts));
 
 const updateUI = function (acc) {
   // Does not work, what happend?
@@ -519,21 +519,21 @@ EUR: EUR
 // console.log(anyDeposits); //true
 
 // // Every
-// console.log(movements.every(mov => mov > 0)); // false
-// // console.log(account4.every(mov => mov > 0));
 // console.log(movements);
+// console.log(movements.every(mov => mov > 0)); // false
+// console.log(account4.movements.every(mov => mov > 0)); // 객체에는 동작하지 않음
 
 /**
  * 162 flat. flatMap
  */
 // const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
 // console.log(arr.flat());
-// /*
-// [
-//   1, 2, 3, 4,
-//   5, 6, 7, 8
-// ]
-// */
+/*
+[
+  1, 2, 3, 4,
+  5, 6, 7, 8
+]
+*/
 
 // const arrDeeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
 // console.log(arrDeeep.flat(2)); // 2단계 평탄화
@@ -552,7 +552,7 @@ EUR: EUR
 //   .reduce((acc, mov) => acc + mov, 0);
 // console.log(overalBalanceChanning); // 17840
 
-// // flatMap
+// // flatMap. 깊이1
 // const overalBalanceChanningFlatMap = accounts
 //   .flatMap(acc => acc.movements)
 //   .reduce((acc, mov) => acc + mov, 0);
@@ -587,41 +587,41 @@ EUR: EUR
 // movements.sort((a, b) => {
 //   console.log(a, b);
 // });
-// /**
-//  * -400 -130
-// -650 -400
-// 1300 -650
-// 200 1300
-// 3000 200
-// 450 3000
-// 70 450
-//  */
+/**
+ * -400 -130
+-650 -400
+1300 -650
+200 1300
+3000 200
+450 3000
+70 450
+ */
 
-// // returne < 0 , A, B (keep order)
-// // returne > 0 , B, A (switch order)
+// returne < 0 , A, B (keep order)
+// returne > 0 , B, A (switch order)
 
-// // Assending
-// movements.sort((a, b) => {
-//   if (b > a) return -1;
-//   if (a > b) return 1;
-// });
-// // movements.sort((a, b) => a - b); // a > b 가 크다를 의미
-// console.log(movements);
-// /**
-//  [
-//   -650, -400, -130,
-//     70,  200,  450,
-//   1300, 3000
-// ]
-//  */
+// Assending
+movements.sort((a, b) => {
+  if (b > a) return -1;
+  if (a > b) return 1;
+});
+movements.sort((a, b) => a - b); // a > b 가 크다를 의미
+console.log(movements);
+/**
+ [
+  -650, -400, -130,
+    70,  200,  450,
+  1300, 3000
+]
+ */
 
-// // Desending
-// movements.sort((a, b) => {
-//   if (b > a) return 1;
-//   if (a > b) return -1;
-// });
-// // movements.sort((a, b) => b - a); // a < b 가 크다를 의미
-// console.log(movements);
+// Desending
+movements.sort((a, b) => {
+  if (b > a) return 1;
+  if (a > b) return -1;
+});
+// movements.sort((a, b) => b - a); // a < b 가 크다를 의미
+console.log(movements);
 /**
 [
   3000, 1300,  450,
@@ -691,128 +691,128 @@ EUR: EUR
  * 166. array practice
  */
 // map()
-const bankDepositSumMap = accounts.map(acc => acc.movements);
-console.log(bankDepositSumMap); // (4) [Array(8), Array(8), Array(8), Array(5)]
-/**
- * 0
-(8) [200, 450, -400, 3000, -650, -130, 70, 1300]
-(8) [5000, 3400, -150, -790, -3210, -1000, 8500, -30]
-(8) [200, -200, 340, -300, -20, 50, 400, -460]
-(5) [430, 1000, 700, 50, 90]
- */
-// map().flat()
-const bankDepositSumFlat = accounts.map(acc => acc.movements).flat();
-console.log(bankDepositSumFlat); // (29) [200, 450, -400, 3000, -650, -130, 70, 1300, 5000, 3400, -150, -790, -3210, -1000, 8500, -30, 200, -200, 340, -300, -20, 50, 400, -460, 430, 1000, 700, 50, 90]
+// const bankDepositSumMap = accounts.map(acc => acc.movements);
+// console.log(bankDepositSumMap); // (4) [Array(8), Array(8), Array(8), Array(5)]
+// /**
+//  * 0
+// (8) [200, 450, -400, 3000, -650, -130, 70, 1300]
+// (8) [5000, 3400, -150, -790, -3210, -1000, 8500, -30]
+// (8) [200, -200, 340, -300, -20, 50, 400, -460]
+// (5) [430, 1000, 700, 50, 90]
+//  */
+// // map().flat()
+// const bankDepositSumFlat = accounts.map(acc => acc.movements).flat();
+// console.log(bankDepositSumFlat); // (29) [200, 450, -400, 3000, -650, -130, 70, 1300, 5000, 3400, -150, -790, -3210, -1000, 8500, -30, 200, -200, 340, -300, -20, 50, 400, -460, 430, 1000, 700, 50, 90]
 
-// flatMap()
-const bankDepositSumFlatMap = accounts.flatMap(acc => acc.movements);
-console.log(bankDepositSumFlatMap); // (29) [200, 450, -400, 3000, -650, -130, 70, 1300, 5000, 3400, -150, -790, -3210, -1000, 8500, -30, 200, -200, 340, -300, -20, 50, 400, -460, 430, 1000, 700, 50, 90]
+// // flatMap()
+// const bankDepositSumFlatMap = accounts.flatMap(acc => acc.movements);
+// console.log(bankDepositSumFlatMap); // (29) [200, 450, -400, 3000, -650, -130, 70, 1300, 5000, 3400, -150, -790, -3210, -1000, 8500, -30, 200, -200, 340, -300, -20, 50, 400, -460, 430, 1000, 700, 50, 90]
 
-// flat, filter, reduce
-const bankDepositSum = accounts
-  .flatMap(acc => acc.movements)
-  .filter(mov => mov > 0)
-  .reduce((sum, cur) => sum + cur, 0); // , initial value
-// array1.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
-console.log(bankDepositSum); // 25180
+// // flat, filter, reduce
+// const bankDepositSum = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov > 0)
+//   .reduce((sum, cur) => sum + cur, 0); // , initial value
+// // array1.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
+// console.log(bankDepositSum); // 25180
 
-//2. 은행에 얼마나 많은 돈이 입금되었는지 계산한다.
+// //2. 은행에 얼마나 많은 돈이 입금되었는지 계산한다.
+// // const numDepositions1000 = accounts
+// //   .flatMap(acc => acc.movements)
+// //   .filter(mov => mov > 1000).length;
+
+// // const numDepositions1000 = accounts
+// //   .flatMap(acc => acc.movements)
+// //   .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+
+// // recude with ++ operator
+// // const numDepositions1000 = accounts
+// //   .flatMap(acc => acc.movements)
+// //   .reduce((count, cur) => (cur >= 1000 ? count++ : count), 0);
+// // numDepositions1000에  0이 남는다.
+// // 이유는 후위 연산자에서 값을 증가는 시키지만 값을 증가시키기 이전 값을 return한다.
+
 // const numDepositions1000 = accounts
 //   .flatMap(acc => acc.movements)
-//   .filter(mov => mov > 1000).length;
+//   .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
+// // numDepositions1000에  6이 남는다.
+// console.log(accounts.flatMap(acc => acc.movements).filter(mov => mov >= 1000)); // (6) [3000, 1300, 5000, 3400, 8500, 1000]
+// console.log(numDepositions1000); // 6
+// // console.log(numDepositions1000); // 5
 
-// const numDepositions1000 = accounts
-//   .flatMap(acc => acc.movements)
-//   .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+// let a = 10;
+// console.log(a++);
+// console.log(a);
 
-// recude with ++ operator
-// const numDepositions1000 = accounts
-//   .flatMap(acc => acc.movements)
-//   .reduce((count, cur) => (cur >= 1000 ? count++ : count), 0);
-// numDepositions1000에  0이 남는다.
-// 이유는 후위 연산자에서 값을 증가는 시키지만 값을 증가시키기 이전 값을 return한다.
+// // 숫자나 문자열 대신 새 개체 만들기
+// // 3.예금과 인출의 총합이 담긴 obejct 생성
+// // 기본적으로 2개의 합을 구한다 reduce를 사용해서!!!
 
-const numDepositions1000 = accounts
-  .flatMap(acc => acc.movements)
-  .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
-// numDepositions1000에  6이 남는다.
-console.log(accounts.flatMap(acc => acc.movements).filter(mov => mov >= 1000)); // (6) [3000, 1300, 5000, 3400, 8500, 1000]
-console.log(numDepositions1000); // 6
-// console.log(numDepositions1000); // 5
+// // const sums = accounts
+// //   .flatMap(acc => acc.movements)
+// //   .reduce(
+// //     (sums, cur) => {
+// //       cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+// //       return sums;
+// //     },
+// //     { deposits: 0, withdrawals: 0 } // 초기값으로 object를 넘기는 모습
+// //   );
+// // console.log(sums); // {deposits: 25180, withdrawals: -7340}
 
-let a = 10;
-console.log(a++);
-console.log(a);
+// // using decomposition
+// // const { deposits, withdrawals } = accounts
+// //   .flatMap(acc => acc.movements)
+// //   .reduce(
+// //     (sums, cur) => {
+// //       cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+// //       return sums;
+// //     },
+// //     { deposits: 0, withdrawals: 0 } // 초기값으로 object를 넘기는 모습
+// //   );
 
-// 숫자나 문자열 대신 새 개체 만들기
-// 3.예금과 인출의 총합이 담긴 obejct 생성
-// 기본적으로 2개의 합을 구한다 reduce를 사용해서!!!
-
-// const sums = accounts
-//   .flatMap(acc => acc.movements)
-//   .reduce(
-//     (sums, cur) => {
-//       cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
-//       return sums;
-//     },
-//     { deposits: 0, withdrawals: 0 } // 초기값으로 object를 넘기는 모습
-//   );
-// console.log(sums); // {deposits: 25180, withdrawals: -7340}
-
-// using decomposition
 // const { deposits, withdrawals } = accounts
 //   .flatMap(acc => acc.movements)
 //   .reduce(
 //     (sums, cur) => {
-//       cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+//       // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+//       sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
 //       return sums;
 //     },
 //     { deposits: 0, withdrawals: 0 } // 초기값으로 object를 넘기는 모습
 //   );
 
-const { deposits, withdrawals } = accounts
-  .flatMap(acc => acc.movements)
-  .reduce(
-    (sums, cur) => {
-      // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
-      sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
-      return sums;
-    },
-    { deposits: 0, withdrawals: 0 } // 초기값으로 object를 넘기는 모습
-  );
+// console.log(deposits, withdrawals); // 25180 -7340
 
-console.log(deposits, withdrawals); // 25180 -7340
+// // 4.
+// // this is a nice title -> This Is a Nice Title
+// const convertTitleCase = function (title) {
+//   const capitalize = str => str[0].toUpperCase() + str.slice(1);
+//   const expectations = [
+//     'a',
+//     'an',
+//     'the',
+//     'but',
+//     'and',
+//     'or',
+//     'no',
+//     'in',
+//     'with',
+//   ];
 
-// 4.
-// this is a nice title -> This Is a Nice Title
-const convertTitleCase = function (title) {
-  const capitalize = str => str[0].toUpperCase() + str.slice(1);
-  const expectations = [
-    'a',
-    'an',
-    'the',
-    'but',
-    'and',
-    'or',
-    'no',
-    'in',
-    'with',
-  ];
+//   // const titleCase = title.toLowerCase().split(' ');
+//   // const titleCase = title
+//   //   .toLowerCase()
+//   //   .split(' ')
+//   //   .map(word => word.at(0).toUpperCase() + word.slice(1))
+//   //   .join(' ');
 
-  // const titleCase = title.toLowerCase().split(' ');
-  // const titleCase = title
-  //   .toLowerCase()
-  //   .split(' ')
-  //   .map(word => word.at(0).toUpperCase() + word.slice(1))
-  //   .join(' ');
-
-  const titleCase = title
-    .toLowerCase()
-    .split(' ')
-    .map(word => (expectations.includes(word) ? word : capitalize(word)))
-    .join(' ');
-  return capitalize(titleCase);
-};
-console.log(convertTitleCase('This is a nice title'));
-console.log(convertTitleCase('This is a LONG title but not too long'));
-console.log(convertTitleCase('and here is another titile with an EXAMPLE'));
+//   const titleCase = title
+//     .toLowerCase()
+//     .split(' ')
+//     .map(word => (expectations.includes(word) ? word : capitalize(word)))
+//     .join(' ');
+//   return capitalize(titleCase);
+// };
+// console.log(convertTitleCase('This is a nice title'));
+// console.log(convertTitleCase('This is a LONG title but not too long'));
+// console.log(convertTitleCase('and here is another titile with an EXAMPLE'));
