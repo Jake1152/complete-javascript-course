@@ -58,8 +58,9 @@ overlay.addEventListener('click', closeModal);
 
 /**
  * keyborad를 눌러서 처리
+ * ! 부정표현 대신 쓸 수 있는 것은 무엇이 있는가?
+ *   !== false, !== null, !== undefined,
  */
-
 document.addEventListener('keydown', function (e) {
   console.log(e);
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
