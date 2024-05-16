@@ -68,7 +68,7 @@ const restaurant = {
 };
 
 /**
- * Lecture 107 REST PARAMETER
+ * # 107. REST PARAMETER
  */
 // 1) Destructuring
 // SPREAD, because on RIGHT side of =
@@ -122,60 +122,74 @@ const restaurant = {
  * 쉼표로 이름(REST)을 구분하거나 값(Spread)을 구분하거나
  */
 
-/** 108. Short Circuiting (&& and ||)
+/** # 108. Short Circuiting (&& and ||)
  */
 // short-circuiting
-console.log(3 || 'Jinho'); // 3, ||에서 앞에가 true이면 뒤에는 안감
-console.log('' || 'Jinho'); // '' => false, falsy이기에 || 뒤에 부분이 평가됨
-console.log(true || 0); // true
+// console.log(3 || 'Jinho'); // 3, ||에서 앞에가 true이면 뒤에는 안감
+// console.log('' || 'Jinho'); // '' => false, falsy이기에 || 뒤에 부분이 평가됨
+// console.log(true || 0); // true
 
-/** || operator
- * console.log() 인자로
- * falsy만 '||' 연산자들에 묶여 있는 경우
- * 마지막 falsy값이 출력된다.
- *
- * 하나라도 truth하면 첫번째로 나온 truth값을 출력한다.
- */
-console.log(undefined || null); // null
-console.log(undefined || null || 0); // 0
-console.log(undefined || null || 0 || ''); //
+// /** || operator
+//  * console.log() 인자로
+//  * falsy만 '||' 연산자들에 묶여 있는 경우
+//  * 마지막 falsy값이 출력된다.
+//  *
+//  * 하나라도 truth하면 첫번째로 나온 truth값을 출력한다.
+//  */
+// console.log(undefined || null); // null
+// console.log(undefined || null || 0); // 0
+// console.log(undefined || null || 0 || ''); //
 
-console.log(undefined || 0 || '' || 'Hello' || 23 || null); //
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null); //
 
+// // restaurant.numGuests = 23;
 // restaurant.numGuests = 23;
-restaurant.numGuests = 23;
-const guests1 = restaurant.numGuests ? restaurant.numGuests : 10; // restaurant.numGuests 가 없다면 10 있다면 그 값
-console.log(`guests1 : ${guests1}`);
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10; // restaurant.numGuests 가 없다면 10 있다면 그 값
+// console.log(`guests1 : ${guests1}`);
 
-const guests2 = restaurant.numGuests || 10; // restaurant.numGuests 가 없다면 10 있다면 그 값
-console.log(`guests2 : ${guests2}`);
+// const guests2 = restaurant.numGuests || 10; // restaurant.numGuests 가 없다면 10 있다면 그 값
+// console.log(`guests2 : ${guests2}`);
 
-console.log();
-/** && operator
- * console.log() 인자로
- * falsy가 중간에 '&&' 연산자들에 묶여 있는 경우
- * 처음 만난 falsy값이 출력된다.
+// console.log();
+// /** && operator
+//  * console.log() 인자로
+//  * falsy가 중간에 '&&' 연산자들에 묶여 있는 경우
+//  * 처음 만난 falsy값이 출력된다.
+//  *
+//  * falsy가 없다면 마지막 truth 값이 리턴된다.
+//  */
+// console.log(`---- AND ----`);
+// console.log(0 && 'Jake');
+// console.log(42 && 'Jake' && 'Jim');
+
+// console.log(42 && 'Jake' && null && 'jim'); // null
+// console.log('Hi' && null && 'jim'); // null
+
+// console.log('Hi' && 0); // 0
+// console.log('Hi' && 0 && 'Test'); // 0
+// console.log('Hi' && undefined && null && { object: true }); // undefined
+// console.log('Hi' && false && true); // false
+
+// console.log('42' && [] && '21' && {}); // [], {} 포함하여 모두 다 true
+
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
+
+// /**
+//  * React JSX에서는  statements를 허용하지 않는다.
+//  * 그런 경우 expression인 && 연산자를 써서 if문을 대체해볼 수 있다.
+//  */
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+/** # 109. The Nullish Coalescing Operator (??)
  *
- * falsy가 없다면 마지막 truth 값이 리턴된다.
+ * !! nullish: null and undefined (NOT 0 or '')
  */
-console.log(`---- AND ----`);
-console.log(0 && 'Jake');
-console.log(42 && 'Jake' && 'Jim');
+// nullish는 null, undefined만 취급, 0, ''은 취급하지 않음
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10; // restaurant.numGuests 가 없다면 10 있다면 그 값
+console.log(`guests : ${guests}`);
 
-console.log(42 && 'Jake' && null && 'jim'); // null
-console.log('Hi' && null && 'jim'); // null
-
-console.log('Hi' && 0); // 0
-console.log('Hi' && 0 && 'Test'); // 0
-console.log('Hi' && undefined && null && { object: true }); // undefined
-console.log('Hi' && false && true); // false
-
-if (restaurant.orderPizza) {
-  restaurant.orderPizza('mushrooms', 'spinach');
-}
-
-/**
- * React JSX에서는  statements를 허용하지 않는다.
- * 그런 경우 expression인 && 연산자를 써서 if문을 대체해볼 수 있다.
- */
-restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+const guestCorrect = restaurant.numGuests ?? 10; // restaurant.numGuests 가 없다면 10 있다면 그 값
+console.log(`guestCorrect : ${guestCorrect}`);
