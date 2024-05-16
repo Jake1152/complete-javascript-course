@@ -72,44 +72,44 @@ const restaurant = {
  */
 // 1) Destructuring
 // SPREAD, because on RIGHT side of =
-const arr = [1, 2, ...[3, 4]];
+// const arr = [1, 2, ...[3, 4]];
 
-console.log(`arr : ${arr}`);
-// REST, because on LEFT side of =
-const [a, b, ...other] = [1, 2, 3, 4, 5];
-console.log(a, b, other); // 1 2 [3, 4, 5]
-console.log(`a : ${a},\tb : ${b},\tother : ${other}`);
+// console.log(`arr : ${arr}`);
+// // REST, because on LEFT side of =
+// const [a, b, ...other] = [1, 2, 3, 4, 5];
+// console.log(a, b, other); // 1 2 [3, 4, 5]
+// console.log(`a : ${a},\tb : ${b},\tother : ${other}`);
 
-const [pizza, , risotto, ...otherFood] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
-console.log(pizza, risotto, otherFood);
+// const [pizza, , risotto, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(pizza, risotto, otherFood);
 
-// Objects
-// sat만 먼저 가져오고 나머지 남은 부분들을 weekdays 변수로 할당시킴
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays); // { thu: { open: 12, close: 22 }, fri: { open: 11, close: 23 } }
+// // Objects
+// // sat만 먼저 가져오고 나머지 남은 부분들을 weekdays 변수로 할당시킴
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(weekdays); // { thu: { open: 12, close: 22 }, fri: { open: 11, close: 23 } }
 
-// 2) Functnios
-const add = function (...inputNumbers) {
-  let sum = 0;
-  console.log(inputNumbers);
-  for (const number of inputNumbers) sum += number;
-  console.log(sum);
-  console.log();
-};
-add(2, 3);
-add(5, 3, 7, 2);
-add(8, 2, 5, 3, 2, 1, 4);
+// // 2) Functnios
+// const add = function (...inputNumbers) {
+//   let sum = 0;
+//   console.log(inputNumbers);
+//   for (const number of inputNumbers) sum += number;
+//   console.log(sum);
+//   console.log();
+// };
+// add(2, 3);
+// add(5, 3, 7, 2);
+// add(8, 2, 5, 3, 2, 1, 4);
 
-const x = [23, 5, 7];
-add(...x);
+// const x = [23, 5, 7];
+// add(...x);
 
-restaurant.orderPizza('mushrooms', 'tomamto', 'olives', 'spinach');
-// mushrooms
-// [ 'tomamto', 'olives', 'spinach' ]
-restaurant.orderPizza('mushrooms');
+// restaurant.orderPizza('mushrooms', 'tomamto', 'olives', 'spinach');
+// // mushrooms
+// // [ 'tomamto', 'olives', 'spinach' ]
+// restaurant.orderPizza('mushrooms');
 /**
  * 스프레드와 REST 구문은 둘 다 똑같이 생겼지만
  * 어디서 사용되느냐에 따라 다르게 작동하죠
@@ -121,3 +121,57 @@ restaurant.orderPizza('mushrooms');
  *
  * 쉼표로 이름(REST)을 구분하거나 값(Spread)을 구분하거나
  */
+
+/** 108. Short Circuiting (&& and ||)
+ */
+// short-circuiting
+console.log(3 || 'Jinho'); // 3, ||에서 앞에가 true이면 뒤에는 안감
+console.log('' || 'Jinho'); // '' => false, falsy이기에 || 뒤에 부분이 평가됨
+console.log(true || 0); // true
+
+/** || operator
+ * console.log() 인자로
+ * falsy만 '||' 연산자들에 묶여 있는 경우
+ * 마지막 falsy값이 출력된다.
+ *
+ * 하나라도 truth하면 첫번째로 나온 truth값을 출력한다.
+ */
+console.log(undefined || null); // null
+console.log(undefined || null || 0); // 0
+console.log(undefined || null || 0 || ''); //
+
+console.log(undefined || 0 || '' || 'Hello' || 23 || null); //
+
+// restaurant.numGuests = 23;
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10; // restaurant.numGuests 가 없다면 10 있다면 그 값
+console.log(`guests1 : ${guests1}`);
+
+const guests2 = restaurant.numGuests || 10; // restaurant.numGuests 가 없다면 10 있다면 그 값
+console.log(`guests2 : ${guests2}`);
+
+console.log();
+/** && operator
+ * console.log() 인자로
+ * falsy가 중간에 '&&' 연산자들에 묶여 있는 경우
+ * 처음 만난 falsy값이 출력된다.
+ *
+ * falsy가 없다면 마지막 truth 값이 리턴된다.
+ */
+console.log(`---- AND ----`);
+console.log(0 && 'Jake');
+console.log(42 && 'Jake' && 'Jim');
+
+console.log(42 && 'Jake' && null && 'jim'); // null
+console.log('Hi' && null && 'jim'); // null
+
+console.log('Hi' && 0); // 0
+console.log('Hi' && 0 && 'Test'); // 0
+console.log('Hi' && undefined && null && { object: true }); // undefined
+console.log('Hi' && false && true); // false
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
