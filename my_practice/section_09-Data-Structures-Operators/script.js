@@ -174,4 +174,8 @@ if (restaurant.orderPizza) {
   restaurant.orderPizza('mushrooms', 'spinach');
 }
 
+/**
+ * React JSX에서는  statements를 허용하지 않는다.
+ * 그런 경우 expression인 && 연산자를 써서 if문을 대체해볼 수 있다.
+ */
 restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
