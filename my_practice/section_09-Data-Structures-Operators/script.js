@@ -187,9 +187,73 @@ const restaurant = {
  * !! nullish: null and undefined (NOT 0 or '')
  */
 // nullish는 null, undefined만 취급, 0, ''은 취급하지 않음
-restaurant.numGuests = 0;
-const guests = restaurant.numGuests || 10; // restaurant.numGuests 가 없다면 10 있다면 그 값
-console.log(`guests : ${guests}`);
+// restaurant.numGuests = 0;
+// const guests = restaurant.numGuests || 10; // restaurant.numGuests 가 없다면 10 있다면 그 값
+// console.log(`guests : ${guests}`);
 
-const guestCorrect = restaurant.numGuests ?? 10; // restaurant.numGuests 가 없다면 10 있다면 그 값
-console.log(`guestCorrect : ${guestCorrect}`);
+// const guestCorrect = restaurant.numGuests ?? 10; // restaurant.numGuests 가 없다면 10 있다면 그 값
+// console.log(`guestCorrect : ${guestCorrect}`);
+
+/** # 110. Logical Assignment Operators
+ */
+const rest1 = {
+  name: 'Capri',
+  // numGuests: 42,
+  numGuests: null,
+};
+
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Ginovanni Rossi',
+};
+
+console.log(rest1);
+console.log(rest2);
+console.log();
+
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+// console.log(rest1);
+// console.log(rest2);
+// console.log();
+
+rest1.numGuests ||= undefined;
+// rest1.numGuests = rest1.numGuests || undefined;
+rest2.numGuests ||= undefined;
+console.log('# ||=');
+console.log(rest1);
+console.log(rest2);
+console.log();
+
+// nullish assignment ??
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+console.log('# ??=');
+console.log(rest1);
+console.log(rest2);
+console.log();
+
+rest1.owner = rest1.owner && '<ANONYMOUS>';
+rest2.owner = rest2.owner && '<ANONYMOUS>';
+console.log(rest1);
+console.log(rest2);
+console.log();
+
+rest1.numGuests &&= 10;
+// rest1.numGuests = rest1.numGuests && 10;
+rest2.numGuests &&= 10;
+console.log('# &&=');
+console.log(rest1);
+console.log(rest2);
+console.log();
+
+/** Summary, Logical Assignment Operators.
+ * &&=, truth
+ *  왼쪽 할당받으려는 값이 truth여야지만 할당 연산 진행됨
+ * ||=, falsy
+ *  왼쪽 할당 받으려는 값이 false, truth와 상관없이 할당 연산 진행됨
+ *  왼쪽이 true라면 왼쪽값이 다시 그대로 할당, 그렇지 않고 오른쪽이 true라면 오른쪽 값 할당
+ * ??=, nullish
+ *  nullish이므로 0, '', 같은 경우들 제외
+ * null, undefined만 취급
+ */
