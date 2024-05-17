@@ -73,19 +73,19 @@ const [gk, ...fieldPlayers] = game.players[0];
 // console.log(`gk: `, gk);
 // console.log(`fieldPlayers: `, fieldPlayers);
 
-// 3. Create an array 'allPlayers' containing all players of both teams (22 players)
+// // 3. Create an array 'allPlayers' containing all players of both teams (22 players)
 let allPlayers = [];
-for (const team of game.players) {
-  // allPlayers = [...allPlayers, ...team];
-  allPlayers.push(...team);
-}
+// for (const team of game.players) {
+//   // allPlayers = [...allPlayers, ...team];
+//   allPlayers.push(...team);
+// }
 // console.log(`allPlayers: `, allPlayers);
 
-// 4. During the game, Bayern Munich (team 1) used 3 substitute players. So create a new array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
-const players1Final = [
-  ...game.players[0],
-  ...['Thiago', 'Coutinho', 'Perisic'],
-];
+// // 4. During the game, Bayern Munich (team 1) used 3 substitute players. So create a new array ('players1Final') containing all the original team1 players plus 'Thiago', 'Coutinho' and 'Perisic'
+// const players1Final = [
+//   ...game.players[0],
+//   ...['Thiago', 'Coutinho', 'Perisic'],
+// ];
 // console.log(`players1Final : `, players1Final);
 
 // 5. Based on the game.odds object, create one variable for each odd (called 'team1', 'draw' and 'team2')
@@ -94,26 +94,29 @@ const players1Final = [
 //   x: 3.25,
 //   team2: 6.5,
 // },
-console.log(`game.odds : `, game.odds);
-const { team1, team2, ...draw } = game.odds;
-console.log(`team1 : `, team1);
-console.log(`team2 : `, team2);
-console.log(`draw : `, draw);
+// console.log(`game.odds : `, game.odds);
+// const { team1, team2, ...draw } = game.odds;
+// console.log(`team1 : `, team1);
+// console.log(`team2 : `, team2);
+// console.log(`draw : `, draw);
 
-// 6. Write a function ('printGoals') that receives an arbitrary number of player names (NOT an array) and prints each of them to the console,
-// along with the number of goals that were scored in total (number of player names passed in)
-const printGoals = function (...playerNames) {
-  for (let idx = 0; idx < playerNames.length; idx++) {
-    console.log(playerNames[idx]);
-  }
-};
-printGoals(...game.players[0]); // 이게 맞나?
+// // 6. Write a function ('printGoals') that receives an arbitrary number of player names (NOT an array) and prints each of them to the console,
+// // along with the number of goals that were scored in total (number of player names passed in)
+// let scored = 0;
+// const printGoals = function (...playerNames) {
+//   for (let idx = 0; idx < playerNames.length; idx++) {
+//     console.log(playerNames[idx]);
+//     scored += 1;
+//   }
+// };
+// printGoals(...game.players[0]); // 이게 맞나?
 
-// 7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win,
+// // 7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win,
 // WITHOUT using an if/else statement or the ternary operator.
-// console.log(game.odds.team1 > game.odds.team2 ? 'team1' : 'team2', 'is win');
+console.log(game.odds.team1 > game.odds.team2 ? 'team1' : 'team2', 'is win');
 (game.odds.team1 > game.odds.team2 && console.log('team1 is win')) ||
-  (game.odds.team1 < game.odds.team2 && console.log('team2 is win'));
+  (game.odds.team1 < game.odds.team2 && console.log('team2 is win')) ||
+  console.log('draw!');
 
 // === Prev
 // // 1.
@@ -143,8 +146,8 @@ printGoals(...game.players[0]); // 이게 맞나?
 //   console.log(`${players.length} goals were scored`);
 // };
 
-// // printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
-// // printGoals('Davies', 'Muller');
+// printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+// printGoals('Davies', 'Muller');
 // printGoals(...game.scored);
 
 // // 7.
