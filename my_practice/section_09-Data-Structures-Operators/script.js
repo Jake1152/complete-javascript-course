@@ -196,56 +196,56 @@ const restaurant = {
 
 /** # 110. Logical Assignment Operators
  */
-const rest1 = {
-  name: 'Capri',
-  // numGuests: 42,
-  numGuests: null,
-};
+// const rest1 = {
+//   name: 'Capri',
+//   // numGuests: 42,
+//   numGuests: null,
+// };
 
-const rest2 = {
-  name: 'La Piazza',
-  owner: 'Ginovanni Rossi',
-};
+// const rest2 = {
+//   name: 'La Piazza',
+//   owner: 'Ginovanni Rossi',
+// };
 
-console.log(rest1);
-console.log(rest2);
-console.log();
-
-// rest1.numGuests = rest1.numGuests || 10;
-// rest2.numGuests = rest2.numGuests || 10;
 // console.log(rest1);
 // console.log(rest2);
 // console.log();
 
-rest1.numGuests ||= undefined;
-// rest1.numGuests = rest1.numGuests || undefined;
-rest2.numGuests ||= undefined;
-console.log('# ||=');
-console.log(rest1);
-console.log(rest2);
-console.log();
+// // rest1.numGuests = rest1.numGuests || 10;
+// // rest2.numGuests = rest2.numGuests || 10;
+// // console.log(rest1);
+// // console.log(rest2);
+// // console.log();
 
-// nullish assignment ??
-rest1.numGuests ??= 10;
-rest2.numGuests ??= 10;
-console.log('# ??=');
-console.log(rest1);
-console.log(rest2);
-console.log();
+// rest1.numGuests ||= undefined;
+// // rest1.numGuests = rest1.numGuests || undefined;
+// rest2.numGuests ||= undefined;
+// console.log('# ||=');
+// console.log(rest1);
+// console.log(rest2);
+// console.log();
 
-rest1.owner = rest1.owner && '<ANONYMOUS>';
-rest2.owner = rest2.owner && '<ANONYMOUS>';
-console.log(rest1);
-console.log(rest2);
-console.log();
+// // nullish assignment ??
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
+// console.log('# ??=');
+// console.log(rest1);
+// console.log(rest2);
+// console.log();
 
-rest1.numGuests &&= 10;
-// rest1.numGuests = rest1.numGuests && 10;
-rest2.numGuests &&= 10;
-console.log('# &&=');
-console.log(rest1);
-console.log(rest2);
-console.log();
+// rest1.owner = rest1.owner && '<ANONYMOUS>';
+// rest2.owner = rest2.owner && '<ANONYMOUS>';
+// console.log(rest1);
+// console.log(rest2);
+// console.log();
+
+// rest1.numGuests &&= 10;
+// // rest1.numGuests = rest1.numGuests && 10;
+// rest2.numGuests &&= 10;
+// console.log('# &&=');
+// console.log(rest1);
+// console.log(rest2);
+// console.log();
 
 /** Summary, Logical Assignment Operators.
  * &&=, truth
@@ -257,3 +257,25 @@ console.log();
  *  nullish이므로 0, '', 같은 경우들 제외
  * null, undefined만 취급
  */
+
+/** # 112. Looping Arrays for-of Looping
+ */
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item);
+
+// entires() [idx, value]
+for (const item of menu.entries()) console.log(item);
+console.log('\n', menu.entries());
+console.log('\n', [...menu.entries()], '\n');
+
+// old way
+for (const item of menu.entries()) {
+  console.log(`${item[0] + 1}: ${item[1]}`);
+}
+
+// modern
+console.log();
+for (const [index, element] of menu.entries()) {
+  console.log(`${index + 1}: ${element}`);
+}
