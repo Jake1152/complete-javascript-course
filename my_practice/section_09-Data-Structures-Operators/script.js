@@ -1,21 +1,21 @@
 'use strict';
 
-// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-// const openingHours = {
-//   [weekdays[3]]: {
-//     open: 12,
-//     close: 22,
-//   },
-//   [weekdays[4]]: {
-//     open: 11,
-//     close: 23,
-//   },
-//   [weekdays[5]]: {
-//     open: 0, // Open 24 hours
-//     close: 24,
-//   },
-// };
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
 
 // Data needed for first part of the section
 const restaurant = {
@@ -260,22 +260,57 @@ const restaurant = {
 
 /** # 112. Looping Arrays for-of Looping
  */
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-for (const item of menu) console.log(item);
+// for (const item of menu) console.log(item);
 
-// entires() [idx, value]
-for (const item of menu.entries()) console.log(item);
-console.log('\n', menu.entries());
-console.log('\n', [...menu.entries()], '\n');
+// // entires() [idx, value]
+// for (const item of menu.entries()) console.log(item);
+// console.log('\n', menu.entries());
+// console.log('\n', [...menu.entries()], '\n');
 
-// old way
-for (const item of menu.entries()) {
-  console.log(`${item[0] + 1}: ${item[1]}`);
+// // old way
+// for (const item of menu.entries()) {
+//   console.log(`${item[0] + 1}: ${item[1]}`);
+// }
+
+// // modern
+// console.log();
+// for (const [index, element] of menu.entries()) {
+//   console.log(`${index + 1}: ${element}`);
+// }
+
+/** 115. Looping Objects: Object Keys, Values, and Entries
+ */
+
+// Object;
+
+const properties = Object.keys(openingHours);
+console.log('properties : ', properties);
+
+let openStr = `We are open on ${properties.length} : `;
+
+// for (const day of Object.keys(openingHours)) {
+for (const day of properties) {
+  // console.log('day : ', day);
+  openStr += `${day}, `;
+}
+console.log('openStr : ', openStr);
+
+const valueOfProperties = Object.values(openingHours);
+console.log('valueOfProperties : ', valueOfProperties);
+
+const entriesOfProperties = Object.entries(openingHours);
+console.log('entriesOfProperties : ', entriesOfProperties);
+
+// entries, destructuring
+for (const [key, { open, close }] of entriesOfProperties) {
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
 }
 
-// modern
 console.log();
-for (const [index, element] of menu.entries()) {
-  console.log(`${index + 1}: ${element}`);
+// entries, destructuring, any other name
+for (const [day, value] of entriesOfProperties) {
+  console.log(`day : ${day}, value :`, value);
+  console.log(`On ${day} we open at ${value.open} and close at ${value.close}`);
 }
