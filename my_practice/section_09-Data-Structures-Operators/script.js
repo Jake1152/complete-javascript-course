@@ -17,6 +17,46 @@
 //   },
 // };
 
+/**
+ * After 113. Enhance object literal
+ */
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+  // template literals and exrpession
+  // [`day-${2 + 4}`]: {
+  //   open: 0, // Open 24 hours
+  //   // close: 12 + 12,
+  // },
+};
+
+// const openingHours = {
+// const hours = {
+//   thu: {
+//     open: 12,
+//     close: 22,
+//   },
+//   fri: {
+//     open: 11,
+//     close: 23,
+//   },
+//   sat: {
+//     open: 0, // Open 24 hours
+//     close: 24,
+//   },
+// };
+
 // Data needed for first part of the section
 const restaurant = {
   name: 'Classico Italiano',
@@ -25,28 +65,24 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  // ES6 enhanced object literals
-  // 변수이름으로 속성 이름 생성
-  // openingHours,
-  // 'thu', 'fri', 'sat'
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  /** ES6 enhanced object literals
+   *  변수이름으로 속성 이름 생성
+   *
+   */
+  // * Before ES6, key value를 명시해야했다
+  // openingHours: openingHours,
+
+  // * ES6 key: value  적을 필요 없이 삽입한 object 변수명을 key로 쓰고 내용물을 value로 사용
+  // hours,
+
+  openingHours,
+  // * ES6 version function defined
+  //  Before ES6
   // order: function (starterIndex, mainIndex) {
   //   return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   // },
 
+  // After ES6
   order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
@@ -260,22 +296,93 @@ const restaurant = {
 
 /** # 112. Looping Arrays for-of Looping
  */
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-for (const item of menu) console.log(item);
+// for (const item of menu) console.log(item);
 
-// entires() [idx, value]
-for (const item of menu.entries()) console.log(item);
-console.log('\n', menu.entries());
-console.log('\n', [...menu.entries()], '\n');
+// // entires() [idx, value]
+// for (const item of menu.entries()) console.log(item);
+// console.log('\n', menu.entries());
+// console.log('\n', [...menu.entries()], '\n');
 
-// old way
-for (const item of menu.entries()) {
-  console.log(`${item[0] + 1}: ${item[1]}`);
-}
+// // old way
+// for (const item of menu.entries()) {
+//   console.log(`${item[0] + 1}: ${item[1]}`);
+// }
 
-// modern
-console.log();
-for (const [index, element] of menu.entries()) {
-  console.log(`${index + 1}: ${element}`);
-}
+// // modern
+// console.log();
+// for (const [index, element] of menu.entries()) {
+//   console.log(`${index + 1}: ${element}`);
+// }
+
+/** # 113. Enhanced Object Literals
+ */
+// console.log(restaurant);
+// restaurant.order();
+
+/** # 114. Optional Chaining(?.)
+ *
+ * object and array, chaining
+ */
+
+console.log(restaurant.openingHours.mon); // undefined
+// console.log(restaurant.openingHours.mon.open); // error, restaurant.openingHours이 undefined였으므로 오브젝트로 가정하고 내부 프로퍼티에 접근하고자하면 에러 발생
+
+// 프로퍼티 중간에 undefined라서 발생할 수 있는 error를 방지하기 위한 방법..
+if (restaurant.openingHours && restaurant.openingHours.mon)
+  console.log(restaurant.openingHours.mon.open);
+
+// ?. optional chaining ES2020에서 추가됨
+console.log(restaurant.openingHours.mon?.open); // undefined
+
+// multiple optional chaining
+// console.log(restaurant.openingHours.mon?.open); // undefined
+// console.log(restaurant.openingHours?.mon?.open); // undefined
+// console.log(restaurant?.openingHours?.mon);
+// console.log(restaurant?.openingHours);
+// console.log(restaurant);
+
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// for (const day of days) {
+//   // console.log(day);
+//   // || 연산자의 경우 falsy하므로 0도 false로 처리됨
+//   // const open = restaurant.openingHours[day]?.open || 'closed';
+//   // ??을 이용하여 nullish로 처리
+//   const open = restaurant.openingHours[day]?.open ?? 'closed';
+//   console.log(`On ${day}, we open at ${open}`);
+// }
+/* falsy result
+On mon, we open at closed
+On tue, we open at closed
+On wed, we open at closed
+On thu, we open at 12
+On fri, we open at 11
+On sat, we open at closed
+On sun, we open at closed
+// saturday에는 0시부터 열지만 || 로직연산에서 0이 falsy하므로 의도대로 동작하지 않음
+*/
+
+/* nullish result
+On mon, we open at closed
+On tue, we open at closed
+On wed, we open at closed
+On thu, we open at 12
+On fri, we open at 11
+On sat, we open at 0
+On sun, we open at closed
+*/
+
+// // Methods
+// console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurant.orderRisotto?.(2, 3) ?? 'Method does not exist');
+
+// Arrays
+const users = [{ name: 'Jonas', email: 'hello@honas.io' }];
+console.log(users);
+console.log(users[0]);
+console.log(users[2]?.name ?? 'User array empty');
+// console.log(users[2]?.name);
+
+// if (users.length > 0) console.log(users[0].name);
+// else console.log('User array empty');
