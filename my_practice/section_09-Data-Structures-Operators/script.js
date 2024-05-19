@@ -20,26 +20,26 @@ const openingHours = {
 /**
  * After 113. Enhance object literal
  */
-const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-const openingHours = {
-  [weekdays[3]]: {
-    open: 12,
-    close: 22,
-  },
-  [weekdays[4]]: {
-    open: 11,
-    close: 23,
-  },
-  [weekdays[5]]: {
-    open: 0, // Open 24 hours
-    close: 24,
-  },
-  // template literals and exrpession
-  // [`day-${2 + 4}`]: {
-  //   open: 0, // Open 24 hours
-  //   // close: 12 + 12,
-  // },
-};
+// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// const openingHours = {
+//   [weekdays[3]]: {
+//     open: 12,
+//     close: 22,
+//   },
+//   [weekdays[4]]: {
+//     open: 11,
+//     close: 23,
+//   },
+//   [weekdays[5]]: {
+//     open: 0, // Open 24 hours
+//     close: 24,
+//   },
+// template literals and exrpession
+// [`day-${2 + 4}`]: {
+//   open: 0, // Open 24 hours
+//   // close: 12 + 12,
+// },
+// };
 
 // const openingHours = {
 // const hours = {
@@ -326,15 +326,15 @@ const restaurant = {
  * object and array, chaining
  */
 
-console.log(restaurant.openingHours.mon); // undefined
+// console.log(restaurant.openingHours.mon); // undefined
 // console.log(restaurant.openingHours.mon.open); // error, restaurant.openingHours이 undefined였으므로 오브젝트로 가정하고 내부 프로퍼티에 접근하고자하면 에러 발생
 
 // 프로퍼티 중간에 undefined라서 발생할 수 있는 error를 방지하기 위한 방법..
-if (restaurant.openingHours && restaurant.openingHours.mon)
-  console.log(restaurant.openingHours.mon.open);
+// if (restaurant.openingHours && restaurant.openingHours.mon)
+//   console.log(restaurant.openingHours.mon.open);
 
 // ?. optional chaining ES2020에서 추가됨
-console.log(restaurant.openingHours.mon?.open); // undefined
+// console.log(restaurant.openingHours.mon?.open); // undefined
 
 // multiple optional chaining
 // console.log(restaurant.openingHours.mon?.open); // undefined
@@ -378,10 +378,10 @@ On sun, we open at closed
 // console.log(restaurant.orderRisotto?.(2, 3) ?? 'Method does not exist');
 
 // Arrays
-const users = [{ name: 'Jonas', email: 'hello@honas.io' }];
-console.log(users);
-console.log(users[0]);
-console.log(users[2]?.name ?? 'User array empty');
+// const users = [{ name: 'Jonas', email: 'hello@honas.io' }];
+// console.log(users);
+// console.log(users[0]);
+// console.log(users[2]?.name ?? 'User array empty');
 // console.log(users[2]?.name);
 
 // if (users.length > 0) console.log(users[0].name);
@@ -430,7 +430,6 @@ console.log(users[2]?.name ?? 'User array empty');
 
 /** 117. Sets
  */
-
 const orderSet = new Set([
   'Pasta',
   'Pizza',
@@ -440,3 +439,43 @@ const orderSet = new Set([
   'Pizza',
 ]);
 console.log('orderSet : ', orderSet);
+
+console.log(new Set('Jake'));
+
+console.log(orderSet.size);
+console.log(orderSet.has('Pizza'));
+console.log(orderSet.has('Bread'));
+console.log(orderSet.has('Croquette'));
+orderSet.add('Croquette');
+orderSet.add('Croquette');
+console.log('orderSet : ', orderSet);
+
+orderSet.delete('Risotto');
+console.log('orderSet : ', orderSet);
+
+// set은 indexing 불가
+console.log(orderSet[0]);
+console.log(orderSet[1]);
+console.log(orderSet[-42]);
+
+console.log('#Loop of orderSet ');
+for (const order of orderSet) console.log(order);
+
+orderSet.clear();
+console.log('orderSet : ', orderSet);
+
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+console.log('staff : ', staff);
+
+// const staffUnique = new Set(staff);
+const staffUnique = [...new Set(staff)];
+console.log('staffUnique : ', staffUnique);
+
+// array to set and then cal size
+console.log(
+  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+);
+
+// str to set and then cal size
+// 철자가 몇개인지 셀 수 있다. 단, 중복제거
+console.log(new Set('Waiter Chef Waiter Manager Chef Waiter').size);
