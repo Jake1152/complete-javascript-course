@@ -1,21 +1,21 @@
 'use strict';
 
-// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-// const openingHours = {
-//   [weekdays[3]]: {
-//     open: 12,
-//     close: 22,
-//   },
-//   [weekdays[4]]: {
-//     open: 11,
-//     close: 23,
-//   },
-//   [weekdays[5]]: {
-//     open: 0, // Open 24 hours
-//     close: 24,
-//   },
-// };
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
 
 /**
  * After 113. Enhance object literal
@@ -386,3 +386,57 @@ console.log(users[2]?.name ?? 'User array empty');
 
 // if (users.length > 0) console.log(users[0].name);
 // else console.log('User array empty');
+
+// // modern
+// console.log();
+// for (const [index, element] of menu.entries()) {
+//   console.log(`${index + 1}: ${element}`);
+// }
+
+/** 115. Looping Objects: Object Keys, Values, and Entries
+ */
+
+// Object;
+
+// const properties = Object.keys(openingHours);
+// console.log('properties : ', properties);
+
+// let openStr = `We are open on ${properties.length} : `;
+
+// // for (const day of Object.keys(openingHours)) {
+// for (const day of properties) {
+//   // console.log('day : ', day);
+//   openStr += `${day}, `;
+// }
+// console.log('openStr : ', openStr);
+
+// const valueOfProperties = Object.values(openingHours);
+// console.log('valueOfProperties : ', valueOfProperties);
+
+// const entriesOfProperties = Object.entries(openingHours);
+// console.log('entriesOfProperties : ', entriesOfProperties);
+
+// // entries, destructuring
+// for (const [key, { open, close }] of entriesOfProperties) {
+//   console.log(`On ${key} we open at ${open} and close at ${close}`);
+// }
+
+// console.log();
+// // entries, destructuring, any other name
+// for (const [day, value] of entriesOfProperties) {
+//   console.log(`day : ${day}, value :`, value);
+//   console.log(`On ${day} we open at ${value.open} and close at ${value.close}`);
+// }
+
+/** 117. Sets
+ */
+
+const orderSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+console.log('orderSet : ', orderSet);
