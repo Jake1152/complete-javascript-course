@@ -429,127 +429,166 @@ On sun, we open at closed
 
 /** 117. Sets
  */
-const orderSet = new Set([
-  'Pasta',
-  'Pizza',
-  'Pizza',
-  'Risotto',
-  'Pasta',
-  'Pizza',
-]);
-console.log('orderSet : ', orderSet);
+// const orderSet = new Set([
+//   'Pasta',
+//   'Pizza',
+//   'Pizza',
+//   'Risotto',
+//   'Pasta',
+//   'Pizza',
+// ]);
+// console.log('orderSet : ', orderSet);
 
-console.log(new Set('Jake'));
+// console.log(new Set('Jake'));
 
-console.log(orderSet.size);
-console.log(orderSet.has('Pizza'));
-console.log(orderSet.has('Bread'));
-console.log(orderSet.has('Croquette'));
-orderSet.add('Croquette');
-orderSet.add('Croquette');
-console.log('orderSet : ', orderSet);
+// console.log(orderSet.size);
+// console.log(orderSet.has('Pizza'));
+// console.log(orderSet.has('Bread'));
+// console.log(orderSet.has('Croquette'));
+// orderSet.add('Croquette');
+// orderSet.add('Croquette');
+// console.log('orderSet : ', orderSet);
 
-orderSet.delete('Risotto');
-console.log('orderSet : ', orderSet);
+// orderSet.delete('Risotto');
+// console.log('orderSet : ', orderSet);
 
-// set은 indexing 불가
-console.log(orderSet[0]);
-console.log(orderSet[1]);
-console.log(orderSet[-42]);
+// // set은 indexing 불가
+// console.log(orderSet[0]);
+// console.log(orderSet[1]);
+// console.log(orderSet[-42]);
 
-console.log('#Loop of orderSet ');
-for (const order of orderSet) console.log(order);
+// console.log('#Loop of orderSet ');
+// for (const order of orderSet) console.log(order);
 
-orderSet.clear();
-console.log('orderSet : ', orderSet);
+// orderSet.clear();
+// console.log('orderSet : ', orderSet);
 
-const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
-console.log('staff : ', staff);
+// const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// console.log('staff : ', staff);
 
-// const staffUnique = new Set(staff);
-const staffUnique = [...new Set(staff)];
-console.log('staffUnique : ', staffUnique);
+// // const staffUnique = new Set(staff);
+// const staffUnique = [...new Set(staff)];
+// console.log('staffUnique : ', staffUnique);
 
-// array to set and then cal size
-console.log(
-  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
-);
+// // array to set and then cal size
+// console.log(
+//   new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+// );
 
 // str to set and then cal size
 // 철자가 몇개인지 셀 수 있다. 단, 중복제거
-console.log(new Set('Waiter Chef Waiter Manager Chef Waiter').size);
+// console.log(new Set('Waiter Chef Waiter Manager Chef Waiter').size);
 
 /** 118. Maps: Fundamentals
  * Set에서는 key로 문자열만 가질 수 있었지만
  * Map에서는 어떠한 것도 키가 될 수 있다.
  */
 
-let rest = new Map();
-console.log(rest);
+// let rest = new Map();
+// console.log(rest);
 
-rest.set('name', 'Classico Italiano');
-console.log(rest);
+// rest.set('name', 'Classico Italiano');
+// console.log(rest);
 
-rest.set(1, 'Firenze, Italy');
-console.log(rest);
+// rest.set(1, 'Firenze, Italy');
+// console.log(rest);
 
-const arr = [1, 2, 3];
-// rest.set([1, 2, 3], 'Seoul');
-// rest.set(arr, 'Seoul');
-console.log(rest);
-/*
-<ref *1> Map(4) {
-  'name' => 'Classico Italiano',
-  1 => 'Firenze, Italy',
-  [ 1, 2, 3 ] => 'Seoul',
-  [Circular *1] => 'recur'
-}
-*/
+// const arr = [1, 2, 3];
+// // rest.set([1, 2, 3], 'Seoul');
+// // rest.set(arr, 'Seoul');
+// console.log(rest);
+// /*
+// <ref *1> Map(4) {
+//   'name' => 'Classico Italiano',
+//   1 => 'Firenze, Italy',
+//   [ 1, 2, 3 ] => 'Seoul',
+//   [Circular *1] => 'recur'
+// }
+// */
 
-rest.set('open', 11).set('closed', 23);
-console.log(rest);
+// rest.set('open', 11).set('closed', 23);
+// console.log(rest);
 
-// multiple things setting
-rest.set(true, 'We are open :)').set(false, 'We are closed :(');
-console.log(rest);
+// // multiple things setting
+// rest.set(true, 'We are open :)').set(false, 'We are closed :(');
+// console.log(rest);
 
-console.log("rest.get('name') : ", rest.get('name'));
-console.log("rest.get('namee') : ", rest.get('namee'));
-console.log('rest.get([1, 2, 3]) : ', rest.get([1, 2, 3]));
-console.log('rest.get(arr) : ', rest.get(arr), `\t#arr is [${arr}]`);
-console.log('rest.get(1) : ', rest.get(1));
+// console.log("rest.get('name') : ", rest.get('name'));
+// console.log("rest.get('namee') : ", rest.get('namee'));
+// console.log('rest.get([1, 2, 3]) : ', rest.get([1, 2, 3]));
+// console.log('rest.get(arr) : ', rest.get(arr), `\t#arr is [${arr}]`);
+// console.log('rest.get(1) : ', rest.get(1));
 
-let time = 21;
-console.log(
-  `Now, ${time} o'clock.`,
-  rest.get(time > rest.get('open') && time < rest.get('closed'))
-);
+// let time = 21;
+// console.log(
+//   `Now, ${time} o'clock.`,
+//   rest.get(time > rest.get('open') && time < rest.get('closed'))
+// );
 
-time = 24;
-console.log(
-  `Now, ${time} o'clock.`,
-  rest.get(time > rest.get('open') && time < rest.get('closed'))
-);
+// time = 24;
+// console.log(
+//   `Now, ${time} o'clock.`,
+//   rest.get(time > rest.get('open') && time < rest.get('closed'))
+// );
 
-console.log("rest.has('categories') : ", rest.has('categories'));
-console.log();
+// console.log("rest.has('categories') : ", rest.has('categories'));
+// console.log();
 
-console.log('rest : ', rest);
-console.log('rest.has(1) : ', rest.has(1));
+// console.log('rest : ', rest);
+// console.log('rest.has(1) : ', rest.has(1));
 
-/*
-delete() 메서드를 쓰는 과정은 느리다.
-hasOwnProperty를 주로 쓴다하고 이 내용은 뒤에 파트에서 다루어진다.
+// /*
+// delete() 메서드를 쓰는 과정은 느리다.
+// hasOwnProperty를 주로 쓴다하고 이 내용은 뒤에 파트에서 다루어진다.
 
- * ref  
-  hasOwnProperty를 사용하면 안되는 이유 => https://velog.io/@jay/be-carefule-use-hasownproperty
- */
-console.log('rest.delete(1) : ', rest.delete(1));
-console.log('rest.has(1) : ', rest.has(1));
-console.log('rest : ', rest);
-console.log();
+//  * ref
+//   hasOwnProperty를 사용하면 안되는 이유 => https://velog.io/@jay/be-carefule-use-hasownproperty
+//  */
+// console.log('rest.delete(1) : ', rest.delete(1));
+// console.log('rest.has(1) : ', rest.has(1));
+// console.log('rest : ', rest);
+// console.log();
 
-console.log('rest.clear() : ', rest.clear());
+// console.log('rest.clear() : ', rest.clear());
 
 // rest = new Map({ 1: 'number', str: 'string' });
 // console.log(rest);
+
+/** 119. Map iteration
+ */
+
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'Javascript'],
+  ['correct', 3],
+  [true, 'Correct'],
+  [false, 'Try again!'],
+]);
+
+console.log(`question, `, question);
+
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(`hoursMap, `, hoursMap);
+
+// Quiz map
+console.log(question.get('question'));
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
+
+// const answer = Number(prompt('Your answer'));
+// console.log(answer);
+const answer = 3;
+
+console.log(
+  "question.get(question.get('correct') === answer) : ",
+  // question.get(question.get('correct') == answer ?? false)
+  question.get(question.get('correct') === answer)
+);
+
+console.log([...question]);
+console.log(question.entries());
+console.log([...question.keys()]);
+console.log([...question.values()]);
