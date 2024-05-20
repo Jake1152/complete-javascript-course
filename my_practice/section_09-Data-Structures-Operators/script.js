@@ -395,7 +395,6 @@ On sun, we open at closed
 
 /** 115. Looping Objects: Object Keys, Values, and Entries
  */
-
 // Object;
 
 // const properties = Object.keys(openingHours);
@@ -479,3 +478,78 @@ console.log(
 // str to set and then cal size
 // 철자가 몇개인지 셀 수 있다. 단, 중복제거
 console.log(new Set('Waiter Chef Waiter Manager Chef Waiter').size);
+
+/** 118. Maps: Fundamentals
+ * Set에서는 key로 문자열만 가질 수 있었지만
+ * Map에서는 어떠한 것도 키가 될 수 있다.
+ */
+
+let rest = new Map();
+console.log(rest);
+
+rest.set('name', 'Classico Italiano');
+console.log(rest);
+
+rest.set(1, 'Firenze, Italy');
+console.log(rest);
+
+const arr = [1, 2, 3];
+// rest.set([1, 2, 3], 'Seoul');
+// rest.set(arr, 'Seoul');
+console.log(rest);
+/*
+<ref *1> Map(4) {
+  'name' => 'Classico Italiano',
+  1 => 'Firenze, Italy',
+  [ 1, 2, 3 ] => 'Seoul',
+  [Circular *1] => 'recur'
+}
+*/
+
+rest.set('open', 11).set('closed', 23);
+console.log(rest);
+
+// multiple things setting
+rest.set(true, 'We are open :)').set(false, 'We are closed :(');
+console.log(rest);
+
+console.log("rest.get('name') : ", rest.get('name'));
+console.log("rest.get('namee') : ", rest.get('namee'));
+console.log('rest.get([1, 2, 3]) : ', rest.get([1, 2, 3]));
+console.log('rest.get(arr) : ', rest.get(arr), `\t#arr is [${arr}]`);
+console.log('rest.get(1) : ', rest.get(1));
+
+let time = 21;
+console.log(
+  `Now, ${time} o'clock.`,
+  rest.get(time > rest.get('open') && time < rest.get('closed'))
+);
+
+time = 24;
+console.log(
+  `Now, ${time} o'clock.`,
+  rest.get(time > rest.get('open') && time < rest.get('closed'))
+);
+
+console.log("rest.has('categories') : ", rest.has('categories'));
+console.log();
+
+console.log('rest : ', rest);
+console.log('rest.has(1) : ', rest.has(1));
+
+/*
+delete() 메서드를 쓰는 과정은 느리다.
+hasOwnProperty를 주로 쓴다하고 이 내용은 뒤에 파트에서 다루어진다.
+
+ * ref  
+  hasOwnProperty를 사용하면 안되는 이유 => https://velog.io/@jay/be-carefule-use-hasownproperty
+ */
+console.log('rest.delete(1) : ', rest.delete(1));
+console.log('rest.has(1) : ', rest.has(1));
+console.log('rest : ', rest);
+console.log();
+
+console.log('rest.clear() : ', rest.clear());
+
+// rest = new Map({ 1: 'number', str: 'string' });
+// console.log(rest);
