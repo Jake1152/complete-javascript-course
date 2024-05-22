@@ -653,8 +653,14 @@ checkMiddleSeat('3E');
 checkMiddleSeat('3A');
 
 console.log(new String('Jinho'));
-console.log(typeof new String('Jinho')); // object, string은 원시타입이지만 object로 래핑되는 것을 볼 수 있다.
-console.log(typeof new String('Jinho').slice(1)); // # string,
+console.log(typeof new String('Jinho')); // object, string은 원시타입이지만 new 를 썼기에 object로 나오는 것을 볼 수 있다.
+console.log(typeof new String('Jinho').slice(1)); // # string
+console.log(`typeof 'Jinho': ${typeof 'Jinho'}`); // # string
+console.log(`typeof 'Jinho'.slice(1) : ${typeof 'Jinho'.slice(1)}`); // # string,
+
+console.log(
+  `typeof new String('Jinho'.slice(1)) : ${typeof new String('Jinho'.slice(1))}`
+); // # string,
 
 console.log(new String('Jinho').slice(1)); // inho, 왜 타입이 object가 아닌가?
 
