@@ -593,6 +593,70 @@ On sun, we open at closed
 // console.log([...question.keys()]);
 // console.log([...question.values()]);
 
-const mapObject = new Map();
-mapObject.set(1, '42');
-console.log('# mapObject : ', mapObject);
+// const mapObject = new Map();
+// mapObject.set(1, '42');
+// console.log('# mapObject : ', mapObject);
+
+/** 122. Working With Strings - part01
+ */
+
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[0]);
+
+console.log(airline.length);
+console.log('B737'.length);
+
+console.log(`airline.indexOf('r')  : ${airline.indexOf('r')}`);
+console.log(`airline.lastIndexOf('r')  : ${airline.lastIndexOf('r')}`);
+console.log(`airline.indexOf('portugal')  : ${airline.indexOf('portugal')}`);
+
+console.log(`airline.slice(4)  : ${airline.slice(4)}`); // 4'th index 이전까지는 날려버린다., 4th index부터 뒷부분을 가져간다.
+console.log(`airline.slice(4, 7) : ${airline.slice(4, 7)}`); // Air
+
+console.log(
+  `airline.slice(0, airlne.indexOf(' ')) : ${airline.slice(
+    0,
+    airline.indexOf(' ')
+  )}`
+); // TAP
+console.log(
+  `airline.slice(airlne.lastIndexOf(' ')) : ${airline.slice(
+    airline.lastIndexOf(' ')
+  )}`
+); // Portugal
+
+console.log(`airline.slice(-2) : ${airline.slice(-2)}`); // al
+console.log(`airline.slice(1, -1) : ${airline.slice(1, -1)}`); // AP Air Portuga
+console.log(`airline.slice(0, -1) : ${airline.slice(0, -1)}`); // TAP Air Portuga
+console.log(`airline.slice() : ${airline.slice()}`); // TAP Air Portugal
+console.log(`airline.slice(0, 0) : ${airline.slice(0, 0)}`); //
+
+console.log();
+// const checkMiddleSeat = seat => {};
+const checkMiddleSeat = function (seat) {
+  // B and E middle seats
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') {
+    console.log(`${seat} is middle seat`);
+  } else {
+    console.log(`${seat} is not middle seat`);
+  }
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+checkMiddleSeat('3A');
+
+console.log(new String('Jinho'));
+console.log(typeof new String('Jinho')); // object, string은 원시타입이지만 object로 래핑되는 것을 볼 수 있다.
+console.log(typeof new String('Jinho').slice(1)); // # string,
+
+console.log(new String('Jinho').slice(1)); // inho, 왜 타입이 object가 아닌가?
+
+const slicedStr = String('Jinho').slice(1);
+console.log(typeof slicedStr); // inho, 왜 타입이 object가 아닌가?
