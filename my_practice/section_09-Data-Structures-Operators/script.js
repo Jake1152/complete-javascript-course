@@ -599,70 +599,164 @@ On sun, we open at closed
 
 /** 122. Working With Strings - part01
  */
+// const airline = 'TAP Air Portugal';
+// const plane = 'A320';
+// console.log(plane[0]);
+// console.log(plane[1]);
+// console.log(plane[2]);
+// console.log('B737'[0]);
 
+// console.log(airline.length);
+// console.log('B737'.length);
+
+// console.log(`airline.indexOf('r')  : ${airline.indexOf('r')}`);
+// console.log(`airline.lastIndexOf('r')  : ${airline.lastIndexOf('r')}`);
+// console.log(`airline.indexOf('portugal')  : ${airline.indexOf('portugal')}`);
+
+// console.log(`airline.slice(4)  : ${airline.slice(4)}`); // 4'th index 이전까지는 날려버린다., 4th index부터 뒷부분을 가져간다.
+// console.log(`airline.slice(4, 7) : ${airline.slice(4, 7)}`); // Air
+
+// console.log(
+//   `airline.slice(0, airlne.indexOf(' ')) : ${airline.slice(
+//     0,
+//     airline.indexOf(' ')
+//   )}`
+// ); // TAP
+// console.log(
+//   `airline.slice(airlne.lastIndexOf(' ')) : ${airline.slice(
+//     airline.lastIndexOf(' ')
+//   )}`
+// ); // Portugal
+
+// console.log(`airline.slice(-2) : ${airline.slice(-2)}`); // al
+// console.log(`airline.slice(1, -1) : ${airline.slice(1, -1)}`); // AP Air Portuga
+// console.log(`airline.slice(0, -1) : ${airline.slice(0, -1)}`); // TAP Air Portuga
+// console.log(`airline.slice() : ${airline.slice()}`); // TAP Air Portugal
+// console.log(`airline.slice(0, 0) : ${airline.slice(0, 0)}`); //
+
+// console.log();
+// // const checkMiddleSeat = seat => {};
+// const checkMiddleSeat = function (seat) {
+//   // B and E middle seats
+//   const s = seat.slice(-1);
+//   if (s === 'B' || s === 'E') {
+//     console.log(`${seat} is middle seat`);
+//   } else {
+//     console.log(`${seat} is not middle seat`);
+//   }
+// };
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('3E');
+// checkMiddleSeat('3A');
+
+// console.log(new String('Jinho'));
+// console.log(typeof new String('Jinho')); // object, string은 원시타입이지만 new 를 썼기에 object로 나오는 것을 볼 수 있다.
+// console.log(typeof new String('Jinho').slice(1)); // # string
+// console.log(`typeof 'Jinho': ${typeof 'Jinho'}`); // # string
+// console.log(`typeof 'Jinho'.slice(1) : ${typeof 'Jinho'.slice(1)}`); // # string,
+
+// console.log(
+//   `typeof new String('Jinho'.slice(1)) : ${typeof new String('Jinho'.slice(1))}`
+// ); // # string,
+
+// console.log(new String('Jinho').slice(1)); // inho, 왜 타입이 object가 아닌가?
+
+// const slicedStr = String('Jinho').slice(1);
+// console.log(typeof slicedStr); // inho, 왜 타입이 object가 아닌가?
+
+/** 123. Working With Strings - part02
+ */
 const airline = 'TAP Air Portugal';
-const plane = 'A320';
-console.log(plane[0]);
-console.log(plane[1]);
-console.log(plane[2]);
-console.log('B737'[0]);
 
-console.log(airline.length);
-console.log('B737'.length);
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
 
-console.log(`airline.indexOf('r')  : ${airline.indexOf('r')}`);
-console.log(`airline.lastIndexOf('r')  : ${airline.lastIndexOf('r')}`);
-console.log(`airline.indexOf('portugal')  : ${airline.indexOf('portugal')}`);
+const passenger = 'jOnAS'; // Jonas
+console.log(`passenger : ${passenger}`);
+const passengerLower = passenger.toLowerCase();
+console.log(`passengerLower : ${passengerLower}`);
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(`passengerCorrect : ${passengerCorrect}`);
 
-console.log(`airline.slice(4)  : ${airline.slice(4)}`); // 4'th index 이전까지는 날려버린다., 4th index부터 뒷부분을 가져간다.
-console.log(`airline.slice(4, 7) : ${airline.slice(4, 7)}`); // Air
+const toBePascalCase = () => {};
+
+// Comparing emails
+const email = 'hello@jake.io';
+const loginEmail = ' Hello@Jake.Io';
+
+// if (email.toLowerCase() === loginEmail.toLowerCase()) {
+//   console.log(`email and loginEmail are same thing`);
+// } else {
+//   console.log(`email and loginEmail are not same thing`);
+// }
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim();
+console.log(`trimmedEmail : ${trimmedEmail}`);
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(`normalizedEmail : ${normalizedEmail}`);
+console.log(email === normalizedEmail);
+
+// replacing
+// 100 000 000 000 000 000 Euro
+// 100,
+const priceGB = '288,97€';
+console.log(`priceGB : ${priceGB}`);
+const priceUS = priceGB.replace('€', '$').replace(',', '.');
+console.log(`priceUS : ${priceUS}`);
+
+const announcement = `All passengers come to barding door 23. Boarding door 23!`;
+
+console.log(`announcement : ${announcement}`);
 
 console.log(
-  `airline.slice(0, airlne.indexOf(' ')) : ${airline.slice(
-    0,
-    airline.indexOf(' ')
-  )}`
-); // TAP
+  `announcement.replace('door', 'gate'): ${announcement.replace(
+    'door',
+    'gate'
+  )}` //  All passengers come to barding gate 23. Boarding door 23!
+  // 첫번째만 바뀜
+);
+
+// replaceAll 사용하여 변경
 console.log(
-  `airline.slice(airlne.lastIndexOf(' ')) : ${airline.slice(
-    airline.lastIndexOf(' ')
+  `announcement.replaceAll('door', 'gate') : ${announcement.replaceAll(
+    'door',
+    'gate'
   )}`
-); // Portugal
+); //  All passengers come to barding gate 23. Boarding gate 23!
 
-console.log(`airline.slice(-2) : ${airline.slice(-2)}`); // al
-console.log(`airline.slice(1, -1) : ${airline.slice(1, -1)}`); // AP Air Portuga
-console.log(`airline.slice(0, -1) : ${airline.slice(0, -1)}`); // TAP Air Portuga
-console.log(`airline.slice() : ${airline.slice()}`); // TAP Air Portugal
-console.log(`airline.slice(0, 0) : ${airline.slice(0, 0)}`); //
+// 정규식 사용하여 변경
+console.log(
+  `announcement.replace(/door/g, 'gate') : ${announcement.replace(
+    /door/g,
+    'gate'
+  )}`
+); //  All passengers come to barding gate 23. Boarding gate 23!
 
-console.log();
-// const checkMiddleSeat = seat => {};
-const checkMiddleSeat = function (seat) {
-  // B and E middle seats
-  const s = seat.slice(-1);
-  if (s === 'B' || s === 'E') {
-    console.log(`${seat} is middle seat`);
+// Booleans
+const plane = 'Airbus A320neo';
+console.log(`plane.includes('A320') : ${plane.includes('A320')}`);
+console.log(`plane.includes('Boeing') : ${plane.includes('Boeing')}`);
+console.log(`plane.startsWith('Air') : ${plane.startsWith('Air')}`);
+console.log(`plane.startsWith('Aib') : ${plane.startsWith('Aib')}`);
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the NEW Airbus family');
+}
+
+const checkBaggage = function (items) {
+  // const baggage = items.toLowerCase();
+  const baggage = items; // Knife, KNIFE는 통과될 수 있는 문제 발생
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are NOT allowed on board');
   } else {
-    console.log(`${seat} is not middle seat`);
+    console.log('Welcome aboard');
   }
 };
 
-checkMiddleSeat('11B');
-checkMiddleSeat('23C');
-checkMiddleSeat('3E');
-checkMiddleSeat('3A');
-
-console.log(new String('Jinho'));
-console.log(typeof new String('Jinho')); // object, string은 원시타입이지만 new 를 썼기에 object로 나오는 것을 볼 수 있다.
-console.log(typeof new String('Jinho').slice(1)); // # string
-console.log(`typeof 'Jinho': ${typeof 'Jinho'}`); // # string
-console.log(`typeof 'Jinho'.slice(1) : ${typeof 'Jinho'.slice(1)}`); // # string,
-
-console.log(
-  `typeof new String('Jinho'.slice(1)) : ${typeof new String('Jinho'.slice(1))}`
-); // # string,
-
-console.log(new String('Jinho').slice(1)); // inho, 왜 타입이 object가 아닌가?
-
-const slicedStr = String('Jinho').slice(1);
-console.log(typeof slicedStr); // inho, 왜 타입이 object가 아닌가?
+checkBaggage('I have a laptop, some food and a pocket knife');
+checkBaggage('socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
