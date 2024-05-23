@@ -764,65 +764,120 @@ On sun, we open at closed
 /** 124. Working With Strings - Part 3
  */
 
-console.log('a+very+nice+string'.split('+'));
-console.log('Jonas Schmedtmann'.split(' '));
+// console.log('a+very+nice+string'.split('+'));
+// console.log('Jonas Schmedtmann'.split(' '));
 
-const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
+// const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
 
-const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
-console.log(`newName: ${newName}`);
+// const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+// console.log(`newName: ${newName}`);
 
-const getCapitalizeNames = function (name) {
-  const names = name.split(' ');
-  const namesUpper = [];
+// const getCapitalizeNames = function (name) {
+//   const names = name.split(' ');
+//   const namesUpper = [];
 
-  for (const n of names) {
-    const capitalizeName = n[0].toUpperCase() + n.slice(1).toLowerCase();
-    // const capitalizeName = n.replace(n[0], n[0].toUpperCase());
-    namesUpper.push(capitalizeName);
+//   for (const n of names) {
+//     const capitalizeName = n[0].toUpperCase() + n.slice(1).toLowerCase();
+//     // const capitalizeName = n.replace(n[0], n[0].toUpperCase());
+//     namesUpper.push(capitalizeName);
+//   }
+//   return namesUpper.join(' ');
+// };
+
+// const passenger = 'jessica ann smith davis';
+// // for
+// console.log(`passenger  : ${passenger}`);
+// const capitalizeNames = getCapitalizeNames(passenger);
+
+// console.log(`capitalizeNames  : ${capitalizeNames}`);
+
+// // Padding
+// const message = 'Go to gate 23!';
+// console.log(message.padStart(message.length + 3, '+'));
+// console.log('Jonas'.padStart(35, '+'));
+// // +++++++++++Go to gate 23!
+// // ++++++++++++++++++Jonas
+// console.log(message.padStart(20, '+').padEnd(35, '+'));
+// console.log('Jonas'.padStart(20, '+').padEnd(35, '+'));
+
+// const maskCreditCard = function (number) {
+//   const str = String(number) + '';
+//   const last = str.slice(-4);
+//   return last.padStart(str.length, '*');
+// };
+
+// console.log(
+//   `maskCreditCard(431233453443563) : ${maskCreditCard(431233453443563)}`
+// );
+// console.log(
+//   `maskCreditCard('234543643654634109') : ${maskCreditCard(
+//     '234543643654634109'
+//   )}`
+// );
+
+// // Repeat
+// const message2 = 'Bad weather... All Departures Delayed... ';
+// console.log(message2.repeat(5, '\n'));
+
+// const planesInLine = function (n) {
+//   console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
+// };
+
+// planesInLine(5);
+// planesInLine(12);
+// planesInLine(3);
+
+/**126. String Methods Practice
+ */
+const displayFligthStatus = function (flights) {
+  for (const flight of flights.split('+')) {
+    // console.log(`flight : ${flight}`);
+    // console.log(flight);
+    let [DepArrInfo, fromFlightInfo, toFlightInfo, time] = flight.split(';');
+
+    DepArrInfo = DepArrInfo.replaceAll('_', ' ');
+    DepArrInfo = DepArrInfo.includes('Delay') ? '🔴' + DepArrInfo : DepArrInfo;
+
+    console.log(
+      DepArrInfo.padStart(20, ' '),
+      'from',
+      fromFlightInfo.slice(0, 3).toUpperCase(),
+      'to',
+      toFlightInfo.slice(0, 3).toUpperCase(),
+      `(${time.replace(':', 'h')})`
+    );
   }
-  return namesUpper.join(' ');
 };
 
-const passenger = 'jessica ann smith davis';
-// for
-console.log(`passenger  : ${passenger}`);
-const capitalizeNames = getCapitalizeNames(passenger);
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-console.log(`capitalizeNames  : ${capitalizeNames}`);
+// console.log(`flights.split('+') : \n${flights.split('+').join('\n')}`);
 
-// Padding
-const message = 'Go to gate 23!';
-console.log(message.padStart(message.length + 3, '+'));
-console.log('Jonas'.padStart(35, '+'));
-// +++++++++++Go to gate 23!
-// ++++++++++++++++++Jonas
-console.log(message.padStart(20, '+').padEnd(35, '+'));
-console.log('Jonas'.padStart(20, '+').padEnd(35, '+'));
+displayFligthStatus(flights);
+/** Instructor's code
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-const maskCreditCard = function (number) {
-  const str = String(number) + '';
-  const last = str.slice(-4);
-  return last.padStart(str.length, '*');
-};
+// console.log(flights.split('+'));
 
-console.log(
-  `maskCreditCard(431233453443563) : ${maskCreditCard(431233453443563)}`
-);
-console.log(
-  `maskCreditCard('234543643654634109') : ${maskCreditCard(
-    '234543643654634109'
-  )}`
-);
+// for (const flight of flights.split('+')) {
+//   const [type, from, to, time] = flight.split(';');
+//   const output = `${type.replaceAll('_', ' ')} ${from} ${to} (${time.replace(
+//     ':',
+//     'h'
+//   )})`;
+//   console.log(output);
+// }
 
-// Repeat
-const message2 = 'Bad weather... All Departures Delayed... ';
-console.log(message2.repeat(5, '\n'));
+const getCode = str => str.slice(0, 3).toUpperCase();
 
-const planesInLine = function (n) {
-  console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
-};
-
-planesInLine(5);
-planesInLine(12);
-planesInLine(3);
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+  const output = `${type.startsWith('_Delayed') ? '🔴' : ''}${type.replaceAll(
+    '_',
+    ' '
+  )} ${getCode(from)} ${getCode(to)} (${time.replace(':', 'h')})`.padStart(36);
+  console.log(output);
+}
+ */
