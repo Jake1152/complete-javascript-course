@@ -83,30 +83,56 @@
 /* 132. Functions Accepting Callback Functions
  */
 
-const oneWord = function (str) {
-  return str.replace(/ /g, '').toLowerCase();
+// const oneWord = function (str) {
+//   return str.replace(/ /g, '').toLowerCase();
+// };
+
+// const upperFirstWord = function (str) {
+//   const [first, ...others] = str.split(' ');
+//   return [first.toUpperCase(), ...others].join(' ');
+// };
+
+// // Higher-order function
+// const transformer = function (str, fn) {
+//   console.log(`Original string: ${fn(str)}`);
+//   console.log(`Transformed string: ${fn(str)}`);
+
+//   // confirm,ko
+//   console.log(`Transformed by: ${fn.name}`);
+// };
+
+// transformer('javascript is the best!', upperFirstWord);
+// // oneWord('test');
+
+// const high5 = function () {
+//   console.log('Hi');
+// };
+
+// document.body.addEventListener('click', high5);
+// ['Jonas', 'Martha', 'Adam'].forEach(high5);
+
+/* 133. Functinos Returning Functions
+ */
+
+// scope chain을 쓰게끔 만든다.
+const greet = function (greeting) {
+  // greeting: greeting,
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
 };
 
-const upperFirstWord = function (str) {
-  const [first, ...others] = str.split(' ');
-  return [first.toUpperCase(), ...others].join(' ');
+const greeterHey = greet('Hey');
+greeterHey('Jonas');
+greeterHey('Steven');
+
+greet('Hello')('Jonas');
+
+// 다른 함수를 반환 함수로 갖는다는 것의 의미
+// const greetArrow = greeting => name => console.log(`${greeting} ${name}`);
+const greetArrow = greeting => {
+  return name => {
+    return console.log(`${greeting} ${name}`);
+  };
 };
-
-// Higher-order function
-const transformer = function (str, fn) {
-  console.log(`Original string: ${fn(str)}`);
-  console.log(`Transformed string: ${fn(str)}`);
-
-  // confirm,ko
-  console.log(`Transformed by: ${fn.name}`);
-};
-
-transformer('javascript is the best!', upperFirstWord);
-// oneWord('test');
-
-const high5 = function () {
-  console.log('Hi');
-};
-
-document.body.addEventListener('click', high5);
-['Jonas', 'Martha', 'Adam'].forEach(high5);
+greetArrow('Hello')('Jonas');
