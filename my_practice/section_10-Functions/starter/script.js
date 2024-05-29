@@ -43,36 +43,70 @@
 
 /** # 130. How Passing Arguments Works: Value vs. Reference
  */
-const flight = 'LH234';
-const jonas = {
-  name: 'Jonas Schmedtmann',
-  passport: 24739479284,
+// const flight = 'LH234';
+// const jonas = {
+//   name: 'Jonas Schmedtmann',
+//   passport: 24739479284,
+// };
+
+// const checkIn = function (flightNum, passenger) {
+//   flightNum = 'LH999';
+//   passenger.name = 'Mr. ' + passenger.name;
+//   // console.log(flightNum, passenger);
+//   if (passenger.passport === 24739479284) {
+//     console.log('Checked in');
+//   } else {
+//     console.log('Wrong passport');
+//   }
+// };
+
+// console.log('Before', jonas);
+
+// checkIn(flight, jonas);
+// console.log(flight);
+// console.log(jonas);
+
+// const flightNum = flight;
+// const passenger = jonas;
+// console.log(`flightNum : ${flightNum}`); // deep copy
+// console.log(`passenger : `, passenger); // shallow copy
+
+// const newPassport = function (person) {
+//   person.passport = Math.trunc(Math.random() * 1000000000);
+// };
+
+// newPassport(jonas);
+// console.log('newPassport(jonas);', jonas);
+// // pass reference
+// checkIn(flight, jonas); // wrong passport, 얉은 복사로 인해 newPassport()함수를 거치며 값이 변경됨
+
+/* 132. Functions Accepting Callback Functions
+ */
+
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
 };
 
-const checkIn = function (flightNum, passenger) {
-  flightNum = 'LH999';
-  passenger.name = 'Mr. ' + passenger.name;
-  // console.log(flightNum, passenger);
-  if (passenger.passport === 24739479284) {
-    alert('Checked in');
-  } else {
-    alert('Wrong passport');
-  }
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
 };
 
-checkIn(flight, jonas);
-console.log(flight);
-console.log(jonas);
+// Higher-order function
+const transformer = function (str, fn) {
+  console.log(`Original string: ${fn(str)}`);
+  console.log(`Transformed string: ${fn(str)}`);
 
-const flightNum = flight;
-const passenger = jonas;
-console.log(`flightNum : ${flightNum}`); // deep copy
-console.log(`passenger : `, passenger); // shallow copy
-
-const newPassport = function (person) {
-  person.passport = Math.trunc(Math.random() * 1000000000);
+  // confirm,ko
+  console.log(`Transformed by: ${fn.name}`);
 };
 
-newPassport(jonas);
-// pass reference
-checkIn(flight, jonas); // wrong passport, 얉은 복사로 인해 newPassport()함수를 거치며 값이 변경됨
+transformer('javascript is the best!', upperFirstWord);
+// oneWord('test');
+
+const high5 = function () {
+  console.log('Hi');
+};
+
+document.body.addEventListener('click', high5);
+['Jonas', 'Martha', 'Adam'].forEach(high5);
