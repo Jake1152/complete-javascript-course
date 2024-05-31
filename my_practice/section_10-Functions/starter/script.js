@@ -204,47 +204,130 @@ const swiss = {
 /**
  * 135. bind
  */
-const bookEW = book.bind(eurowings);
-const bookLF = book.bind(lufthansa);
-const bookSW = book.bind(swiss);
-bookEW(23, 'Eric');
-bookLF('123', 'Eric');
-bookSW('456', 'Eric');
+// const bookEW = book.bind(eurowings);
+// const bookLF = book.bind(lufthansa);
+// const bookSW = book.bind(swiss);
+// bookEW(23, 'Eric');
+// bookLF('123', 'Eric');
+// bookSW('456', 'Eric');
 
-// https://en.wikipedia.org/wiki/Partial_application
-// 미리 사용할 인자 일부를 설정하는 방법 => Partial Application 기법
-const bookEW23 = book.bind(eurowings, 23);
-bookEW23('Jake');
+// // https://en.wikipedia.org/wiki/Partial_application
+// // 미리 사용할 인자 일부를 설정하는 방법 => Partial Application 기법
+// const bookEW23 = book.bind(eurowings, 23);
+// bookEW23('Jake');
 
-const bookEW23Jason = book.bind(eurowings, 23, 'Jason');
-bookEW23Jason();
+// const bookEW23Jason = book.bind(eurowings, 23, 'Jason');
+// bookEW23Jason();
 
-lufthansa.planes = 300;
-lufthansa.buyPlane = function () {
-  console.log(this);
+// lufthansa.planes = 300;
+// lufthansa.buyPlane = function () {
+//   console.log(this);
 
-  this.planes++;
-  console.log(this.planes); // event 처리 함수에에서는 this키워드가 event handler에 연결된 DOM 요소를 가리킨다. 여기서는 button요소를 가리킨다.
-};
-// document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane);
-document
-  .querySelector('.buy')
-  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+//   this.planes++;
+//   console.log(this.planes); // event 처리 함수에에서는 this키워드가 event handler에 연결된 DOM 요소를 가리킨다. 여기서는 button요소를 가리킨다.
+// };
+// // document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane);
+// document
+//   .querySelector('.buy')
+//   .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
 
-const addTax = (rate, value) => value + value * rate;
-console.log(addTax(0.1, 200));
+// const addTax = (rate, value) => value + value * rate;
+// console.log(addTax(0.1, 200));
 
-const addVAT = addTax.bind(null, 0.23);
-// addVAT = value => value + value * 0.2;
-console.log(addVAT(100));
-console.log(addTax(0.23, 23));
+// const addVAT = addTax.bind(null, 0.23);
+// // addVAT = value => value + value * 0.2;
+// console.log(addVAT(100));
+// console.log(addTax(0.23, 23));
 
-const addTaxRate = rate => {
-  return function (value) {
-    return value + value * rate;
+// const addTaxRate = rate => {
+//   return function (value) {
+//     return value + value * rate;
+//   };
+// };
+
+// const addVAT2 = addTaxRate(0.23);
+// console.log(addVAT2(100));
+// console.log(addVAT2(23));
+
+/**
+ * # 137. IIFE (Immediately Invoked Function Expression)
+ */
+
+//
+// const runOnce = function () {
+//   console.log('This will never run again');
+// };
+// runOnce();
+
+// IIFE
+// (function () {
+//   console.log('This will never run again');
+// })();
+
+// IIFE arrow version
+(() => console.log('This will ALSO never run again'))();
+
+/* 왜 IIFE가 만들어졌는가? => 데이터 캡슐화
+- 함수는 범위를 생성한다.
+- 한 범위는 내부 범위에서 변수에 접근할 수 없다
+e.g) 전역범위에서 아래 함수에 정의된 어떤 변수에도 접근할 수 없는 것에 비유 가능
+
+- 데이터 캡슐화와 데이터 프라이버시
+프로그램의 다른 부분이 외부 스크립트나 라이브러리로도 
+실수로 덮어쓰이지 않도록 여러 번 변수를 보호해야한다.
+
+- 변수를 감추는 것이 가장 중요하다.
+*/
+(function () {
+  console.log('This will never run again');
+  const isPrivate = 23;
+})();
+
+// console.log(isPrivate); // ReferenceError: isPrivate is not defined
+
+/*
+var 키워드로 선언되었다면 블록 스코프를 무시하게된다.
+모던 자바스크립트에서는 let, const 등을 쓰며 블록 스코프 범위대로 된다.
+데이터 프라이버시의 범위를 넓히는 것만을 목적으로 한다면 
+현재에는 IIFE가 잘 쓰이지 않다.
+단지 아래 예시처럼 {} 블록을 만들면 된다.
+
+새로운 범위를 생성하기 위해 함수를 만들 필요가 없다.
+
+#! 함수를 한번만 실행하고 싶다면 IIFE를 쓴다.
+ */
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+
+// console.log(isPrivate);
+console.log(notPrivate);
+
+// closure
+let f;
+
+// Scope version
+{
+  let count = 0;
+  f = function () {
+    console.log(++count);
   };
-};
+}
 
-const addVAT2 = addTaxRate(0.23);
-console.log(addVAT2(100));
-console.log(addVAT2(23));
+f();
+f();
+f();
+
+// IIFE version
+(() => {
+  let count = 0;
+  f = function () {
+    console.log(++count);
+  };
+})();
+
+f();
+f();
+f();
+// f();
