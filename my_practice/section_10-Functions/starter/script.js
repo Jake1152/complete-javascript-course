@@ -265,7 +265,7 @@ const swiss = {
 // })();
 
 // IIFE arrow version
-(() => console.log('This will ALSO never run again'))();
+// (() => console.log('This will ALSO never run again'))();
 
 /* 왜 IIFE가 만들어졌는가? => 데이터 캡슐화
 - 함수는 범위를 생성한다.
@@ -278,10 +278,10 @@ e.g) 전역범위에서 아래 함수에 정의된 어떤 변수에도 접근할
 
 - 변수를 감추는 것이 가장 중요하다.
 */
-(function () {
-  console.log('This will never run again');
-  const isPrivate = 23;
-})();
+// (function () {
+//   console.log('This will never run again');
+//   const isPrivate = 23;
+// })();
 
 // console.log(isPrivate); // ReferenceError: isPrivate is not defined
 
@@ -296,38 +296,74 @@ var 키워드로 선언되었다면 블록 스코프를 무시하게된다.
 
 #! 함수를 한번만 실행하고 싶다면 IIFE를 쓴다.
  */
-{
-  const isPrivate = 23;
-  var notPrivate = 46;
-}
+// {
+//   const isPrivate = 23;
+//   var notPrivate = 46;
+// }
 
 // console.log(isPrivate);
-console.log(notPrivate);
+// console.log(notPrivate);
 
 // closure
-let f;
+// let f;
 
 // Scope version
-{
-  let count = 0;
-  f = function () {
-    console.log(++count);
-  };
-}
+// {
+//   let count = 0;
+//   f = function () {
+//     console.log(++count);
+//   };
+// }
 
-f();
-f();
-f();
+// f();
+// f();
+// f();
 
 // IIFE version
-(() => {
-  let count = 0;
-  f = function () {
-    console.log(++count);
-  };
-})();
+// (() => {
+//   let count = 0;
+//   f = function () {
+//     console.log(++count);
+//   };
+// })();
 
-f();
-f();
-f();
 // f();
+// f();
+// f();
+// f();
+
+/**
+ * # 138. Closure
+ * call stack, scope chain, closure
+ */
+
+let temp = 42;
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    temp--;
+    console.log(`${passengerCount} passengers,\ttemp: ${temp}`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+temp -= 10;
+console.log(`Global temp: ${temp}`);
+
+(() => {
+  let passengerCount = 42;
+  booker();
+})();
+temp -= 10;
+console.log(`Global temp: ${temp}`);
+
+booker();
+temp -= 10;
+console.log(`Global temp: ${temp}`);
+
+console.dir(booker);
