@@ -337,33 +337,59 @@ var 키워드로 선언되었다면 블록 스코프를 무시하게된다.
  * call stack, scope chain, closure
  */
 
-let temp = 42;
+// let temp = 42;
 
-const secureBooking = function () {
-  let passengerCount = 0;
+// const secureBooking = function () {
+//   let passengerCount = 0;
 
-  return function () {
-    passengerCount++;
-    temp--;
-    console.log(`${passengerCount} passengers,\ttemp: ${temp}`);
-  };
+//   return function () {
+//     passengerCount++;
+//     temp--;
+//     console.log(`${passengerCount} passengers,\ttemp: ${temp}`);
+//   };
+// };
+
+// const booker = secureBooking();
+
+// booker();
+// temp -= 10;
+// console.log(`Global temp: ${temp}`);
+
+// (() => {
+//   let passengerCount = 42;
+//   booker();
+// })();
+// temp -= 10;
+// console.log(`Global temp: ${temp}`);
+
+// booker();
+// temp -= 10;
+// console.log(`Global temp: ${temp}`);
+
+// console.dir(booker);
+
+/** # 139. More Closure Examples
+ */
+
+const boardPassengers = function (n, wait) {
+  // const perGroup = n / 3;
+
+  // setTimeout에 쓰인 callback fn()이 설정한 시간 이후에 정상동작 한다는 점에서 클로저가 잘 동작한다고 볼 수 있다.
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, 1000 * wait);
+
+  console.log(`Will start boarding in ${wait} seconds`);
 };
 
-const booker = secureBooking();
+setTimeout(function () {
+  console.log('Timer');
+}, 1000);
 
-booker();
-temp -= 10;
-console.log(`Global temp: ${temp}`);
+// setTimeout() 콜백함수 내에서 쓰이는 변수가 어디있는지 스코프체인을 통해 찾으며 찾은 변수는 closure에서 접근할 공간에 담아둔다.
+// 즉, boardPassengers 범위 내에서 perGroup라는 변수가 선언되어 있지 아니하다면 전역범위까지 나와서 확인할 것이다.
+const perGroup = 1000;
+// output: There are 3 groups, each with 1000 passengers
 
-(() => {
-  let passengerCount = 42;
-  booker();
-})();
-temp -= 10;
-console.log(`Global temp: ${temp}`);
-
-booker();
-temp -= 10;
-console.log(`Global temp: ${temp}`);
-
-console.dir(booker);
+boardPassengers(180, 3);
