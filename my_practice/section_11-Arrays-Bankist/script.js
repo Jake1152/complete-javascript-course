@@ -36,30 +36,30 @@ const account4 = {
 const accounts = [account1, account2, account3, account4];
 
 // Elements;
-const labelWelcome = document.querySelector('.welcome');
-const labelDate = document.querySelector('.date');
-const labelBalance = document.querySelector('.balance__value');
-const labelSumIn = document.querySelector('.summary__value--in');
-const labelSumOut = document.querySelector('.summary__value--out');
-const labelSumInterest = document.querySelector('.summary__value--interest');
-const labelTimer = document.querySelector('.timer');
+// const labelWelcome = document.querySelector('.welcome');
+// const labelDate = document.querySelector('.date');
+// const labelBalance = document.querySelector('.balance__value');
+// const labelSumIn = document.querySelector('.summary__value--in');
+// const labelSumOut = document.querySelector('.summary__value--out');
+// const labelSumInterest = document.querySelector('.summary__value--interest');
+// const labelTimer = document.querySelector('.timer');
 
-const containerApp = document.querySelector('.app');
-const containerMovements = document.querySelector('.movements');
+// const containerApp = document.querySelector('.app');
+// const containerMovements = document.querySelector('.movements');
 
-const btnLogin = document.querySelector('.login__btn');
-const btnTransfer = document.querySelector('.form__btn--transfer');
-const btnLoan = document.querySelector('.form__btn--loan');
-const btnClose = document.querySelector('.form__btn--close');
-const btnSort = document.querySelector('.btn--sort');
+// const btnLogin = document.querySelector('.login__btn');
+// const btnTransfer = document.querySelector('.form__btn--transfer');
+// const btnLoan = document.querySelector('.form__btn--loan');
+// const btnClose = document.querySelector('.form__btn--close');
+// const btnSort = document.querySelector('.btn--sort');
 
-const inputLoginUsername = document.querySelector('.login__input--user');
-const inputLoginPin = document.querySelector('.login__input--pin');
-const inputTransferTo = document.querySelector('.form__input--to');
-const inputTransferAmount = document.querySelector('.form__input--amount');
-const inputLoanAmount = document.querySelector('.form__input--loan-amount');
-const inputCloseUsername = document.querySelector('.form__input--user');
-const inputClosePin = document.querySelector('.form__input--pin');
+// const inputLoginUsername = document.querySelector('.login__input--user');
+// const inputLoginPin = document.querySelector('.login__input--pin');
+// const inputTransferTo = document.querySelector('.form__input--to');
+// const inputTransferAmount = document.querySelector('.form__input--amount');
+// const inputLoanAmount = document.querySelector('.form__input--loan-amount');
+// const inputCloseUsername = document.querySelector('.form__input--user');
+// const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -183,7 +183,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /** # 145. Looping Araays: forEach
  */
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // // for (const movement of movements) {
 // for (const [index, movement] of movements.entries()) {
@@ -198,16 +198,16 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // // console.log('# forEach style loop');
 // console.log('---- FOREACH ----');
 
-const callfn = function (movement, index, array) {
-  if (movement > 0) {
-    console.log(`Movement ${index + 1}: You deposited ${movement}`);
-    // if (flag) return;
-  } else {
-    console.log(`Movement ${index + 1}: You withdrew ${Math.abs(movement)}`);
-  }
-};
+// const callfn = function (movement, index, array) {
+//   if (movement > 0) {
+//     console.log(`Movement ${index + 1}: You deposited ${movement}`);
+//     // if (flag) return;
+//   } else {
+//     console.log(`Movement ${index + 1}: You withdrew ${Math.abs(movement)}`);
+//   }
+// };
 
-movements.forEach(callfn);
+// movements.forEach(callfn);
 // 0: function(200)
 // 1: function(450)
 // 2: function(400)
@@ -215,8 +215,35 @@ movements.forEach(callfn);
 /** # 146. forEach With Maps and Sets
  */
 
-// const currenies = new Map([
-//   ['USD', 'United States dollar'],
-//   ['EUR', 'Euro'],
-//   ['GBP', 'Pound Sterling'],
-// ]);
+const currenies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound Sterling'],
+]);
+
+currenies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+const curreniesUnique = new Set([
+  'USD',
+  'EUR',
+  'GBP',
+  'KRW',
+  'USD',
+  'EUR',
+  'EUR',
+]);
+
+console.log(curreniesUnique);
+
+/* Set
+set에서 forEach를 썼을 때 key는 필요없는 값이지만
+만약 set에서의 forEach만 다르게 했다면 다른 iterotor 유형에서 forEach를 쓰는 경우와 호환되지 않을 것이므로 
+동일한 형식으로 표현하게된다.
+ */
+// curreniesUnique.forEach(function (value, key, map) {
+curreniesUnique.forEach(function (value, _, map) {
+  // console.log(`${key}: ${value}`); // set에서는 key, value 가 같은 값
+  console.log(`${value}`); // set에서는 key, value 가 같은 값
+});
