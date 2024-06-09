@@ -79,32 +79,32 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
  * array도 object이다.
  */
 
-let arr = ['a', 'b', 'c', 'd', 'e'];
+// let arr = ['a', 'b', 'c', 'd', 'e'];
 
 /** SLICE
  * 원본을 바꾸지 않고 얕은 복사를 한다
  */
 // const pieceOfArr = arr.slice(2, 4);
 // console.log(`pieceOfArr : `, pieceOfArr);
-console.log(arr.slice(2));
-console.log(arr.slice(2, 4));
-console.log(arr.slice(-2)); // negative begin parameter
-console.log(arr.slice(-1)); // last element of array
-console.log(arr.slice(1, -2));
-console.log(arr);
-console.log(arr.slice()); // shallow copy
+// console.log(arr.slice(2));
+// console.log(arr.slice(2, 4));
+// console.log(arr.slice(-2)); // negative begin parameter
+// console.log(arr.slice(-1)); // last element of array
+// console.log(arr.slice(1, -2));
+// console.log(arr);
+// console.log(arr.slice()); // shallow copy
 
-let arrSlice = arr.slice(); // shallow copy
-arrSlice[0] = '42';
-console.log('arrSlice', arrSlice); // ['42', 'b', 'c', 'd', 'e'];
-console.log(arr); // ['42', 'b', 'c', 'd', 'e'];
+// let arrSlice = arr.slice(); // shallow copy
+// arrSlice[0] = '42';
+// console.log('arrSlice', arrSlice); // ['42', 'b', 'c', 'd', 'e'];
+// console.log(arr); // ['42', 'b', 'c', 'd', 'e'];
 
 // console.log([...arr]); // deep copy
 
-let arrSpread = [...arr];
-arrSpread[0] = '42';
-console.log('arrSpread', arrSpread);
-console.log(arr);
+// let arrSpread = [...arr];
+// arrSpread[0] = '42';
+// console.log('arrSpread', arrSpread);
+// console.log(arr);
 
 /** SPLICE
  * 원본에서 잘라감, 원본도 바뀐다.
@@ -156,3 +156,23 @@ console.log(arr);
 // console.log(arr.join(' - ')); // a - b - c - d - e
 // console.log(arr);
 // console.log(arr2);
+
+/** # 144. The new at Method
+ *  at()을 쓰느냐 [] 표기법을 쓰느냐
+ */
+
+const arr = [23, 11, 64];
+console.log(arr[0]);
+console.log(arr.at(0));
+
+// getting last array element
+console.log(arr[arr.length - 1]); // last element
+console.log(arr.slice(-1)[0]); // last element
+console.log(arr[-1]); // undefined
+console.log(arr.at(-1)); // last element
+console.log(arr.at(-2)); // penultimate element
+console.log(arr.at(-3)); // 23
+console.log(arr.at(-4)); // undefind
+
+console.log('Jake'.at(0));
+console.log('Jake'.at(-1));
