@@ -71,7 +71,7 @@ const currenies = new Map([
   ['GBP', 'Pound Sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -161,18 +161,50 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
  *  at()을 쓰느냐 [] 표기법을 쓰느냐
  */
 
-const arr = [23, 11, 64];
-console.log(arr[0]);
-console.log(arr.at(0));
+// const arr = [23, 11, 64000];
+// console.log(arr[0]);
+// console.log(arr.at(0));
 
-// getting last array element
-console.log(arr[arr.length - 1]); // last element
-console.log(arr.slice(-1)[0]); // last element
-console.log(arr[-1]); // undefined
-console.log(arr.at(-1)); // last element
-console.log(arr.at(-2)); // penultimate element
-console.log(arr.at(-3)); // 23
-console.log(arr.at(-4)); // undefind
+// // getting last array element
+// console.log(arr[arr.length - 1]); // last element
+// console.log('###'); // 왜 메서드 체이닝에 at()이 유리한가?
+// console.log(arr.at(2).toLocaleString()); // last element
+// console.log(arr[2].toLocaleString()); // last element
+// console.log('###');
+// console.log(arr[-1]); // undefined
+// console.log(arr.at(-1)); // last element
+// console.log(arr.at(-2)); // penultimate element
+// console.log(arr.at(-3)); // 23
+// console.log(arr.at(-4)); // undefind
 
-console.log('Jake'.at(0));
-console.log('Jake'.at(-1));
+// console.log('Jake'.at(0));
+// console.log('Jake'.at(-1));
+
+/** # 145. Looping Araays: forEach
+ */
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// for (const movement of movements) {
+for (const [index, movement] of movements.entries()) {
+  if (movement > 0) {
+    console.log(`Movement ${index + 1}: You deposited ${movement}`);
+  } else {
+    console.log(`Movement ${index + 1}: You withdrew ${Math.abs(movement)}`);
+  }
+}
+
+// forEach의 경우 callback을 쓴다., loop 중간에 빠져나올 수 없다.
+// console.log('# forEach style loop');
+console.log('---- FOREACH ----');
+movements.forEach(function (movement, index, array) {
+  if (movement > 0) {
+    console.log(`Movement ${index + 1}: You deposited ${movement}`);
+  } else {
+    console.log(`Movement ${index + 1}: You withdrew ${Math.abs(movement)}`);
+  }
+});
+
+// 0: function(200)
+// 1: function(450)
+// 2: function(400)
