@@ -65,11 +65,11 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currenies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound Sterling'],
-]);
+// const currenies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound Sterling'],
+// ]);
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -185,26 +185,38 @@ const currenies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-// for (const movement of movements) {
-for (const [index, movement] of movements.entries()) {
+// // for (const movement of movements) {
+// for (const [index, movement] of movements.entries()) {
+//   if (movement > 0) {
+//     console.log(`Movement ${index + 1}: You deposited ${movement}`);
+//   } else {
+//     console.log(`Movement ${index + 1}: You withdrew ${Math.abs(movement)}`);
+//   }
+// }
+
+// // forEach의 경우 callback을 쓴다., loop 중간에 빠져나올 수 없다.
+// // console.log('# forEach style loop');
+// console.log('---- FOREACH ----');
+
+const callfn = function (movement, index, array) {
   if (movement > 0) {
     console.log(`Movement ${index + 1}: You deposited ${movement}`);
+    // if (flag) return;
   } else {
     console.log(`Movement ${index + 1}: You withdrew ${Math.abs(movement)}`);
   }
-}
+};
 
-// forEach의 경우 callback을 쓴다., loop 중간에 빠져나올 수 없다.
-// console.log('# forEach style loop');
-console.log('---- FOREACH ----');
-movements.forEach(function (movement, index, array) {
-  if (movement > 0) {
-    console.log(`Movement ${index + 1}: You deposited ${movement}`);
-  } else {
-    console.log(`Movement ${index + 1}: You withdrew ${Math.abs(movement)}`);
-  }
-});
-
+movements.forEach(callfn);
 // 0: function(200)
 // 1: function(450)
 // 2: function(400)
+
+/** # 146. forEach With Maps and Sets
+ */
+
+// const currenies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound Sterling'],
+// ]);
