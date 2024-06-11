@@ -61,6 +61,54 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movements, sort = false) {
+  containerMovements.innerHTML = '';
+
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  // movements.forEach(function (mov, i) {
+  movs.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    // 템플릿 문자열에 붙여넣기
+    const html = `
+        <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+          <div class="movements__value">${mov}</div>
+        </div>
+      `;
+
+    // 첫번째 인자는 HTML에 붙이이려는 위치
+    /**
+     * beforebegin
+     * afterbegin
+     * beforeend
+     * afterend
+     */
+    // 두번째 인자 삽입하고자 하는 HTML을 포함하는 문자열.
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(account1.movements);
+
+// # 152. Computing Usernames
+// const user = `Steven Thomas Williams`; // stw
+const createUserNames = function (accs) {
+  accs.forEach(function (acc) {
+    // 새로운 property 항목 추가
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+console.log('accounts : ', accounts);
+createUserNames(accounts);
+console.log('After createUserNames(), accounts : ', accounts);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -296,4 +344,6 @@ const movementsDescription = movements.map(
 // other way
 
 console.log(`movementsDescription : `, movementsDescription);
+
+// console.log(`movementsDescription : `, movementsDescription.);
 // ['Movement 1: You deposited 200', 'Movement 2: You deposited 450', 'Movement 3: You withdrew 400', 'Movement 4: You deposited 3000', 'Movement 5: You withdrew 650', 'Movement 6: You withdrew 130', 'Movement 7: You deposited 70', 'Movement 8: You deposited 1300']
