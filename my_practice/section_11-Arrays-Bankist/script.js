@@ -36,42 +36,42 @@ const account4 = {
 const accounts = [account1, account2, account3, account4];
 
 // Elements;
-// const labelWelcome = document.querySelector('.welcome');
-// const labelDate = document.querySelector('.date');
-// const labelBalance = document.querySelector('.balance__value');
-// const labelSumIn = document.querySelector('.summary__value--in');
-// const labelSumOut = document.querySelector('.summary__value--out');
-// const labelSumInterest = document.querySelector('.summary__value--interest');
-// const labelTimer = document.querySelector('.timer');
+const labelWelcome = document.querySelector('.welcome');
+const labelDate = document.querySelector('.date');
+const labelBalance = document.querySelector('.balance__value');
+const labelSumIn = document.querySelector('.summary__value--in');
+const labelSumOut = document.querySelector('.summary__value--out');
+const labelSumInterest = document.querySelector('.summary__value--interest');
+const labelTimer = document.querySelector('.timer');
 
-// const containerApp = document.querySelector('.app');
-// const containerMovements = document.querySelector('.movements');
+const containerApp = document.querySelector('.app');
+const containerMovements = document.querySelector('.movements');
 
-// const btnLogin = document.querySelector('.login__btn');
-// const btnTransfer = document.querySelector('.form__btn--transfer');
-// const btnLoan = document.querySelector('.form__btn--loan');
-// const btnClose = document.querySelector('.form__btn--close');
-// const btnSort = document.querySelector('.btn--sort');
+const btnLogin = document.querySelector('.login__btn');
+const btnTransfer = document.querySelector('.form__btn--transfer');
+const btnLoan = document.querySelector('.form__btn--loan');
+const btnClose = document.querySelector('.form__btn--close');
+const btnSort = document.querySelector('.btn--sort');
 
-// const inputLoginUsername = document.querySelector('.login__input--user');
-// const inputLoginPin = document.querySelector('.login__input--pin');
-// const inputTransferTo = document.querySelector('.form__input--to');
-// const inputTransferAmount = document.querySelector('.form__input--amount');
-// const inputLoanAmount = document.querySelector('.form__input--loan-amount');
-// const inputCloseUsername = document.querySelector('.form__input--user');
-// const inputClosePin = document.querySelector('.form__input--pin');
+const inputLoginUsername = document.querySelector('.login__input--user');
+const inputLoginPin = document.querySelector('.login__input--pin');
+const inputTransferTo = document.querySelector('.form__input--to');
+const inputTransferAmount = document.querySelector('.form__input--amount');
+const inputLoanAmount = document.querySelector('.form__input--loan-amount');
+const inputCloseUsername = document.querySelector('.form__input--user');
+const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
 
-// const currenies = new Map([
-//   ['USD', 'United States dollar'],
-//   ['EUR', 'Euro'],
-//   ['GBP', 'Pound Sterling'],
-// ]);
+const currenies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound Sterling'],
+]);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -212,30 +212,32 @@ const accounts = [account1, account2, account3, account4];
 // 1: function(450)
 // 2: function(400)
 
+// .COMMIT_EDITMSG.swp
+
 /** # 146. forEach With Maps and Sets
  */
 
-const currenies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound Sterling'],
-]);
+// const currenies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound Sterling'],
+// ]);
 
-currenies.forEach(function (value, key, map) {
-  console.log(`${key}: ${value}`);
-});
+// currenies.forEach(function (value, key, map) {
+//   console.log(`${key}: ${value}`);
+// });
 
-const curreniesUnique = new Set([
-  'USD',
-  'EUR',
-  'GBP',
-  'KRW',
-  'USD',
-  'EUR',
-  'EUR',
-]);
+// const curreniesUnique = new Set([
+//   'USD',
+//   'EUR',
+//   'GBP',
+//   'KRW',
+//   'USD',
+//   'EUR',
+//   'EUR',
+// ]);
 
-console.log(curreniesUnique);
+// console.log(curreniesUnique);
 
 /* Set
 set에서 forEach를 썼을 때 key는 필요없는 값이지만
@@ -243,7 +245,50 @@ set에서 forEach를 썼을 때 key는 필요없는 값이지만
 동일한 형식으로 표현하게된다.
  */
 // curreniesUnique.forEach(function (value, key, map) {
-curreniesUnique.forEach(function (value, _, map) {
-  // console.log(`${key}: ${value}`); // set에서는 key, value 가 같은 값
-  console.log(`${value}`); // set에서는 key, value 가 같은 값
+//   // curreniesUnique.forEach(function (value, _, _) { // Error: Duplicate parameter name not allowed in this conte
+//   // curreniesUnique.forEach(function (value, _, map) {
+//   console.log(`${key}: ${value}`); // set에서는 key, value 가 같은 값
+//   // console.log(`${_}: ${value}`); // set에서는 key, value 가 같은 값
+//   // console.log(`${value}`); // set에서는 key, value 가 같은 값
+// });
+
+// for (const [key, value] of currenies.entries()) {
+//   console.log(`${key}: ${value}`); // set에서는 key, value 가 같은 값
+// }
+/** # 151. Map
+ * 새로운 배열에 인자로 넘어온 배열 모든 요소에 특정 연산을 적용한 결과를 저장한다.
+ */
+
+const eurToUsd = 1.1;
+
+// const movementsUSD = movements.map(function (mov) {
+//   return mov * eurToUsd;
+// });
+
+// const movementsUSD = movements.map(mov => {
+//   return mov * eurToUsd;
+// });
+
+// map with arrow function, rweturn
+const movementsUSD = movements.map(mov => mov * eurToUsd);
+
+// movements : 200,450,-400,3000,-650,-130,70,1300
+console.log(`movements : ${movements}`);
+
+// 220.00000000000003,495.00000000000006,-440.00000000000006,3300.0000000000005,-715.0000000000001,-143,77,1430.0000000000002
+console.log(`movementsUSD : ${movementsUSD}`);
+
+const movementsUSDfor = [];
+for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
+console.log(`movementsUSDfor : ${movementsUSDfor}`);
+
+const movementsDescription = movements.map((movement, index, arr) => {
+  if (movement > 0) {
+    return `Movement ${index + 1}: You deposited ${movement}`;
+  } else {
+    return `Movement ${index + 1}: You withdrew ${Math.abs(movement)}`;
+  }
 });
+
+console.log(`movementsDescription : `, movementsDescription);
+// ['Movement 1: You deposited 200', 'Movement 2: You deposited 450', 'Movement 3: You withdrew 400', 'Movement 4: You deposited 3000', 'Movement 5: You withdrew 650', 'Movement 6: You withdrew 130', 'Movement 7: You deposited 70', 'Movement 8: You deposited 1300']
