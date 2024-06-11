@@ -282,13 +282,18 @@ const movementsUSDfor = [];
 for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
 console.log(`movementsUSDfor : ${movementsUSDfor}`);
 
-const movementsDescription = movements.map((movement, index, arr) => {
-  if (movement > 0) {
-    return `Movement ${index + 1}: You deposited ${movement}`;
-  } else {
-    return `Movement ${index + 1}: You withdrew ${Math.abs(movement)}`;
-  }
-});
+const movementsDescription = movements.map(
+  (movement, index) =>
+    `Movement ${index + 1}: You ${
+      movement > 0 ? `deposited` : `withdrew`
+    } ${Math.abs(movement)}`
+);
+// if (movement > 0) {
+//   return `Movement ${index + 1}: You deposited ${movement}`;
+// } else {
+//   return `Movement ${index + 1}: You withdrew ${Math.abs(movement)}`;
+// }
+// other way
 
 console.log(`movementsDescription : `, movementsDescription);
 // ['Movement 1: You deposited 200', 'Movement 2: You deposited 450', 'Movement 3: You withdrew 400', 'Movement 4: You deposited 3000', 'Movement 5: You withdrew 650', 'Movement 6: You withdrew 130', 'Movement 7: You deposited 70', 'Movement 8: You deposited 1300']
